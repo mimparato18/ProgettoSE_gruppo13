@@ -15,11 +15,11 @@ public class SystemAdministrator extends User{
         super(username, password);
     }
     
-    public Planner createPlanner(){
-        return null;
+    public Planner createPlanner(String username, String password){
+        return new Planner(username,password);
     }
     
-    public Maintainer createMaintainer(){
-        return null;
+    public Maintainer createMaintainer(String username, String password){
+        return new Maintainer(username,password);
     }
 }
