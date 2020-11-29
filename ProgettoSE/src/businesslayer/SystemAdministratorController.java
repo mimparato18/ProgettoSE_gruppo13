@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package businesslayer;
+import dataaccesslayer.*;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  *
  * @author marku
  */
-public class SystemAdministratorController {//passare db come parametro
+public class SystemAdministratorController {
     private Database db;
     private SystemAdministrator admin; 
 
@@ -44,8 +45,9 @@ public class SystemAdministratorController {//passare db come parametro
     }
     
    
-    public LinkedList<User> viewUsers(){
-        return db.getAllUsers();
+    public ArrayList<User> viewUsers(){
+        return db.getAllUsers(); 
+        
     }
     
 }
