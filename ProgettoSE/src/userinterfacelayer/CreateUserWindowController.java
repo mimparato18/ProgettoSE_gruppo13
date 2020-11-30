@@ -38,6 +38,7 @@ public class CreateUserWindowController implements Initializable {
     private Label labelDone;
 
     private SystemAdministratorController admin;
+    
 
     public CreateUserWindowController(SystemAdministratorController admin) {
         this.admin = admin;

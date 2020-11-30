@@ -28,7 +28,7 @@ import javafx.stage.Modality;
 /**
  * FXML Controller class
  *
- * @author camil
+ * @author camillo
  */
 public class SystemAdministratorGUIController implements Initializable {
 
@@ -36,6 +36,7 @@ public class SystemAdministratorGUIController implements Initializable {
     private TableView<DisplayUser> tableView = new TableView<DisplayUser>();
     @FXML
     private Button btnCreate;
+    
     private Label labWarn = new Label();
 
     @FXML

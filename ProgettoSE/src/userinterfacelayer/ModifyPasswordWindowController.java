@@ -34,7 +34,9 @@ public class ModifyPasswordWindowController implements Initializable {
     private Label labWarning;
 
     private String role;
+    
     private SystemAdministratorController admin;
+    
     private DisplayUser data;
 
     public ModifyPasswordWindowController(DisplayUser data, SystemAdministratorController admin) {
