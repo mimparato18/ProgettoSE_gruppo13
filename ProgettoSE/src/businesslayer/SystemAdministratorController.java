@@ -17,8 +17,8 @@ public class SystemAdministratorController {
     private SystemAdministrator admin; 
 
     public SystemAdministratorController() {
-        this.db = db;         
-        db.Connect();
+        db = new SystemAdministratorDataAccess();         
+        db.connect();
         admin = new SystemAdministrator("admin","admin");
     }
 
@@ -75,11 +75,11 @@ public class SystemAdministratorController {
     }
     
     public boolean updateTypology(String oldTypology, String newTypology){
-        return db.modifySite(oldTypology, newTypology);
+        return db.modifyTypology(oldTypology, newTypology);
     }
     
     public boolean deleteTypology(String typology){
-        return db.removeSite(typology);
+        return db.removeTypology(typology);
     }
     
     public ArrayList<String> viewTypologies(){
