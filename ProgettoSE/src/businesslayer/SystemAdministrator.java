@@ -5,6 +5,8 @@
  */
 package businesslayer;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author marco calabrese
@@ -21,5 +23,9 @@ public class SystemAdministrator extends User{
     
     public Maintainer createMaintainer(String username, String password){
         return new Maintainer(username,password);
+    }
+    
+    public Maintainer createMaintainer(String username, String password, ArrayList<String> competencies){
+        return new Maintainer(username,password,competencies);
     }
 }

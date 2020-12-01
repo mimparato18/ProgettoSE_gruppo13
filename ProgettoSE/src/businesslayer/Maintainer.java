@@ -5,17 +5,30 @@
  */
 package businesslayer;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author marku
  */
 public class Maintainer extends User{
-    private List<String> competencies; 
+    private ArrayList<String> competencies; 
 
     public Maintainer(String username, String password) {
         super(username, password);
+    }
+    
+    public Maintainer(String username, String password, ArrayList<String> competencies) {
+        super(username, password);
+        this.competencies= competencies;
+    }
+
+    public ArrayList<String> getCompetencies() {
+        return competencies;
+    }
+
+    public void setCompetencies(ArrayList<String> competencies) {
+        this.competencies = competencies;
     }
     
 }
