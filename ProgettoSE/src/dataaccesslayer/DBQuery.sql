@@ -11,6 +11,7 @@
 DROP TABLE IF EXISTS user ;
 DROP TABLE IF EXISTS typology ;
 DROP TABLE IF EXISTS site ;
+DROP TABLE IF EXISTS maintainercompetence;
 
 CREATE TABLE user(
     username VARCHAR (20) PRIMARY KEY,
@@ -26,4 +27,12 @@ CREATE TABLE site(
     branchoffice VARCHAR(20),
     department VARCHAR(20),
     PRIMARY KEY(branchoffice,department)
+);
+
+CREATE TABLE maintainercompetence(
+  username VARCHAR(20),
+  competence VARCHAR(50),
+  PRIMARY KEY(username,competence),
+  constraint FK_maintainercompetence FOREIGN KEY (username) 
+  REFERENCES user(username)
 );
