@@ -4,16 +4,18 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="230.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="299.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="txtUser" focusTraversable="false" layoutX="25.0" layoutY="69.0" promptText="Username" />
-      <Button fx:id="btnAdd" defaultButton="true" layoutX="155.0" layoutY="180.0" mnemonicParsing="false" onAction="#btnAdd_OnAction" text="Add User" />
-      <ComboBox fx:id="comboRole" layoutX="120.0" layoutY="122.0" prefHeight="25.0" prefWidth="135.0" promptText="Select Role..." />
-      <PasswordField fx:id="passPwd" layoutX="201.0" layoutY="69.0" promptText="Password" />
-      <Label fx:id="labelWarning" layoutX="276.0" layoutY="184.0" text="Missing data" textFill="#ff0b0b" visible="false" />
-      <Label fx:id="labelDone" layoutX="25.0" layoutY="184.0" text="Done" visible="false" />
+      <TextField fx:id="txtUser" focusTraversable="false" layoutX="25.0" layoutY="103.0" promptText="Username" />
+      <Button fx:id="btnAdd" defaultButton="true" layoutX="192.0" layoutY="235.0" mnemonicParsing="false" onAction="#btnAdd_OnAction" text="Add User" />
+      <ComboBox fx:id="comboRole" layoutX="25.0" layoutY="47.0" onAction="#comboRole_OnAction" prefHeight="25.0" prefWidth="135.0" promptText="Select Role..." />
+      <PasswordField fx:id="passPwd" layoutX="25.0" layoutY="172.0" promptText="Password" />
+      <Label fx:id="labelWarning" layoutX="340.0" layoutY="242.0" prefHeight="17.0" prefWidth="78.0" text="Missing data" textFill="#ff0b0b" visible="false" />
+      <Label fx:id="labelDone" layoutX="25.0" layoutY="242.0" prefHeight="17.0" prefWidth="99.0" text="Done" visible="false" />
+      <TextArea fx:id="txtAreaCompetencies" disable="true" layoutX="225.0" layoutY="103.0" prefHeight="94.0" prefWidth="195.0" promptText="Maintainer Competencies" />
    </children>
 </AnchorPane>

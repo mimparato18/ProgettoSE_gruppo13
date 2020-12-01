@@ -6,29 +6,43 @@
 package userinterfacelayer;
 
 import businesslayer.*;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.collections.FXCollections;
+import javafx.scene.Node;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
  *
- * @author camillo
+ * @author camil
  */
 public class SystemAdministratorGUIController implements Initializable {
 
@@ -36,8 +50,8 @@ public class SystemAdministratorGUIController implements Initializable {
     private TableView<DisplayUser> tableView = new TableView<DisplayUser>();
     @FXML
     private Button btnCreate;
-    
     private Label labWarn = new Label();
+    private Button btnHub = new Button();
 
     @FXML
     private TableColumn<DisplayUser, String> colUser;
@@ -55,7 +69,11 @@ public class SystemAdministratorGUIController implements Initializable {
     private Button[] btnDel = new Button[100];
     private Button[] btnMod = new Button[100];
 
-    private SystemAdministratorController admin = new SystemAdministratorController();
+    private SystemAdministratorController admin;
+
+    public SystemAdministratorGUIController(SystemAdministratorController admin) {
+        this.admin = admin;
+    }
 
     /**
      * Initializes the controller class.
@@ -124,14 +142,13 @@ public class SystemAdministratorGUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.initializeTable();
-
     }
 
     public void initializeTable() {
         ObservableList<DisplayUser> data;
         data = FXCollections.observableArrayList();
 
-        for (int i = 0; i < admin.viewUsers().size(); i++) {
+        for (int i = 0; i < admin.viewUsers().size(); i++) {   
             btnDel[i] = new Button("Delete");
             btnDel[i].setOnAction(this::btnDelete_OnAction);
         }
@@ -257,4 +274,24 @@ public class SystemAdministratorGUIController implements Initializable {
 
     }
 
+    @FXML
+    private void btnHub_OnAction(ActionEvent event) {
+        try {
+            
+            
+            Parent root = FXMLLoader.load(getClass().getResource("HomeGUI.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Admin Hub");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Can't load the window: " + e);
+        }
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        
+    }
+    
 }
