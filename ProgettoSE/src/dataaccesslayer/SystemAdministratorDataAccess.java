@@ -19,7 +19,7 @@ public class SystemAdministratorDataAccess extends Database {
     }
 
     /*------USER METHODS------*/
-    public boolean isUser(String username){
+    public boolean isUser(String username) {
         String selectQuery;
         String name = null;
 
@@ -37,7 +37,7 @@ public class SystemAdministratorDataAccess extends Database {
         return false;
     }
 
-    public User getUser(String username){
+    public User getUser(String username) {
         if (!this.isUser(username)) {
             return null;
         }
@@ -68,7 +68,7 @@ public class SystemAdministratorDataAccess extends Database {
         return null;
     }
 
-    public String getRole(String username){
+    public String getRole(String username) {
         if (!this.isUser(username)) {
             return null;
         }
@@ -87,7 +87,7 @@ public class SystemAdministratorDataAccess extends Database {
 
     }
 
-    public String getPassword(String username){
+    public String getPassword(String username) {
         if (!this.isUser(username)) {
             return null;
         }
@@ -106,13 +106,26 @@ public class SystemAdministratorDataAccess extends Database {
         return null;
     }
 
-    public boolean createUser(User user, String role){
+    public boolean createUser(User user, String role) {
+        int i;
         if (this.isUser(user.getUsername())) {
             return false;
         }
-        String insertQuery = String.format("INSERT INTO user(username, password, role) values '%s','%s','%s'", user.getUsername(), user.getPassword(), role);
+
+        String insertQuery = String.format("INSERT INTO user(username, password, role) values ('%s','%s','%s')", user.getUsername(), user.getPassword(), role);
+
         try {
             statement.executeUpdate(insertQuery);
+            if ("Maintainer".equals(role)) {
+                Maintainer maintainer = (Maintainer) user;
+
+                for (i = 0; i < maintainer.getCompetencies().size(); i++) {
+                    insertQuery = String.format("INSERT INTO maintainercompetence(username,competence) values ('%s','%s')", maintainer.getUsername(), maintainer.getCompetencies().get(i));
+                    statement.executeUpdate(insertQuery);
+                }
+
+            }
+
             return true;
         } catch (SQLException e) {
             System.out.println(e);
@@ -120,7 +133,7 @@ public class SystemAdministratorDataAccess extends Database {
         }
     }
 
-    public boolean modifyUser(User user){
+    public boolean modifyUser(User user) {
         if (!this.isUser(user.getUsername())) {
             return false;
         }
@@ -134,7 +147,7 @@ public class SystemAdministratorDataAccess extends Database {
         }
     }
 
-    public boolean removeUser(String username){
+    public boolean removeUser(String username) {
         if (!this.isUser(username)) {
             return false;
         }
@@ -148,7 +161,7 @@ public class SystemAdministratorDataAccess extends Database {
         }
     }
 
-    public ArrayList<User> getAllUsers(){
+    public ArrayList<User> getAllUsers() {
         String username;
         String password;
         String role;
@@ -328,4 +341,5 @@ public class SystemAdministratorDataAccess extends Database {
             return null;
         }
     }
+
 }
