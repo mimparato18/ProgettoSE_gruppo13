@@ -178,6 +178,7 @@ public class SiteManagementGUIController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.initStyle(StageStyle.UTILITY);
+            stage.setResizable(false);
             stage.setScene(new Scene(loader.load()));
             stage.showAndWait();
 

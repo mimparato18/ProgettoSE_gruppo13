@@ -57,6 +57,7 @@ public class HomeGUIController implements Initializable {
             loader.setController(controller);
 
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("Procedure Management");
             stage.setScene(new Scene(loader.load()));
             stage.show();
@@ -79,6 +80,7 @@ public class HomeGUIController implements Initializable {
             loader.setController(controller);
 
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("User Management");
             stage.setScene(new Scene(loader.load()));
             stage.show();
@@ -103,6 +105,7 @@ public class HomeGUIController implements Initializable {
             loader.setController(controller);
 
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("Site Management");
             stage.setScene(new Scene(loader.load()));
             stage.show();
@@ -126,6 +129,7 @@ public class HomeGUIController implements Initializable {
             loader.setController(controller);
 
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("Typology Management");
             stage.setScene(new Scene(loader.load()));
             stage.show();
