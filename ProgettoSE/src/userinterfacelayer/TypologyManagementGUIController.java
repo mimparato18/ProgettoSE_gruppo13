@@ -113,10 +113,6 @@ public class TypologyManagementGUIController implements Initializable {
             btnDel[i] = new Button("Delete");
             btnMod[i].setOnAction(this::btnModify_OnAction);
             btnDel[i].setOnAction(this::btnDelete_OnAction);
-        }
-        
-        for (int i = 0; i < admin.viewTypologies().size(); i++) {
-
             data.add(new DisplayTypology(admin.viewTypologies().get(i), btnDel[i], btnMod[i]));
 
         }

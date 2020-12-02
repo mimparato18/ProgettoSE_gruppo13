@@ -116,10 +116,6 @@ public class ProcedureManagementGUIController implements Initializable {
             btnDel[i] = new Button("Delete");
             btnMod[i].setOnAction(this::btnModify_OnAction);
             btnDel[i].setOnAction(this::btnDelete_OnAction);
-        }
-        
-        for (int i = 0; i < admin.viewProcedures().size(); i++) {
-            
             Procedure obj=null;
             obj=admin.viewProcedures().get(i);
             String name=obj.getName();

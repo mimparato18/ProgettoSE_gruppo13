@@ -130,10 +130,6 @@ public class SiteManagementGUIController implements Initializable {
             btnDel[i] = new Button("Delete");
             btnMod[i].setOnAction(this::btnModify_OnAction);
             btnDel[i].setOnAction(this::btnDelete_OnAction);
-        }
-
-        for (int i = 0; i < admin.viewSites().size(); i++) {
-
             Site obj = null;
 
             obj = admin.viewSites().get(i);

@@ -139,15 +139,8 @@ public class SystemAdministratorGUIController implements Initializable {
         for (int i = 0; i < admin.viewUsers().size(); i++) {   
             btnDel[i] = new Button("Delete");
             btnDel[i].setOnAction(this::btnDelete_OnAction);
-        }
-
-        for (int i = 0; i < admin.viewUsers().size(); i++) {
             btnMod[i] = new Button("Modify");
             btnMod[i].setOnAction(this::btnModify_OnAction);
-        }
-
-        for (int i = 0; i < admin.viewUsers().size(); i++) {
-
             User obj = null;
 
             obj = admin.viewUsers().get(i);
