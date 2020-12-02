@@ -96,5 +96,21 @@ public class SystemAdministratorController {
     public ArrayList<String> viewTypologies() {
         return db.getAllTypologies();
     }
+    
+    //Procedure management
+    public boolean addProcedure(String name) {
+        return db.createProcedure(new Procedure(name));
+    }
 
+    public boolean updateProcedure(String oldName, String newName) {
+        return db.modifyProcedure(oldName, newName);
+    }
+
+    public boolean deleteProcedure(String name) {
+        return db.removeProcedure(name);
+    }
+
+    public ArrayList<Procedure> viewProcedures() {
+        return db.getAllProcedures();
+    }
 }
