@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS user ;
 DROP TABLE IF EXISTS typology ;
 DROP TABLE IF EXISTS site ;
 DROP TABLE IF EXISTS maintainercompetence;
+DROP TABLE IF EXISTS maintenanceprocedure;
 
 CREATE TABLE user(
     username VARCHAR (20) PRIMARY KEY,
@@ -35,4 +36,8 @@ CREATE TABLE maintainercompetence(
   PRIMARY KEY(username,competence),
   constraint FK_maintainercompetence FOREIGN KEY (username) 
   REFERENCES user(username)
+);
+
+CREATE TABLE maintenanceprocedure(
+    name VARCHAR(20) PRIMARY KEY
 );

@@ -137,7 +137,7 @@ public class SystemAdministratorDataAccess extends Database {
         if (!this.isUser(user.getUsername())) {
             return false;
         }
-        String updateQuery = String.format("UPDATE user SET password = '%s' WHERE (username = '%s')", user.getPassword(), user.getUsername());
+        String updateQuery = String.format("UPDATE user SET password = %s WHERE (username = '%s')", user.getPassword(), user.getUsername());
         try {
             statement.executeUpdate(updateQuery);
             return true;
@@ -176,7 +176,7 @@ public class SystemAdministratorDataAccess extends Database {
                 if ("Maintainer".equals(role)) {
                     usersList.add(new Maintainer(username, password));
                 } else if ("Planner".equals(role)) {
-                    usersList.add(new Planner(username, password));
+                    usersList.add(new Maintainer(username, password));
                 }
             }
             return usersList;
@@ -336,6 +336,83 @@ public class SystemAdministratorDataAccess extends Database {
                 typologiesList.add(type);
             }
             return typologiesList;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    /*------PROCEDURE METHODS------*/
+    public boolean isProcedure(Procedure procedure) {
+        String selectQuery = String.format("SELECT name FROM maintenanceprocedure WHERE (type = '%s')", procedure.getName());
+        String typology = null;
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+
+            while (resultSet.next()) {
+                typology = resultSet.getString(1);
+            }
+            return (typology != null);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean createProcedure(Procedure procedure) {
+        if (this.isProcedure(procedure)) {
+            return false;
+        }
+
+        String insertQuery = String.format("INSERT INTO maintenanceprocedure(name) values ('%s')", procedure.getName());
+        try {
+            statement.executeUpdate(insertQuery);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean modifyProcedure(String oldName, String newName) {
+        if (!this.isProcedure(new Procedure(oldName))) {
+            return false;
+        }
+        String updateQuery = String.format("UPDATE maintenanceprocedure SET name = '%s' WHERE name = '%s'", newName, oldName);
+        try {
+            statement.executeUpdate(updateQuery);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean removeProcedure(String name) {
+        if (!this.isProcedure(new Procedure(name))) {
+            return false;
+        }
+        String deleteQuery = String.format("DELETE FROM maintenanceprocedure WHERE name = '%s'", name);
+        try {
+            statement.executeUpdate(deleteQuery);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public ArrayList<Procedure> getAllProcedures() {
+        String name;
+        ArrayList<Procedure> proceduresList = new ArrayList<>();
+        String selectQuery = String.format("SELECT * FROM maintenanceprocedure");
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+            while (resultSet.next()) {
+                name = resultSet.getString(1);
+                proceduresList.add(new Procedure(name));
+            }
+            return proceduresList;
         } catch (SQLException e) {
             System.out.println(e);
             return null;
