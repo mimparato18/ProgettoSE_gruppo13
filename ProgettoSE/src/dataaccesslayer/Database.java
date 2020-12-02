@@ -40,7 +40,13 @@ public abstract class Database {
         }
     }
 
-    public void disconnect() throws SQLException {
-        connection.close();
+    public boolean disconnect() {
+        try{
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
     }
 }
