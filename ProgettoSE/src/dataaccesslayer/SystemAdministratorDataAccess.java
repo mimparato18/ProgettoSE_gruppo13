@@ -176,7 +176,7 @@ public class SystemAdministratorDataAccess extends Database {
                 if ("Maintainer".equals(role)) {
                     usersList.add(new Maintainer(username, password));
                 } else if ("Planner".equals(role)) {
-                    usersList.add(new Maintainer(username, password));
+                    usersList.add(new Planner(username, password));
                 }
             }
             return usersList;
