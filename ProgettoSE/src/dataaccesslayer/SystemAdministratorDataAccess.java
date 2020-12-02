@@ -344,7 +344,7 @@ public class SystemAdministratorDataAccess extends Database {
 
     /*------PROCEDURE METHODS------*/
     public boolean isProcedure(Procedure procedure) {
-        String selectQuery = String.format("SELECT name FROM maintenanceprocedure WHERE (type = '%s')", procedure.getName());
+        String selectQuery = String.format("SELECT name FROM maintenanceprocedure WHERE (name = '%s')", procedure.getName());
         String typology = null;
         try {
             resultSet = statement.executeQuery(selectQuery);

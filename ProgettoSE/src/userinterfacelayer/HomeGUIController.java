@@ -30,6 +30,8 @@ public class HomeGUIController implements Initializable {
     private Button btnSite;
     @FXML
     private Button btnTypo;
+    @FXML
+    private Button btnProcedure;
 
     private SystemAdministratorService admin= new SystemAdministratorService();
     
@@ -43,7 +45,28 @@ public class HomeGUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    @FXML
+    private void btnProced_OnAction(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ProcedureManagementGUI.fxml"));
 
+            // Create the new controller and pass the currently selected data item to it
+            ProcedureManagementGUIController controller = new ProcedureManagementGUIController(this.admin);
+
+            // Set the controller to the loader
+            loader.setController(controller);
+
+            Stage stage = new Stage();
+            stage.setTitle("Procedure Management");
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
+            
+        } catch (Exception e) {
+            System.out.println("Can't load the window: " + e);
+        }
+        Stage stage = (Stage) btnProcedure.getScene().getWindow();
+        stage.close();
+    }
     @FXML
     private void btnUser_OnAction(ActionEvent event) {
         try {
@@ -113,5 +136,7 @@ public class HomeGUIController implements Initializable {
         Stage stage = (Stage) btnTypo.getScene().getWindow();
         stage.close();
     }
+
+    
 
 }
