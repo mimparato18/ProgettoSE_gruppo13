@@ -34,10 +34,10 @@ public class ModifyPasswordWindowController implements Initializable {
     private Label labWarning;
 
     private String role;
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
     private DisplayUser data;
 
-    public ModifyPasswordWindowController(DisplayUser data, SystemAdministratorController admin) {
+    public ModifyPasswordWindowController(DisplayUser data, SystemAdministratorService admin) {
         this.data = data;
         this.admin = admin;
     }

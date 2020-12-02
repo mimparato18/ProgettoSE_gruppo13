@@ -53,9 +53,9 @@ public class SiteManagementGUIController implements Initializable {
     private Button btnHub = new Button();
     private Label labWarn = new Label();
 
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
     
-    public SiteManagementGUIController(SystemAdministratorController admin) {
+    public SiteManagementGUIController(SystemAdministratorService admin) {
         this.admin=admin;
     }
 

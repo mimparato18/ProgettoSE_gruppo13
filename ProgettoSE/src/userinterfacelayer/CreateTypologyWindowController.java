@@ -5,7 +5,7 @@
  */
 package userinterfacelayer;
 
-import businesslayer.SystemAdministratorController;
+import businesslayer.SystemAdministratorService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -29,9 +29,9 @@ public class CreateTypologyWindowController implements Initializable {
     private Button btnCreateTypology;
     @FXML
     private Label labResult=new Label();
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
 
-    public CreateTypologyWindowController(SystemAdministratorController admin) {
+    public CreateTypologyWindowController(SystemAdministratorService admin) {
         this.admin=admin;
     }
 

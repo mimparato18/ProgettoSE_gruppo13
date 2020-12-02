@@ -33,13 +33,13 @@ public class ModifyDepartmentWindowController implements Initializable {
     @FXML
     private Label labWarning;
 
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
     private DisplaySite data;
 
     /**
      * Initializes the controller class.
      */
-    public ModifyDepartmentWindowController(DisplaySite data, SystemAdministratorController admin) {
+    public ModifyDepartmentWindowController(DisplaySite data, SystemAdministratorService admin) {
         this.data = data;
         this.admin = admin;
     }

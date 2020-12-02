@@ -5,7 +5,7 @@
  */
 package userinterfacelayer;
 
-import businesslayer.SystemAdministratorController;
+import businesslayer.SystemAdministratorService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -31,7 +31,7 @@ public class HomeGUIController implements Initializable {
     @FXML
     private Button btnTypo;
 
-    private SystemAdministratorController admin= new SystemAdministratorController();
+    private SystemAdministratorService admin= new SystemAdministratorService();
     
     public HomeGUIController() {
     }

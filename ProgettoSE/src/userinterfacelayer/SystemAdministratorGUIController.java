@@ -57,9 +57,9 @@ public class SystemAdministratorGUIController implements Initializable {
     private Button[] btnDel = new Button[100];
     private Button[] btnMod = new Button[100];
 
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
 
-    public SystemAdministratorGUIController(SystemAdministratorController admin) {
+    public SystemAdministratorGUIController(SystemAdministratorService admin) {
         this.admin = admin;
     }
 

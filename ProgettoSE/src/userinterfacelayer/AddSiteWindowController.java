@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
  */
 public class AddSiteWindowController implements Initializable {
 
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
     @FXML
     private Button btnDone = new Button();
     @FXML
@@ -33,7 +33,7 @@ public class AddSiteWindowController implements Initializable {
     @FXML
     private TextField txtDepart;
 
-    public AddSiteWindowController(SystemAdministratorController admin) {
+    public AddSiteWindowController(SystemAdministratorService admin) {
         this.admin = admin;
     }
 

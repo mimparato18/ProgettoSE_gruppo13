@@ -13,12 +13,12 @@ import java.util.ArrayList;
  *
  * @author marku
  */
-public class SystemAdministratorController {
+public class SystemAdministratorService {
 
     private SystemAdministratorDataAccess db;
     private SystemAdministrator admin;
 
-    public SystemAdministratorController() {
+    public SystemAdministratorService() {
         db = new SystemAdministratorDataAccess();
         db.connect();
         admin = new SystemAdministrator("admin", "admin");

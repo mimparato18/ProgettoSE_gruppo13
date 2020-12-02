@@ -44,9 +44,9 @@ public class CreateUserWindowController implements Initializable {
     @FXML
     private Label labelDone;
 
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
 
-    public CreateUserWindowController(SystemAdministratorController admin) {
+    public CreateUserWindowController(SystemAdministratorService admin) {
         this.admin = admin;
     }
 

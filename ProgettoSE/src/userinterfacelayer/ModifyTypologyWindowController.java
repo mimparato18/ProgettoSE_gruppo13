@@ -5,7 +5,7 @@
  */
 package userinterfacelayer;
 
-import businesslayer.SystemAdministratorController;
+import businesslayer.SystemAdministratorService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -25,13 +25,13 @@ import userinterfacelayer.TypologyManagementGUIController.DisplayTypology;
 public class ModifyTypologyWindowController implements Initializable {
 
     private DisplayTypology data;
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
     @FXML
     private TextField txtNewTypo;
     @FXML
     private Label labWarning;
 
-    public ModifyTypologyWindowController(DisplayTypology data,SystemAdministratorController admin) {
+    public ModifyTypologyWindowController(DisplayTypology data,SystemAdministratorService admin) {
         this.data = data;
         this.admin=admin;
     }

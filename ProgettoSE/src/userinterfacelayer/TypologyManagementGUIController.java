@@ -52,9 +52,9 @@ public class TypologyManagementGUIController implements Initializable {
     @FXML
     private Label labWarn;
     
-    private SystemAdministratorController admin;
+    private SystemAdministratorService admin;
 
-    public TypologyManagementGUIController(SystemAdministratorController admin) {
+    public TypologyManagementGUIController(SystemAdministratorService admin) {
         this.admin=admin;
     }
     
