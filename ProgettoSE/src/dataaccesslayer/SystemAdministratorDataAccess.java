@@ -137,7 +137,7 @@ public class SystemAdministratorDataAccess extends Database {
         if (!this.isUser(user.getUsername())) {
             return false;
         }
-        String updateQuery = String.format("UPDATE user SET password = %s WHERE (username = '%s')", user.getPassword(), user.getUsername());
+        String updateQuery = String.format("UPDATE user SET password = '%s' WHERE (username = '%s')", user.getPassword(), user.getUsername());
         try {
             statement.executeUpdate(updateQuery);
             return true;
