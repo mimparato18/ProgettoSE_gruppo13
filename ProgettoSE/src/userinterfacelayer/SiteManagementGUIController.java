@@ -6,11 +6,8 @@
 package userinterfacelayer;
 
 import businesslayer.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -163,7 +160,7 @@ public class SiteManagementGUIController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyDepartmentWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ModifyDepartmentWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             ModifyDepartmentWindowController controller = new ModifyDepartmentWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
@@ -211,7 +208,7 @@ public class SiteManagementGUIController implements Initializable {
     @FXML
     private void btnSite_OnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddSiteWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/AddSiteWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             AddSiteWindowController controller = new AddSiteWindowController(this.admin);
@@ -246,7 +243,7 @@ public class SiteManagementGUIController implements Initializable {
         try {
             
             
-            Parent root = FXMLLoader.load(getClass().getResource("HomeGUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/HomeGUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Admin Hub");

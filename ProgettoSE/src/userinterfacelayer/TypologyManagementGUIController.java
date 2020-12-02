@@ -135,7 +135,7 @@ public class TypologyManagementGUIController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyTypologyWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ModifyTypologyWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             ModifyTypologyWindowController controller = new ModifyTypologyWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
@@ -180,7 +180,7 @@ public class TypologyManagementGUIController implements Initializable {
     @FXML
     private void btnAddTypo_OnAction(ActionEvent event) {
     try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateTypologyWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/CreateTypologyWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             CreateTypologyWindowController controller = new CreateTypologyWindowController(this.admin);
@@ -214,7 +214,7 @@ public class TypologyManagementGUIController implements Initializable {
         try {
             
             
-            Parent root = FXMLLoader.load(getClass().getResource("HomeGUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/HomeGUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Admin Hub");

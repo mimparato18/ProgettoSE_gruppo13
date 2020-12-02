@@ -6,21 +6,15 @@
 package userinterfacelayer;
 
 import businesslayer.SystemAdministratorController;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -53,7 +47,7 @@ public class HomeGUIController implements Initializable {
     @FXML
     private void btnUser_OnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SystemAdministratorGUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministratorGUI.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             SystemAdministratorGUIController controller = new SystemAdministratorGUIController(this.admin);
@@ -77,7 +71,7 @@ public class HomeGUIController implements Initializable {
     @FXML
     private void btnSite_OnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SiteManagementGUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SiteManagementGUI.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             SiteManagementGUIController controller = new SiteManagementGUIController(this.admin);
@@ -100,7 +94,7 @@ public class HomeGUIController implements Initializable {
     @FXML
     private void btnTypo_OnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TypologyManagementGUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/TypologyManagementGUI.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             TypologyManagementGUIController controller = new TypologyManagementGUIController(this.admin);

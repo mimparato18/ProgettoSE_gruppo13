@@ -6,14 +6,9 @@
 package userinterfacelayer;
 
 import businesslayer.*;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,14 +24,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
-import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
-import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -211,7 +199,7 @@ public class SystemAdministratorGUIController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyPasswordWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ModifyPasswordWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             ModifyPasswordWindowController controller = new ModifyPasswordWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
@@ -243,7 +231,7 @@ public class SystemAdministratorGUIController implements Initializable {
     @FXML
     private void createUser_OnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateUserWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/CreateUserWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             CreateUserWindowController controller = new CreateUserWindowController(this.admin);
@@ -279,7 +267,7 @@ public class SystemAdministratorGUIController implements Initializable {
         try {
             
             
-            Parent root = FXMLLoader.load(getClass().getResource("HomeGUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/HomeGUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Admin Hub");
