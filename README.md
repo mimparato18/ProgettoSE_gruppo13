@@ -5,4 +5,4 @@ Software Engineering project developed by the Group 13.
 - Autorino Simone
 - Calabrese Marco
 - Graziano Camillo
-- Marco Imparato
+- Imparato Marco
