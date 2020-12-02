@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="364.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="25.0" layoutY="117.0" prefHeight="224.0" prefWidth="656.0">
+         <children>
+            <TableView fx:id="tableView" editable="true" layoutX="16.0" layoutY="14.0" prefHeight="205.0" prefWidth="469.0">
+              <columns>
+                <TableColumn id="userColumn" fx:id="colUser" prefWidth="90.0" text="Username" />
+                <TableColumn id="pwdColumn" fx:id="colPass" prefWidth="90.0" text="Password" />
+                  <TableColumn id="roleColumn" fx:id="colRole" prefWidth="90.0" text="Role" />
+                  <TableColumn id="optionsButton" fx:id="colOptions" prefWidth="150.0" text="Options">
+                     <columns>
+                        <TableColumn fx:id="colModify" prefWidth="100.0" text="Modify" />
+                        <TableColumn fx:id="colDelete" prefWidth="100.0" text="Delete" />
+                     </columns></TableColumn>
+              </columns>
+            </TableView>
+            <Button fx:id="btnCreate" layoutX="545.0" layoutY="14.0" mnemonicParsing="false" onAction="#createUser_OnAction" prefHeight="22.0" prefWidth="89.0" text="Create User" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnHub" layoutX="40.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnHub_OnAction" text="Go to Hub" />
+   </children>
+</AnchorPane>
