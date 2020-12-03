@@ -1,17 +1,5 @@
 # Second sprint: from 04/12 to 17/12
 
-## Item 3
-As a System Administrator
-I want to assign a specific procedure to Maintainers
-So that I can prepare for the intervention
-#### Dependencies
-1, 10
-#### Story Points
-3
-#### Acceptance Criteria/Notes
-
-
-
 ## Item 5
 As a System Administrator
 I want to create, view, modify and delete lists of competencies related to a specific task
@@ -31,11 +19,10 @@ As a System Administrator
 I want to create, view, modify and delete Workspace notes
 So that I can associate notes to a specific entity or a set of entity
 #### Dependencies
-6
+
 #### Story Points
-5
+3
 #### Acceptance Criteria/Notes
-Workspace notes are associated to one or more sites
 
 
 
@@ -46,7 +33,7 @@ So that I can manage them
 #### Dependencies
 1,12
 #### Story Points
-5
+13
 #### Acceptance Criteria/Notes
 For each activity the following data must be recorded: 
 - activity ID
@@ -82,7 +69,7 @@ So that I can select one activity
 #### Dependencies
 15
 #### Story Points
-2
+5
 #### Acceptance Criteria/Notes
  The following information should be displayed on the screen: 
 - activity ID
@@ -105,3 +92,8 @@ So that I can check its correctness
 #### Acceptance Criteria/Notes
 Planner must verify week number, activity to assign, workspace notes, intervention description, SMP, competencies needed.
 Just the “workspace notes” field must be editable.
+
+
+## Item 17
+####Technical Debt:
+Design a login interface to access the system with credentials
