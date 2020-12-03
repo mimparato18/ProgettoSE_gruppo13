@@ -62,4 +62,10 @@ So that I can define Maintainance activities
 #### Story Points
 5
 #### Acceptance Criteria/Notes
-Example of typologies are electrical, electronic, hydraulic, mechanical etc. .
+Example of typologies are electrical, electronic, hydraulic, mechanical etc.
+
+
+## Item 29
+#### Feature:
+Design an Hub for the System Administrator to perform its tasks
+
