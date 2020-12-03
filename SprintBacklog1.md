@@ -48,7 +48,7 @@ So that I can guide the Maintainers
 #### Dependencies
 
 #### Story Points
-8
+5
 #### Acceptance Criteria/Notes
 
 
@@ -58,8 +58,8 @@ As a System Administrator
 I want to create, view, modify and delete maintenance typologies
 So that I can define Maintainance activities
 #### Dependencies
-15
+
 #### Story Points
 5
 #### Acceptance Criteria/Notes
-The typologies are electrical, electronic, hydraulic and mechanical
+Example of typologies are electrical, electronic, hydraulic, mechanical etc. .
