@@ -143,7 +143,7 @@ So that I can define Maintainance activities
 #### Story Points
 5
 #### Acceptance Criteria/Notes
-The typologies are electrical, electronic, hydraulic and mechanical
+Example of typologies are electrical, electronic, hydraulic, mechanical etc. .
 
 
 ## Item 13
