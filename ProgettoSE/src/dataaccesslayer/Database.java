@@ -5,6 +5,7 @@
  */
 package dataaccesslayer;
 
+import businesslayer.Site;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -48,5 +49,55 @@ public abstract class Database {
             System.out.println(e);
             return false;
         }
+    }
+    
+    public boolean isUser(String username) {
+        String selectQuery;
+        String name = null;
+
+        selectQuery = String.format("SELECT username FROM user WHERE (username = '%s')", username);
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+
+            while (resultSet.next()) {
+                name = resultSet.getString(1);
+            }
+            return name != null;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+    
+    public boolean isSite(Site site) {
+        String selectQuery = String.format("SELECT branchoffice, department FROM site WHERE (branchoffice = '%s' and department = '%s')", site.getBranchOffice(), site.getDepartment());
+        String branchOffice = null;
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+
+            while (resultSet.next()) {
+                branchOffice = resultSet.getString(1);
+            }
+            return (branchOffice != null);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+    
+    public boolean isTypology(String type) {
+        String selectQuery = String.format("SELECT type FROM typology WHERE (type = '%s')", type);
+        String typology = null;
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+
+            while (resultSet.next()) {
+                typology = resultSet.getString(1);
+            }
+            return (typology != null);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
     }
 }
