@@ -23,7 +23,7 @@ public class LoginService {
     public String checkCredentials(String username, String password){
         if (db.isUser(username))
                 if (password == db.getPassword(username))
-                        return db.getRole();
+                        return db.getRole(username);
         return null;
     }
 
