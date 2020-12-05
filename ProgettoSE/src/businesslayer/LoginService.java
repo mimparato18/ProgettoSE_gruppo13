@@ -19,13 +19,14 @@ public class LoginService {
         db = new Login();
         db.connect();
     }
-    
-    public String checkCredentials(String username, String password){
-        if (db.isUser(username))
-                if (password == db.getPassword(username))
-                        return db.getRole(username);
+
+    public String checkCredentials(String username, String password) {
+        if (db.isUser(username)) {
+            if (password == db.getPassword(username)) {
+                return db.getRole(username);
+            }
+        }
         return null;
     }
-
 
 }
