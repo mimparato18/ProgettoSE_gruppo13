@@ -4,12 +4,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterfacelayer.HomeGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterfacelayer.HomeGUIController">
    <children>
-      <Button fx:id="btnUser" layoutX="35.0" layoutY="65.0" mnemonicParsing="false" onAction="#btnUser_OnAction" prefHeight="25.0" prefWidth="144.0" text="User Management" />
+      <Button fx:id="btnUser" layoutX="35.0" layoutY="70.0" mnemonicParsing="false" onAction="#btnUser_OnAction" prefHeight="25.0" prefWidth="144.0" text="User Management" />
       <Button fx:id="btnSite" layoutX="35.0" layoutY="127.0" mnemonicParsing="false" onAction="#btnSite_OnAction" prefHeight="25.0" prefWidth="144.0" text="Site Management" />
       <Button fx:id="btnTypo" layoutX="35.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnTypo_OnAction" prefHeight="25.0" prefWidth="144.0" text="Typology Management" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fa3ff" height="322.0" layoutX="221.0" stroke="BLACK" strokeType="INSIDE" width="222.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fa3ff" height="366.0" layoutX="221.0" stroke="BLACK" strokeType="INSIDE" width="222.0" />
       <Button fx:id="btnProcedure" layoutX="35.0" layoutY="240.0" mnemonicParsing="false" onAction="#btnProced_OnAction" prefHeight="25.0" prefWidth="144.0" text="Procedure Management" />
+      <Button fx:id="btnLogout" layoutX="81.0" layoutY="308.0" mnemonicParsing="false" onAction="#btnLogout_OnAction" text="Log Out" />
    </children>
 </AnchorPane>

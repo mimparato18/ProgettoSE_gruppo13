@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -32,6 +34,8 @@ public class HomeGUIController implements Initializable {
     private Button btnTypo;
     @FXML
     private Button btnProcedure;
+    @FXML
+    private Button btnLogout;
 
     private SystemAdministratorService admin= new SystemAdministratorService();
     
@@ -140,7 +144,25 @@ public class HomeGUIController implements Initializable {
         Stage stage = (Stage) btnTypo.getScene().getWindow();
         stage.close();
     }
+    @FXML
+    private void btnLogout_OnAction(ActionEvent event) {
+        try {
+            
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/LoginWindow.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Login");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
 
+        } catch (Exception e) {
+            System.out.println("Can't load the window: " + e);
+        }
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        
+    }
     
 
 }
