@@ -14,11 +14,11 @@ import java.sql.SQLException;
  *
  * @author simo5
  */
-public class Login extends Database{
+public class Login extends Database {
 
     public Login() {
     }
-    
+
     public User getUser(String username) {
         if (!this.isUser(username)) {
             return null;

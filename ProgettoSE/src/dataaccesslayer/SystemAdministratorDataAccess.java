@@ -19,10 +19,6 @@ public class SystemAdministratorDataAccess extends Database {
     }
 
     /*------USER METHODS------*/
-    
-
-    
-
     public boolean createUser(User user, String role) {
         int i;
         if (this.isUser(user.getUsername())) {
@@ -104,8 +100,6 @@ public class SystemAdministratorDataAccess extends Database {
     }
 
     /*------SITE METHODS------*/
-    
-
     public boolean createSite(Site site) {
         if (this.isSite(site)) {
             return false;
@@ -169,8 +163,6 @@ public class SystemAdministratorDataAccess extends Database {
     }
 
     /*------TYPOLOGY METHODS------*/
-    
-
     public boolean createTypology(String type) {
         if (this.isTypology(type)) {
             return false;
@@ -232,8 +224,6 @@ public class SystemAdministratorDataAccess extends Database {
     }
 
     /*------PROCEDURE METHODS------*/
-    
-
     public boolean createProcedure(Procedure procedure) {
         if (this.isProcedure(procedure)) {
             return false;

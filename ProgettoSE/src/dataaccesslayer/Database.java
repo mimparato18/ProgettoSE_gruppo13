@@ -117,4 +117,20 @@ public abstract class Database {
         }
         return false;
     }
+    
+    public boolean isActivity(int id) {
+        String selectQuery = String.format("SELECT id FROM maintenanceactivity WHERE (id = '%d')", id);
+        int checkID = 0;
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+
+            while (resultSet.next()) {
+                checkID = resultSet.getInt(1);
+            }
+            return (checkID != 0);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
 }

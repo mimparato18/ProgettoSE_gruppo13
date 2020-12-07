@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS site ;
 DROP TABLE IF EXISTS maintainercompetence;
 DROP TABLE IF EXISTS maintenanceprocedure;
 DROP TABLE IF EXISTS maintenanceactivity;
+
 CREATE TABLE user(
     username VARCHAR (20) PRIMARY KEY,
     password VARCHAR (20),
@@ -52,11 +53,11 @@ CREATE TABLE maintenanceactivity(
     department VARCHAR(20),
     week INT,
     interruptable BOOLEAN,
-    workspacenote VARCHAR(100),
+    workspacenotes VARCHAR(100),
     CONSTRAINT FK_site FOREIGN KEY (branchoffice,department)
     REFERENCES site(branchoffice,department)
-    ON DELETE CASCADE ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT FK_typology FOREIGN KEY (typology)
     REFERENCES typology(type)
-    ON DELETE CASCADE ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE RESTRICT,
 );
