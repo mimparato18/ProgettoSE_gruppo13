@@ -23,20 +23,28 @@ public class PlannerService {
         this.planner = planner;
     }
 
-    public boolean addActivity() {
-        return true;
+    public boolean addActivity(Site site, String typology, String description,
+            int interventionTime, boolean interruptible, String materials, int week, String workspaceNotes) {
+
+        return db.createActivity(planner.createActivity(site, typology, description,
+                interventionTime, interruptible, materials, week, workspaceNotes));
     }
 
-    public boolean updateActivity() {
-        return true;
+    public boolean updateActivity(int id, Site site, String typology, String description,
+            int interventionTime, boolean interruptible, String materials, int week, String workspaceNotes) {
+
+        return db.modifyActivity(id, planner.createActivity(site, typology, description,
+                interventionTime, interruptible, materials, week, workspaceNotes));
     }
 
-    public boolean deleteActivity() {
-        return true;
+    public boolean deleteActivity(int id) {
+
+        return db.removeActivity(id);
     }
 
     public ArrayList<MaintenanceActivity> viewActivities() {
-        return null;
+
+        return db.getAllActivities();
     }
 
 }
