@@ -5,6 +5,7 @@
  */
 package dataaccesslayer;
 
+import businesslayer.Procedure;
 import businesslayer.Site;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -87,6 +88,22 @@ public abstract class Database {
     
     public boolean isTypology(String type) {
         String selectQuery = String.format("SELECT type FROM typology WHERE (type = '%s')", type);
+        String typology = null;
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+
+            while (resultSet.next()) {
+                typology = resultSet.getString(1);
+            }
+            return (typology != null);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+    
+    public boolean isProcedure(Procedure procedure) {
+        String selectQuery = String.format("SELECT name FROM maintenanceprocedure WHERE (name = '%s')", procedure.getName());
         String typology = null;
         try {
             resultSet = statement.executeQuery(selectQuery);

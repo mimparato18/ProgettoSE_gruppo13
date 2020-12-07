@@ -232,21 +232,7 @@ public class SystemAdministratorDataAccess extends Database {
     }
 
     /*------PROCEDURE METHODS------*/
-    public boolean isProcedure(Procedure procedure) {
-        String selectQuery = String.format("SELECT name FROM maintenanceprocedure WHERE (name = '%s')", procedure.getName());
-        String typology = null;
-        try {
-            resultSet = statement.executeQuery(selectQuery);
-
-            while (resultSet.next()) {
-                typology = resultSet.getString(1);
-            }
-            return (typology != null);
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return false;
-    }
+    
 
     public boolean createProcedure(Procedure procedure) {
         if (this.isProcedure(procedure)) {

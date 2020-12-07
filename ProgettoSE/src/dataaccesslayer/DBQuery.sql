@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS typology ;
 DROP TABLE IF EXISTS site ;
 DROP TABLE IF EXISTS maintainercompetence;
 DROP TABLE IF EXISTS maintenanceprocedure;
-
+DROP TABLE IF EXISTS maintenanceactivity;
 CREATE TABLE user(
     username VARCHAR (20) PRIMARY KEY,
     password VARCHAR (20),
@@ -40,4 +40,23 @@ CREATE TABLE maintainercompetence(
 
 CREATE TABLE maintenanceprocedure(
     name VARCHAR(20) PRIMARY KEY
+);
+
+CREATE TABLE maintenanceactivity(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    materials VARCHAR(100),
+    typology VARCHAR(20),
+    estimatedtime INT,
+    activitydescription VARCHAR(100),
+    branchoffice VARCHAR(20),
+    department VARCHAR(20),
+    week INT,
+    interruptable BOOLEAN,
+    workspacenote VARCHAR(100),
+    CONSTRAINT FK_site FOREIGN KEY (branchoffice,department)
+    REFERENCES site(branchoffice,department)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_typology FOREIGN KEY (typology)
+    REFERENCES typology(type)
+    ON DELETE CASCADE ON UPDATE CASCADE,
 );
