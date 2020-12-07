@@ -11,16 +11,17 @@ import java.util.ArrayList;
  *
  * @author marku
  */
-public class Maintainer extends User{
-    private ArrayList<String> competencies; 
+public class Maintainer extends User {
+
+    private ArrayList<String> competencies;
 
     public Maintainer(String username, String password) {
         super(username, password);
     }
-    
+
     public Maintainer(String username, String password, ArrayList<String> competencies) {
         super(username, password);
-        this.competencies= competencies;
+        this.competencies = competencies;
     }
 
     public ArrayList<String> getCompetencies() {
@@ -30,5 +31,5 @@ public class Maintainer extends User{
     public void setCompetencies(ArrayList<String> competencies) {
         this.competencies = competencies;
     }
-    
+
 }

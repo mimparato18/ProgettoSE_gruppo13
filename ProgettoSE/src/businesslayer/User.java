@@ -10,6 +10,7 @@ package businesslayer;
  * @author marku
  */
 public abstract class User {
+
     private String username;
     private String password;
 
@@ -33,7 +34,5 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
+
 }

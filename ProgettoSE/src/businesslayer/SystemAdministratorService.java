@@ -18,10 +18,10 @@ public class SystemAdministratorService {
     private SystemAdministratorDataAccess db;
     private SystemAdministrator admin;
 
-    public SystemAdministratorService() {
+    public SystemAdministratorService(SystemAdministrator admin) {
         db = new SystemAdministratorDataAccess();
         db.connect();
-        admin = new SystemAdministrator("admin", "admin");
+        this.admin = admin;
     }
 
     //User Management
@@ -96,7 +96,7 @@ public class SystemAdministratorService {
     public ArrayList<String> viewTypologies() {
         return db.getAllTypologies();
     }
-    
+
     //Procedure management
     public boolean addProcedure(String name) {
         return db.createProcedure(new Procedure(name));

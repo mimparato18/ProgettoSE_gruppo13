@@ -10,6 +10,7 @@ package businesslayer;
  * @author MARCO CALABRESE
  */
 public class Site {
+
     private String branchOffice;
     private String department;
 
@@ -33,6 +34,5 @@ public class Site {
     public void setDepartment(String department) {
         this.department = department;
     }
-    
-    
+
 }

@@ -10,6 +10,7 @@ package businesslayer;
  * @author marku
  */
 public class Procedure {
+
     private String name;
 
     public Procedure(String name) {
@@ -23,6 +24,5 @@ public class Procedure {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }

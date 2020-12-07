@@ -18,10 +18,10 @@ import javafx.stage.Stage;
  * @author group13
  */
 public class SmartMaintenanceApp extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String ui="/userinterfacelayer/HomeGUI.fxml";
+        String ui = "/userinterfacelayer/HomeGUI.fxml";
         //String uilog="LoginGUI.fxml";
         Parent root = FXMLLoader.load(getClass().getResource(ui));
         Scene scene = new Scene(root);
@@ -37,5 +37,5 @@ public class SmartMaintenanceApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
