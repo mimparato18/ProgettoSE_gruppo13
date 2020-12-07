@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterfacelayer;
+package userinterfacelayer.SystemAdministrator;
 
-import businesslayer.*;
+import businesslayer.Procedure;
+import businesslayer.SystemAdministratorService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -32,56 +33,57 @@ import javafx.stage.StageStyle;
  *
  * @author camil
  */
-public class TypologyManagementGUIController implements Initializable {
+public class ProcedureManagementGUIController implements Initializable {
 
-
     @FXML
-    private TableView<DisplayTypology> tableView=new TableView<DisplayTypology>();
+    private TableView<DisplayProcedure> tableView;
     @FXML
-    private TableColumn<DisplayTypology, String> colTypo;
+    private TableColumn<DisplayProcedure, String> colProcedure;
     @FXML
-    private TableColumn<DisplayTypology, String> colMod;
+    private TableColumn<DisplayProcedure, String> colMod;
     @FXML
-    private TableColumn<DisplayTypology, String> colDelete;
+    private TableColumn<DisplayProcedure, String> colDelete;
     @FXML
-    private Button btnAddTypo;
-    private Button btnDel[]=new Button[100];
-    private Button btnMod[]=new Button[100];
-    @FXML
-    private Button btnHub;
+    private Button btnAddProced;
     @FXML
     private Label labWarn;
-    
-    private SystemAdministratorService admin;
+    @FXML
+    private Button btnHub;
+    private Button btnDel[]=new Button[100];
+    private Button btnMod[]=new Button[100];
 
-    public TypologyManagementGUIController(SystemAdministratorService admin) {
-        this.admin=admin;
-    }
-    
-    
-
-    
     /**
      * Initializes the controller class.
      */
-    
-    public class DisplayTypology{
+    private SystemAdministratorService admin;
 
-        private SimpleStringProperty typo;
+
+    public class DisplayProcedure {
+
+        private SimpleStringProperty procedure;
         private Button btnDel;
         private Button btnMod;
-
-        public DisplayTypology(String typo, Button btnDel, Button btnMod) {
-            this.typo = new SimpleStringProperty(typo);
+        
+        public DisplayProcedure(String procedure, Button btnMod, Button btnDel) {
+            this.procedure = new SimpleStringProperty(procedure);
             this.btnDel = btnDel;
             this.btnMod = btnMod;
         }
-        public String getTypo() {
-            return typo.get();
+        
+        public String getProcedure() {
+            return procedure.get();
         }
 
-        public void setTypo(String typo) {
-            this.typo.set(typo);
+        public void setProcedure(String procedure) {
+            this.procedure.set(procedure);
+        }
+
+        public Button getBtnMod() {
+            return btnMod;
+        }
+
+        public void setBtnMod(Button btnMod) {
+            this.btnMod = btnMod;
         }
 
         public Button getBtnDel() {
@@ -92,55 +94,60 @@ public class TypologyManagementGUIController implements Initializable {
             this.btnDel = btnDel;
         }
 
-        public Button getBtnMod() {
-            return btnMod;
-        }
 
-        public void setBtnMod(Button btnMod) {
-            this.btnMod = btnMod;
-        }
+        
+        
     }
-    
+
+    public ProcedureManagementGUIController(SystemAdministratorService admin) {
+        this.admin = admin;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.initializeTable();
-    }   
+    }
+    
     public void initializeTable(){
-        ObservableList<DisplayTypology> data;
+        ObservableList<DisplayProcedure> data;
         data = FXCollections.observableArrayList();
-        for (int i = 0; i < admin.viewTypologies().size(); i++) {
+        for (int i = 0; i < admin.viewProcedures().size(); i++) {
             btnMod[i] = new Button("Modify");
             btnDel[i] = new Button("Delete");
             btnMod[i].setOnAction(this::btnModify_OnAction);
             btnDel[i].setOnAction(this::btnDelete_OnAction);
-            data.add(new DisplayTypology(admin.viewTypologies().get(i), btnDel[i], btnMod[i]));
+            Procedure obj=null;
+            obj=admin.viewProcedures().get(i);
+            String name=obj.getName();
+
+            data.add(new DisplayProcedure(name, btnMod[i], btnDel[i]));
 
         }
 
-        colTypo.setCellValueFactory(new PropertyValueFactory<DisplayTypology, String>("typo"));
-        colDelete.setCellValueFactory(new PropertyValueFactory<DisplayTypology, String>("btnDel"));
-        colMod.setCellValueFactory(new PropertyValueFactory<DisplayTypology, String>("btnMod"));
+        colProcedure.setCellValueFactory(new PropertyValueFactory<DisplayProcedure, String>("procedure"));
+        colMod.setCellValueFactory(new PropertyValueFactory<DisplayProcedure, String>("btnMod"));
+        colDelete.setCellValueFactory(new PropertyValueFactory<DisplayProcedure, String>("btnDel"));
         tableView.setItems(data);
     }
 
-     public void btnModify_OnAction(ActionEvent ev) {
-        for (int i = 0; i < this.admin.viewSites().size(); i++) {
+    public void btnModify_OnAction(ActionEvent ev) {
+        for (int i = 0; i < this.admin.viewProcedures().size(); i++) {
             if (ev.getSource() == btnMod[i]) {
                 tableView.getSelectionModel().clearAndSelect(i);
             }
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ModifyTypologyWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/ModifyProcedureWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
-            ModifyTypologyWindowController controller = new ModifyTypologyWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
+            ModifyProcedureWindowController controller = new ModifyProcedureWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);
 
             Stage stage = new Stage();
-            stage.setTitle("Modify Department");
+            stage.setTitle("Modify Procedure");
 
             // Centers the editor window over the current window
             stage.initOwner(tableView.getScene().getWindow());
@@ -158,35 +165,37 @@ public class TypologyManagementGUIController implements Initializable {
         } catch (Exception e) {
             System.out.println("Can't load the window: " + e);
         }
-     }
-     public void btnDelete_OnAction(ActionEvent ev) {
+    }
+    
+    public void btnDelete_OnAction(ActionEvent ev) {
        labWarn.setVisible(false);
-        for (int i = 0; i < this.admin.viewTypologies().size(); i++) {
+        for (int i = 0; i < this.admin.viewProcedures().size(); i++) {
             if (ev.getSource() == btnDel[i]) {
                 tableView.getSelectionModel().clearAndSelect(i);
             }
         }
 
-        if (admin.deleteTypology(tableView.getSelectionModel().getSelectedItem().getTypo())) {
+        if (admin.deleteProcedure(tableView.getSelectionModel().getSelectedItem().getProcedure())) {
             tableView.getItems().clear();
             this.initializeTable();
         } else {
             labWarn.setVisible(true);
         }  
      }
+    
     @FXML
-    private void btnAddTypo_OnAction(ActionEvent event) {
-    try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/CreateTypologyWindow.fxml"));
+    private void btnAddProced_OnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/CreateProcedureWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
-            CreateTypologyWindowController controller = new CreateTypologyWindowController(this.admin);
+            CreateProcedureWindowController controller = new CreateProcedureWindowController(this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);
 
             Stage stage = new Stage();
-            stage.setTitle("Create Typology");
+            stage.setTitle("Create Procedure");
 
             // Centers the editor window over the current window
             stage.initOwner(tableView.getScene().getWindow());
@@ -206,12 +215,12 @@ public class TypologyManagementGUIController implements Initializable {
             System.out.println("Can't load the window" + e);
         }
     }
+
     @FXML
-    private void btnHub_OnAction(ActionEvent event){
+    private void btnHub_OnAction(ActionEvent event) {
         try {
-            
-            
-            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/HomeGUI.fxml"));
+
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/SystemAdministrator/HomeGUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Admin Hub");
@@ -224,5 +233,5 @@ public class TypologyManagementGUIController implements Initializable {
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-    
+
 }

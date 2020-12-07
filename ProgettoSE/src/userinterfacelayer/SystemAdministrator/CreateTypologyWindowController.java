@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterfacelayer;
+package userinterfacelayer.SystemAdministrator;
 
-import businesslayer.*;
+import businesslayer.SystemAdministratorService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,20 +21,18 @@ import javafx.scene.paint.Color;
  *
  * @author camil
  */
-public class AddSiteWindowController implements Initializable {
+public class CreateTypologyWindowController implements Initializable {
 
+    @FXML
+    private TextField txtTypo;
+    @FXML
+    private Button btnCreateTypology;
+    @FXML
+    private Label labResult=new Label();
     private SystemAdministratorService admin;
-    @FXML
-    private Button btnDone = new Button();
-    @FXML
-    private Label labResult = new Label();
-    @FXML
-    private TextField txtFact;
-    @FXML
-    private TextField txtDepart;
 
-    public AddSiteWindowController(SystemAdministratorService admin) {
-        this.admin = admin;
+    public CreateTypologyWindowController(SystemAdministratorService admin) {
+        this.admin=admin;
     }
 
     /**
@@ -43,21 +41,19 @@ public class AddSiteWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
+    }    
 
     @FXML
-    private void btnDone_OnAction(ActionEvent event) {
+    private void btnCreateTypology_OnAction(ActionEvent event) {
         labResult.setVisible(false);
         labResult.setTextFill(Color.GREEN);
         labResult.setText("Done");
-        labResult.setVisible(false);
 
-        if (!txtFact.getText().isBlank() && !txtDepart.getText().isBlank()) {
+        if (!txtTypo.getText().isBlank()) {
 
-            if (admin.addSite(txtFact.getText(), txtDepart.getText())) {
+            if (admin.addTypology(txtTypo.getText())) {
                 labResult.setVisible(true);
-                txtFact.clear();
-                txtDepart.clear();
+                txtTypo.clear();
             } else {
                 labResult.setText("Add failed");
                 labResult.setTextFill(Color.RED);
@@ -65,8 +61,10 @@ public class AddSiteWindowController implements Initializable {
             }
 
         } else {
+            labResult.setText("Data missing");
+            labResult.setTextFill(Color.RED);
             labResult.setVisible(true);
         }
     }
-
+    
 }

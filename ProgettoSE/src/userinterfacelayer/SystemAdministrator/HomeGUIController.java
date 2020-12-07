@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterfacelayer;
+package userinterfacelayer.SystemAdministrator;
 
-import businesslayer.SystemAdministratorService;
+import businesslayer.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -25,6 +25,7 @@ import javafx.stage.Stage;
  */
 public class HomeGUIController implements Initializable {
 
+    
 
     @FXML
     private Button btnUser;
@@ -37,9 +38,10 @@ public class HomeGUIController implements Initializable {
     @FXML
     private Button btnLogout;
 
-    private SystemAdministratorService admin= new SystemAdministratorService();
+    private SystemAdministratorService admin;
     
-    public HomeGUIController() {
+    public HomeGUIController(String username,String password) {
+        this.admin= new SystemAdministratorService(new SystemAdministrator(username,password));
     }
     
     /**
@@ -52,7 +54,7 @@ public class HomeGUIController implements Initializable {
     @FXML
     private void btnProced_OnAction(ActionEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ProcedureManagementGUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/ProcedureManagementGUI.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             ProcedureManagementGUIController controller = new ProcedureManagementGUIController(this.admin);

@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterfacelayer;
+package userinterfacelayer.SystemAdministrator;
 
-import businesslayer.Procedure;
-import businesslayer.SystemAdministratorService;
+import businesslayer.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -33,57 +32,67 @@ import javafx.stage.StageStyle;
  *
  * @author camil
  */
-public class ProcedureManagementGUIController implements Initializable {
+public class SiteManagementGUIController implements Initializable {
+
 
     @FXML
-    private TableView<DisplayProcedure> tableView;
+    private TableColumn<DisplaySite, String> colFactory;
     @FXML
-    private TableColumn<DisplayProcedure, String> colProcedure;
+    private TableColumn<DisplaySite, String> colDepart;
     @FXML
-    private TableColumn<DisplayProcedure, String> colMod;
+    private TableColumn<DisplaySite, String> colMod;
     @FXML
-    private TableColumn<DisplayProcedure, String> colDelete;
+    private TableColumn<DisplaySite, String> colDel;
     @FXML
-    private Button btnAddProced;
+    private Button btnSite;
     @FXML
-    private Label labWarn;
+    private TableView<DisplaySite> tableView = new TableView<DisplaySite>();
     @FXML
-    private Button btnHub;
-    private Button btnDel[]=new Button[100];
-    private Button btnMod[]=new Button[100];
+    private Button btnDel[] = new Button[100];
+    private Button btnMod[] = new Button[100];
+    private Button btnHub = new Button();
+    private Label labWarn = new Label();
+
+    private SystemAdministratorService admin;
+    
+    public SiteManagementGUIController(SystemAdministratorService admin) {
+        this.admin=admin;
+    }
 
     /**
      * Initializes the controller class.
      */
-    private SystemAdministratorService admin;
+    public class DisplaySite {
 
-
-    public class DisplayProcedure {
-
-        private SimpleStringProperty procedure;
+        private SimpleStringProperty factSite;
+        private SimpleStringProperty depart;
         private Button btnDel;
         private Button btnMod;
-        
-        public DisplayProcedure(String procedure, Button btnMod, Button btnDel) {
-            this.procedure = new SimpleStringProperty(procedure);
+
+        public DisplaySite(String factSite, String depart, Button btnDel, Button btnMod) {
+            this.factSite = new SimpleStringProperty(factSite);
+            this.depart = new SimpleStringProperty(depart);
             this.btnDel = btnDel;
+            this.btnDel.setText("Delete");
             this.btnMod = btnMod;
-        }
-        
-        public String getProcedure() {
-            return procedure.get();
+            this.btnMod.setText("Modify");
+
         }
 
-        public void setProcedure(String procedure) {
-            this.procedure.set(procedure);
+        public String getFactSite() {
+            return factSite.get();
         }
 
-        public Button getBtnMod() {
-            return btnMod;
+        public void setFactSite(String factSite) {
+            this.factSite.set(factSite);
         }
 
-        public void setBtnMod(Button btnMod) {
-            this.btnMod = btnMod;
+        public String getDepart() {
+            return depart.get();
+        }
+
+        public void setDepart(String depart) {
+            this.depart.set(depart);
         }
 
         public Button getBtnDel() {
@@ -94,60 +103,69 @@ public class ProcedureManagementGUIController implements Initializable {
             this.btnDel = btnDel;
         }
 
+        public Button getBtnMod() {
+            return btnMod;
+        }
 
-        
-        
-    }
+        public void setBtnMod(Button btnMod) {
+            this.btnMod = btnMod;
+        }
 
-    public ProcedureManagementGUIController(SystemAdministratorService admin) {
-        this.admin = admin;
+        public Site getSite() {
+            return new Site(this.getFactSite(), this.getDepart());
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.initializeTable();
     }
-    
-    public void initializeTable(){
-        ObservableList<DisplayProcedure> data;
+
+    public void initializeTable() {
+        ObservableList<DisplaySite> data;
         data = FXCollections.observableArrayList();
-        for (int i = 0; i < admin.viewProcedures().size(); i++) {
+
+        for (int i = 0; i < admin.viewSites().size(); i++) {
             btnMod[i] = new Button("Modify");
             btnDel[i] = new Button("Delete");
             btnMod[i].setOnAction(this::btnModify_OnAction);
             btnDel[i].setOnAction(this::btnDelete_OnAction);
-            Procedure obj=null;
-            obj=admin.viewProcedures().get(i);
-            String name=obj.getName();
+            Site obj = null;
 
-            data.add(new DisplayProcedure(name, btnMod[i], btnDel[i]));
+            obj = admin.viewSites().get(i);
+
+            String factSite = obj.getBranchOffice();
+            String depart = obj.getDepartment();
+
+            data.add(new DisplaySite(factSite, depart, btnDel[i], btnMod[i]));
 
         }
 
-        colProcedure.setCellValueFactory(new PropertyValueFactory<DisplayProcedure, String>("procedure"));
-        colMod.setCellValueFactory(new PropertyValueFactory<DisplayProcedure, String>("btnMod"));
-        colDelete.setCellValueFactory(new PropertyValueFactory<DisplayProcedure, String>("btnDel"));
+        colFactory.setCellValueFactory(new PropertyValueFactory<DisplaySite, String>("factSite"));
+        colDepart.setCellValueFactory(new PropertyValueFactory<DisplaySite, String>("depart"));
+        colDel.setCellValueFactory(new PropertyValueFactory<DisplaySite, String>("btnDel"));
+        colMod.setCellValueFactory(new PropertyValueFactory<DisplaySite, String>("btnMod"));
         tableView.setItems(data);
     }
 
     public void btnModify_OnAction(ActionEvent ev) {
-        for (int i = 0; i < this.admin.viewProcedures().size(); i++) {
+        for (int i = 0; i < this.admin.viewSites().size(); i++) {
             if (ev.getSource() == btnMod[i]) {
                 tableView.getSelectionModel().clearAndSelect(i);
             }
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ModifyProcedureWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/ModifyDepartmentWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
-            ModifyProcedureWindowController controller = new ModifyProcedureWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
+            ModifyDepartmentWindowController controller = new ModifyDepartmentWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);
 
             Stage stage = new Stage();
-            stage.setTitle("Modify Procedure");
+            stage.setTitle("Modify Department");
 
             // Centers the editor window over the current window
             stage.initOwner(tableView.getScene().getWindow());
@@ -166,36 +184,37 @@ public class ProcedureManagementGUIController implements Initializable {
             System.out.println("Can't load the window: " + e);
         }
     }
-    
+
     public void btnDelete_OnAction(ActionEvent ev) {
-       labWarn.setVisible(false);
-        for (int i = 0; i < this.admin.viewProcedures().size(); i++) {
+        labWarn.setVisible(false);
+        for (int i = 0; i < this.admin.viewSites().size(); i++) {
             if (ev.getSource() == btnDel[i]) {
                 tableView.getSelectionModel().clearAndSelect(i);
             }
         }
 
-        if (admin.deleteProcedure(tableView.getSelectionModel().getSelectedItem().getProcedure())) {
+        if (admin.deleteSite(tableView.getSelectionModel().getSelectedItem().getSite())) {
             tableView.getItems().clear();
             this.initializeTable();
         } else {
             labWarn.setVisible(true);
-        }  
-     }
-    
+        }
+
+    }
+
     @FXML
-    private void btnAddProced_OnAction(ActionEvent event) {
+    private void btnSite_OnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/CreateProcedureWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/AddSiteWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
-            CreateProcedureWindowController controller = new CreateProcedureWindowController(this.admin);
+            AddSiteWindowController controller = new AddSiteWindowController(this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);
 
             Stage stage = new Stage();
-            stage.setTitle("Create Procedure");
+            stage.setTitle("Create Site");
 
             // Centers the editor window over the current window
             stage.initOwner(tableView.getScene().getWindow());
@@ -219,8 +238,9 @@ public class ProcedureManagementGUIController implements Initializable {
     @FXML
     private void btnHub_OnAction(ActionEvent event) {
         try {
-
-            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/HomeGUI.fxml"));
+            
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/SystemAdministrator/HomeGUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Admin Hub");
@@ -232,6 +252,7 @@ public class ProcedureManagementGUIController implements Initializable {
             System.out.println("Can't load the window: " + e);
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
+
     }
 
 }

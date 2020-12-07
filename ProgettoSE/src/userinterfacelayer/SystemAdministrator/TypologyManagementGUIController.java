@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterfacelayer;
+package userinterfacelayer.SystemAdministrator;
 
 import businesslayer.*;
 import java.net.URL;
@@ -32,67 +32,56 @@ import javafx.stage.StageStyle;
  *
  * @author camil
  */
-public class SiteManagementGUIController implements Initializable {
+public class TypologyManagementGUIController implements Initializable {
 
 
     @FXML
-    private TableColumn<DisplaySite, String> colFactory;
+    private TableView<DisplayTypology> tableView=new TableView<DisplayTypology>();
     @FXML
-    private TableColumn<DisplaySite, String> colDepart;
+    private TableColumn<DisplayTypology, String> colTypo;
     @FXML
-    private TableColumn<DisplaySite, String> colMod;
+    private TableColumn<DisplayTypology, String> colMod;
     @FXML
-    private TableColumn<DisplaySite, String> colDel;
+    private TableColumn<DisplayTypology, String> colDelete;
     @FXML
-    private Button btnSite;
+    private Button btnAddTypo;
+    private Button btnDel[]=new Button[100];
+    private Button btnMod[]=new Button[100];
     @FXML
-    private TableView<DisplaySite> tableView = new TableView<DisplaySite>();
+    private Button btnHub;
     @FXML
-    private Button btnDel[] = new Button[100];
-    private Button btnMod[] = new Button[100];
-    private Button btnHub = new Button();
-    private Label labWarn = new Label();
-
-    private SystemAdministratorService admin;
+    private Label labWarn;
     
-    public SiteManagementGUIController(SystemAdministratorService admin) {
+    private SystemAdministratorService admin;
+
+    public TypologyManagementGUIController(SystemAdministratorService admin) {
         this.admin=admin;
     }
+    
+    
 
+    
     /**
      * Initializes the controller class.
      */
-    public class DisplaySite {
+    
+    public class DisplayTypology{
 
-        private SimpleStringProperty factSite;
-        private SimpleStringProperty depart;
+        private SimpleStringProperty typo;
         private Button btnDel;
         private Button btnMod;
 
-        public DisplaySite(String factSite, String depart, Button btnDel, Button btnMod) {
-            this.factSite = new SimpleStringProperty(factSite);
-            this.depart = new SimpleStringProperty(depart);
+        public DisplayTypology(String typo, Button btnDel, Button btnMod) {
+            this.typo = new SimpleStringProperty(typo);
             this.btnDel = btnDel;
-            this.btnDel.setText("Delete");
             this.btnMod = btnMod;
-            this.btnMod.setText("Modify");
-
+        }
+        public String getTypo() {
+            return typo.get();
         }
 
-        public String getFactSite() {
-            return factSite.get();
-        }
-
-        public void setFactSite(String factSite) {
-            this.factSite.set(factSite);
-        }
-
-        public String getDepart() {
-            return depart.get();
-        }
-
-        public void setDepart(String depart) {
-            this.depart.set(depart);
+        public void setTypo(String typo) {
+            this.typo.set(typo);
         }
 
         public Button getBtnDel() {
@@ -110,45 +99,31 @@ public class SiteManagementGUIController implements Initializable {
         public void setBtnMod(Button btnMod) {
             this.btnMod = btnMod;
         }
-
-        public Site getSite() {
-            return new Site(this.getFactSite(), this.getDepart());
-        }
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.initializeTable();
-    }
-
-    public void initializeTable() {
-        ObservableList<DisplaySite> data;
+    }   
+    public void initializeTable(){
+        ObservableList<DisplayTypology> data;
         data = FXCollections.observableArrayList();
-
-        for (int i = 0; i < admin.viewSites().size(); i++) {
+        for (int i = 0; i < admin.viewTypologies().size(); i++) {
             btnMod[i] = new Button("Modify");
             btnDel[i] = new Button("Delete");
             btnMod[i].setOnAction(this::btnModify_OnAction);
             btnDel[i].setOnAction(this::btnDelete_OnAction);
-            Site obj = null;
-
-            obj = admin.viewSites().get(i);
-
-            String factSite = obj.getBranchOffice();
-            String depart = obj.getDepartment();
-
-            data.add(new DisplaySite(factSite, depart, btnDel[i], btnMod[i]));
+            data.add(new DisplayTypology(admin.viewTypologies().get(i), btnDel[i], btnMod[i]));
 
         }
 
-        colFactory.setCellValueFactory(new PropertyValueFactory<DisplaySite, String>("factSite"));
-        colDepart.setCellValueFactory(new PropertyValueFactory<DisplaySite, String>("depart"));
-        colDel.setCellValueFactory(new PropertyValueFactory<DisplaySite, String>("btnDel"));
-        colMod.setCellValueFactory(new PropertyValueFactory<DisplaySite, String>("btnMod"));
+        colTypo.setCellValueFactory(new PropertyValueFactory<DisplayTypology, String>("typo"));
+        colDelete.setCellValueFactory(new PropertyValueFactory<DisplayTypology, String>("btnDel"));
+        colMod.setCellValueFactory(new PropertyValueFactory<DisplayTypology, String>("btnMod"));
         tableView.setItems(data);
     }
 
-    public void btnModify_OnAction(ActionEvent ev) {
+     public void btnModify_OnAction(ActionEvent ev) {
         for (int i = 0; i < this.admin.viewSites().size(); i++) {
             if (ev.getSource() == btnMod[i]) {
                 tableView.getSelectionModel().clearAndSelect(i);
@@ -156,10 +131,10 @@ public class SiteManagementGUIController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ModifyDepartmentWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/ModifyTypologyWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
-            ModifyDepartmentWindowController controller = new ModifyDepartmentWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
+            ModifyTypologyWindowController controller = new ModifyTypologyWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);
@@ -183,38 +158,35 @@ public class SiteManagementGUIController implements Initializable {
         } catch (Exception e) {
             System.out.println("Can't load the window: " + e);
         }
-    }
-
-    public void btnDelete_OnAction(ActionEvent ev) {
-        labWarn.setVisible(false);
-        for (int i = 0; i < this.admin.viewSites().size(); i++) {
+     }
+     public void btnDelete_OnAction(ActionEvent ev) {
+       labWarn.setVisible(false);
+        for (int i = 0; i < this.admin.viewTypologies().size(); i++) {
             if (ev.getSource() == btnDel[i]) {
                 tableView.getSelectionModel().clearAndSelect(i);
             }
         }
 
-        if (admin.deleteSite(tableView.getSelectionModel().getSelectedItem().getSite())) {
+        if (admin.deleteTypology(tableView.getSelectionModel().getSelectedItem().getTypo())) {
             tableView.getItems().clear();
             this.initializeTable();
         } else {
             labWarn.setVisible(true);
-        }
-
-    }
-
+        }  
+     }
     @FXML
-    private void btnSite_OnAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/AddSiteWindow.fxml"));
+    private void btnAddTypo_OnAction(ActionEvent event) {
+    try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/CreateTypologyWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
-            AddSiteWindowController controller = new AddSiteWindowController(this.admin);
+            CreateTypologyWindowController controller = new CreateTypologyWindowController(this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);
 
             Stage stage = new Stage();
-            stage.setTitle("Create Site");
+            stage.setTitle("Create Typology");
 
             // Centers the editor window over the current window
             stage.initOwner(tableView.getScene().getWindow());
@@ -234,13 +206,12 @@ public class SiteManagementGUIController implements Initializable {
             System.out.println("Can't load the window" + e);
         }
     }
-
     @FXML
-    private void btnHub_OnAction(ActionEvent event) {
+    private void btnHub_OnAction(ActionEvent event){
         try {
             
             
-            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/HomeGUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/SystemAdministrator/HomeGUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Admin Hub");
@@ -252,7 +223,6 @@ public class SiteManagementGUIController implements Initializable {
             System.out.println("Can't load the window: " + e);
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
-
     }
-
+    
 }

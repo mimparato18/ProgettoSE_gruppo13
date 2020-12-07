@@ -22,6 +22,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import userinterfacelayer.Maintainer.MaintainerHubGUIController;
+import userinterfacelayer.Planner.PlannerHubGUIController;
+import userinterfacelayer.SystemAdministrator.HomeGUIController;
 
 /**
  * FXML Controller class
@@ -68,14 +71,14 @@ public class LoginWindowController implements Initializable {
                 String role = user.checkCredentials(username, password);
 
                 if ("System Administrator".equals(role)) {
-                    loadAdminInterface();
+                    loadAdminInterface(username,password);
                     ((Node) (event.getSource())).getScene().getWindow().hide();
 
                 } else if ("Maintainer".equals(role)) {
-                    loadMaintainerInterface();
+                    loadMaintainerInterface(username,password);
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                 } else if ("Planner".equals(role)) {
-                    loadPlannerInterface();
+                    loadPlannerInterface(username,password);
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                 } else {
                     labWarning.setText("Check credentials");
@@ -87,46 +90,61 @@ public class LoginWindowController implements Initializable {
 
     }
 
-    private void loadAdminInterface() {
+    private void loadAdminInterface(String username,String password) {
         try {
-            String ui = "/userinterfacelayer/HomeGUI.fxml";
-            Parent root = FXMLLoader.load(getClass().getResource(ui));
-            Scene scene = new Scene(root);
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Admin Hub");
-            primaryStage.setResizable(false);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            String ui = "/userinterfacelayer/SystemAdministrator/HomeGUI.fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ui));
+             // Create the new controller and pass the currently selected data item to it
+            HomeGUIController controller = new HomeGUIController(username,password);
+
+            // Set the controller to the loader
+            loader.setController(controller);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Admin Hub");
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
         } catch (IOException ex) {
             System.out.println("Can't load the window" + ex);
         }
     }
 
-    private void loadPlannerInterface() {
+    private void loadPlannerInterface(String username,String password) {
         try {
-            String ui = "/userinterfacelayer/PlannerHubGUI.fxml";
-            Parent root = FXMLLoader.load(getClass().getResource(ui));
-            Scene scene = new Scene(root);
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Planner Hub");
-            primaryStage.setResizable(false);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            String ui = "/userinterfacelayer/Planner/PlannerHubGUI.fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ui));
+             // Create the new controller and pass the currently selected data item to it
+            PlannerHubGUIController controller = new PlannerHubGUIController(username,password);
+
+            // Set the controller to the loader
+            loader.setController(controller);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Planner Hub");
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
         } catch (IOException ex) {
             System.out.println("Can't load the window" + ex);
         }
     }
 
-    private void loadMaintainerInterface() {
+    private void loadMaintainerInterface(String username,String password) {
         try {
-            String ui = "/userinterfacelayer/MaintainerHubGUI.fxml";
-            Parent root = FXMLLoader.load(getClass().getResource(ui));
-            Scene scene = new Scene(root);
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Maintainer Hub");
-            primaryStage.setResizable(false);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            String ui = "/userinterfacelayer/Maintainer/MaintainerHubGUI.fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ui));
+             // Create the new controller and pass the currently selected data item to it
+            MaintainerHubGUIController controller = new MaintainerHubGUIController(username,password);
+
+            // Set the controller to the loader
+            loader.setController(controller);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Maintainer Hub");
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
         } catch (IOException ex) {
             System.out.println("Can't load the window" + ex);
         }

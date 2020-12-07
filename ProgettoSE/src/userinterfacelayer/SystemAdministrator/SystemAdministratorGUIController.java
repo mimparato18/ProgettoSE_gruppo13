@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterfacelayer;
+package userinterfacelayer.SystemAdministrator;
 
 import businesslayer.*;
 import java.net.URL;
@@ -192,7 +192,7 @@ public class SystemAdministratorGUIController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/ModifyPasswordWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/ModifyPasswordWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             ModifyPasswordWindowController controller = new ModifyPasswordWindowController(tableView.getSelectionModel().getSelectedItem(), this.admin);
@@ -224,7 +224,7 @@ public class SystemAdministratorGUIController implements Initializable {
     @FXML
     private void createUser_OnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/CreateUserWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/SystemAdministrator/CreateUserWindow.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             CreateUserWindowController controller = new CreateUserWindowController(this.admin);
@@ -260,7 +260,7 @@ public class SystemAdministratorGUIController implements Initializable {
         try {
             
             
-            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/HomeGUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/SystemAdministrator/HomeGUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Admin Hub");

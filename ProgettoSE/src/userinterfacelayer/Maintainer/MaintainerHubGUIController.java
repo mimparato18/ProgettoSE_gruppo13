@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterfacelayer;
+package userinterfacelayer.Maintainer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,10 +22,17 @@ import javafx.stage.Stage;
  *
  * @author camil
  */
-public class PlannerHubGUIController implements Initializable {
+public class MaintainerHubGUIController implements Initializable {
 
-    @FXML
-    private Button btnActivity;
+    private String username;
+    private String password;
+
+    
+    public MaintainerHubGUIController(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     @FXML
     private Button btnLogout;
 
@@ -35,18 +42,13 @@ public class PlannerHubGUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
-    @FXML
-    private void btnActivity_OnAction(ActionEvent event) {
     }
-    
+
     @FXML
     private void btnLogout_OnAction(ActionEvent event) {
         try {
-            
-            
-            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/LoginWindow.fxml"));
+
+            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/Maintainer/LoginWindow.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Login");
@@ -58,6 +60,7 @@ public class PlannerHubGUIController implements Initializable {
             System.out.println("Can't load the window: " + e);
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        
+
     }
+
 }

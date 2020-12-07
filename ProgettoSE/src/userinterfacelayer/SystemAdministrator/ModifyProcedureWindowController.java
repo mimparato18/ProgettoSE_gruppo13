@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterfacelayer;
+package userinterfacelayer.SystemAdministrator;
 
 import businesslayer.SystemAdministratorService;
 import java.net.URL;
@@ -14,51 +14,53 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import userinterfacelayer.TypologyManagementGUIController.DisplayTypology;
+import userinterfacelayer.SystemAdministrator.ProcedureManagementGUIController.DisplayProcedure;
 
 /**
  * FXML Controller class
  *
  * @author camil
  */
-public class ModifyTypologyWindowController implements Initializable {
+public class ModifyProcedureWindowController implements Initializable {
 
-    private DisplayTypology data;
-    private SystemAdministratorService admin;
-    @FXML
-    private TextField txtNewTypo;
-    @FXML
-    private Label labWarning;
-
-    public ModifyTypologyWindowController(DisplayTypology data,SystemAdministratorService admin) {
-        this.data = data;
-        this.admin=admin;
-    }
 
     @FXML
     private Button btnModify;
     @FXML
-    private Label labOldTypo;
+    private TextField txtNewProced;
+    @FXML
+    private Label labOldProced;
+    @FXML
+    private Label labWarning;
+    
+    private DisplayProcedure data;
+    private SystemAdministratorService admin;
 
+    public ModifyProcedureWindowController(DisplayProcedure data,SystemAdministratorService admin) {
+        this.data=data;
+        this.admin=admin;
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.labOldTypo.setText("You are modifying:   "+data.getTypo());
-    }
+        this.labOldProced.setText("You are modifying:   "+data.getProcedure());
+    }    
 
     @FXML
     private void btnModify_OnAction(ActionEvent event) {
         boolean checkUpdate = false;
         boolean warn = false;
-        if (txtNewTypo.getText().isEmpty()) {
+        if (txtNewProced.getText().isEmpty()) {
+            labWarning.setTextFill(Color.RED);
             labWarning.setText("Missing Data");
             labWarning.setVisible(true);
         } else {
 
-            checkUpdate = admin.updateTypology(data.getTypo(), txtNewTypo.getText());
+            checkUpdate = admin.updateProcedure(data.getProcedure(), txtNewProced.getText());
             labWarning.setVisible(false);
             if (!checkUpdate) {
                 warn = true;
@@ -70,9 +72,10 @@ public class ModifyTypologyWindowController implements Initializable {
             Stage stage = (Stage) btnModify.getScene().getWindow();
             stage.close();
         } else if (warn) {
+            labWarning.setTextFill(Color.RED);
             labWarning.setText("Update failed");
             labWarning.setVisible(true);
         }
     }
-
+    
 }
