@@ -21,11 +21,10 @@ public class SmartMaintenanceApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String ui = "/userinterfacelayer/HomeGUI.fxml";
-        //String uilog="LoginGUI.fxml";
+        String ui="/userinterfacelayer/LoginWindow.fxml";
         Parent root = FXMLLoader.load(getClass().getResource(ui));
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Admin Hub");
+        primaryStage.setTitle("Login");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();

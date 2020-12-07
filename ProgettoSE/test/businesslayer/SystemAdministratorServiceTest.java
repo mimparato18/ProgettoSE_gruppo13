@@ -20,7 +20,7 @@ import org.junit.Ignore;
  */
 public class SystemAdministratorServiceTest {
 
-    static SystemAdministratorService instance = new SystemAdministratorService();
+    static SystemAdministratorService instance = new SystemAdministratorService(new SystemAdministrator("admin","admin"));
     static ArrayList<String> competence = new ArrayList<String>();
     static Maintainer modifyMaintainer = new Maintainer("ModMaintainer", "noPassWordMod", competence);
     static Planner modifyPlanner = new Planner("ModPlanner", "noPassWordMod");

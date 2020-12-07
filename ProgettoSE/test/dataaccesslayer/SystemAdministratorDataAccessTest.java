@@ -32,17 +32,19 @@ import org.junit.Ignore;
 public class SystemAdministratorDataAccessTest {
 
     static SystemAdministratorDataAccess instance;
-    
+
+    static Login instanceLogin = new Login();
+
     static Planner userP = new Planner("testPlanner", "hjdgfjagjf");
     Planner userCreate = new Planner("testPlannerCreate", "hjdgfjagjf");
     static Planner userModify = new Planner("testPlannerMod", "hjdgfjagjf");
     static ArrayList<String> competence = new ArrayList<String>();
-    static Maintainer userM = new Maintainer("testMaintainer", "hjdgfjagjf",competence);
-    
+    static Maintainer userM = new Maintainer("testMaintainer", "hjdgfjagjf", competence);
+
     static Site site = new Site("testFactorySite0", "testdepartment");
     static Site siteCreate = new Site("testFactorySite1", "testdepartment");
     static Site siteMod = new Site("testFactorySite2", "testdepartment");
-    
+
     String type = "testTypology0";
     static String isType = "isType";
     static String typeModify = "testTypology1";
@@ -56,6 +58,7 @@ public class SystemAdministratorDataAccessTest {
     public static void setUpClass() {
         instance = new SystemAdministratorDataAccess();
         instance.connect();
+        instanceLogin.connect();
         competence.add("competence1");
         competence.add("competence2");
         competence.add("competence3");
@@ -80,6 +83,7 @@ public class SystemAdministratorDataAccessTest {
         instance.removeTypology(typeModify);
         instance.removeTypology(otherTypology);
         instance.disconnect();
+        instanceLogin.disconnect();
     }
 
     @Before
@@ -124,7 +128,7 @@ public class SystemAdministratorDataAccessTest {
         System.out.println("getUser");
         String username = "testMaintainer";
         Maintainer expResult = userM;
-        Maintainer result = (Maintainer) instance.getUser(username);
+        Maintainer result = (Maintainer) instanceLogin.getUser(username);
         assertEquals(userM.getUsername(), result.getUsername());
         assertEquals(userM.getPassword(), result.getPassword());
     }
@@ -138,7 +142,7 @@ public class SystemAdministratorDataAccessTest {
         System.out.println("getRole");
         String username = "testPlanner";
         String expResult = "Planner";
-        String result = instance.getRole(username);
+        String result = instanceLogin.getRole(username);
         assertEquals(expResult, result);
     }
 
@@ -151,7 +155,7 @@ public class SystemAdministratorDataAccessTest {
         System.out.println("getPassword");
         String username = "testPlanner";
         String expResult = "hjdgfjagjf";
-        String result = instance.getPassword(username);
+        String result = instanceLogin.getPassword(username);
         assertEquals(expResult, result);
     }
 
