@@ -13,6 +13,7 @@ import businesslayer.Procedure;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import businesslayer.*;
+import java.util.concurrent.TimeUnit;
 
 public class PlannerDataAccess extends Database {
 
@@ -66,7 +67,15 @@ public class PlannerDataAccess extends Database {
             return false;
         }
     }
-
+    
+    public int nextId() throws SQLException, InterruptedException{
+        statement.execute("ANALYZE TABLE maintenanceactivity");
+        TimeUnit.MILLISECONDS.sleep(200);
+        statement.executeQuery("SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'progettosedb' AND   TABLE_NAME   = 'maintenanceactivity'");
+        int id = resultSet.getInt(1);
+        return id;
+    }
+    
     public ArrayList<MaintenanceActivity> getAllActivities() {
         String materials, typology, activityDescription, branchOffice, department, workspaceNotes;
         int id, interventionTime, week;
@@ -98,5 +107,5 @@ public class PlannerDataAccess extends Database {
             return null;
         }
     }
-
+    
 }
