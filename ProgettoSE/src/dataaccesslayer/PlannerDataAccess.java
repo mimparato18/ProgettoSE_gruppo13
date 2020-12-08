@@ -9,7 +9,6 @@ package dataaccesslayer;
  *
  * @author simo5
  */
-import businesslayer.Procedure;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import businesslayer.*;
@@ -69,10 +68,13 @@ public class PlannerDataAccess extends Database {
     }
     
     public int nextId() throws SQLException, InterruptedException{
+        int id = 0;
         statement.execute("ANALYZE TABLE maintenanceactivity");
         TimeUnit.MILLISECONDS.sleep(200);
         statement.executeQuery("SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'progettosedb' AND   TABLE_NAME   = 'maintenanceactivity'");
-        int id = resultSet.getInt(1);
+        while (resultSet.next()) {
+            id = resultSet.getInt(1);
+        }
         return id;
     }
     
