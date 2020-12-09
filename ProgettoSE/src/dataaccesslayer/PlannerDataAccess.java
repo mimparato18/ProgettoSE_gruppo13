@@ -71,7 +71,7 @@ public class PlannerDataAccess extends Database {
         int id = 0;
         statement.execute("ANALYZE TABLE maintenanceactivity");
         TimeUnit.MILLISECONDS.sleep(200);
-        statement.executeQuery("SELECT 'AUTO_INCREMENT' FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'progettosedb' AND   TABLE_NAME   = 'maintenanceactivity'");
+        statement.executeQuery("SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'progettosedb' AND TABLE_NAME = 'maintenanceactivity'");
         while (resultSet.next()) {
             id = resultSet.getInt(1);
         }
