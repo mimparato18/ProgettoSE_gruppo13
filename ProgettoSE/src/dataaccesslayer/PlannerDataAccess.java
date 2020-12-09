@@ -25,7 +25,7 @@ public class PlannerDataAccess extends Database {
         }
 
         String insertQuery = String.format("INSERT INTO "
-                + "maintenanceactivity(materials, typology, estimatedtime, activitydescription, branchoffice, department, week, interruptable, workspacenotes) "
+                + "maintenanceactivity(materials, typology, estimatedtime, activitydescription, branchoffice, department, week, interruptible, workspacenotes) "
                 + "values ('%s', '%s', '%d', '%s', '%s', '%s', '%d', %b, '%s')", activity.getMaterials(), activity.getTypology(), activity.getInterventionTime(), activity.getDescription(),
                 activity.getSite().getBranchOffice(), activity.getSite().getDepartment(), activity.getWeek(), activity.isInterruptible(), activity.getWorkspaceNotes());
         try {
@@ -42,7 +42,7 @@ public class PlannerDataAccess extends Database {
             return false;
         }
         String updateQuery = String.format("UPDATE maintenanceactivity SET materials = '%s', typology = '%s', estimatedtime = '%d', activitydescription = '%s', branchoffice = '%s', department = '%s', "
-                + "week = '%d', interruptable = %b, workspacenotes = '%s' WHERE id = '%d'", activity.getMaterials(), activity.getTypology(), activity.getInterventionTime(), activity.getDescription(),
+                + "week = '%d', interruptible = %b, workspacenotes = '%s' WHERE id = '%d'", activity.getMaterials(), activity.getTypology(), activity.getInterventionTime(), activity.getDescription(),
                 activity.getSite().getBranchOffice(), activity.getSite().getDepartment(), activity.getWeek(), activity.isInterruptible(), activity.getWorkspaceNotes(), id);
         try {
             statement.executeUpdate(updateQuery);
