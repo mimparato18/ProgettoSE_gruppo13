@@ -39,6 +39,9 @@ public class PlannerHubGUIController implements Initializable {
         this.username=username;
         this.password=password;
     }
+    public PlannerHubGUIController(PlannerService planner){
+        this.planner=planner;
+    }
     
     /**
      * Initializes the controller class.
@@ -51,7 +54,7 @@ public class PlannerHubGUIController implements Initializable {
     @FXML
     private void btnActivity_OnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/Planner/CreateActivityGUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/Planner/ManageActivityGUI.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
             ManageActivityGUIController controller = new ManageActivityGUIController(this.planner);

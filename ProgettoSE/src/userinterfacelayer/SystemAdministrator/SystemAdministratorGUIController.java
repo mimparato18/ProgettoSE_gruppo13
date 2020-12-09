@@ -38,7 +38,9 @@ public class SystemAdministratorGUIController implements Initializable {
     private TableView<DisplayUser> tableView = new TableView<DisplayUser>();
     @FXML
     private Button btnCreate;
+    @FXML
     private Label labWarn = new Label();
+    @FXML
     private Button btnHub = new Button();
 
     @FXML
@@ -53,7 +55,6 @@ public class SystemAdministratorGUIController implements Initializable {
     private TableColumn<DisplayUser, String> colModify;
     @FXML
     private TableColumn<DisplayUser, String> colDelete;
-    @FXML
     private Button[] btnDel = new Button[100];
     private Button[] btnMod = new Button[100];
 
@@ -258,14 +259,18 @@ public class SystemAdministratorGUIController implements Initializable {
     @FXML
     private void btnHub_OnAction(ActionEvent event) {
         try {
-            
-            
-            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/SystemAdministrator/HomeGUI.fxml"));
-            Scene scene = new Scene(root);
+            String ui = "/userinterfacelayer/SystemAdministrator/HomeGUI.fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ui));
+             // Create the new controller and pass the currently selected data item to it
+            HomeGUIController controller = new HomeGUIController(this.admin);
+
+            // Set the controller to the loader
+            loader.setController(controller);
+
             Stage stage = new Stage();
-            stage.setTitle("Admin Hub");
             stage.setResizable(false);
-            stage.setScene(scene);
+            stage.setTitle("Admin Hub");
+            stage.setScene(new Scene(loader.load()));
             stage.show();
 
         } catch (Exception e) {

@@ -211,12 +211,18 @@ public class TypologyManagementGUIController implements Initializable {
         try {
             
             
-            Parent root = FXMLLoader.load(getClass().getResource("/userinterfacelayer/SystemAdministrator/HomeGUI.fxml"));
-            Scene scene = new Scene(root);
+            String ui = "/userinterfacelayer/SystemAdministrator/HomeGUI.fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ui));
+             // Create the new controller and pass the currently selected data item to it
+            HomeGUIController controller = new HomeGUIController(this.admin);
+
+            // Set the controller to the loader
+            loader.setController(controller);
+
             Stage stage = new Stage();
-            stage.setTitle("Admin Hub");
             stage.setResizable(false);
-            stage.setScene(scene);
+            stage.setTitle("Admin Hub");
+            stage.setScene(new Scene(loader.load()));
             stage.show();
 
         } catch (Exception e) {

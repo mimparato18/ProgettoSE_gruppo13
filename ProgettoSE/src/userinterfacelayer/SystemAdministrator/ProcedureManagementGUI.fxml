@@ -21,7 +21,7 @@
                   </TableColumn>
               </columns>
             </TableView>
-            <Button fx:id="btnAddProced" layoutX="555.0" layoutY="2.0" mnemonicParsing="false" onAction="#btnAddProced_OnAction" text="Add Procedure" />
+            <Button fx:id="btnAddProced" layoutX="556.0" layoutY="2.0" mnemonicParsing="false" onAction="#btnAddProced_OnAction" text="Add Procedure" />
             <Label fx:id="labWarn" layoutX="498.0" layoutY="183.0" prefHeight="17.0" prefWidth="72.0" text="Delete failed" textFill="RED" visible="false" />
          </children>
       </AnchorPane>
