@@ -6,6 +6,7 @@
 package businesslayer;
 
 import dataaccesslayer.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -23,11 +24,11 @@ public class PlannerService {
         this.planner = planner;
     }
 
-    public boolean addActivity(Site site, String typology, String description,
-            int interventionTime, boolean interruptible, String materials, int week, String workspaceNotes) {
+    public boolean addActivity(String site, String typology, String description,
+            int hours, int minutes, boolean interruptible, String materials, String week, String workspaceNotes) {
 
-        return db.createActivity(planner.createActivity(site, typology, description,
-                interventionTime, interruptible, materials, week, workspaceNotes));
+        return db.createActivity(planner.createActivity(new Site(site.split(" - ")[0], site.split(" - ")[1]), typology, description,
+                (hours * 60 + minutes), interruptible, materials, Integer.parseInt(week), workspaceNotes));
     }
 
     public boolean updateActivity(int id, Site site, String typology, String description,
@@ -62,4 +63,31 @@ public class PlannerService {
 
         return activitiesByWeek;
     }
+
+    public ArrayList<String> getAllSites() {
+        ArrayList<Site> sites = db.getAllSites();
+        ArrayList<String> returnSites = new ArrayList<>();
+        if (sites != null) {
+            for (Site s : sites) {
+                returnSites.add(s.getBranchOffice() + " - " + s.getDepartment());
+            }
+            return returnSites;
+        }
+        return null;
+    }
+
+    public ArrayList<String> getAllTypologies() {
+        return db.getAllTypologies();
+    }
+
+    public String getNextId() {
+
+        try {
+            return Integer.toString(db.nextId());
+        } catch (InterruptedException | SQLException ex) {
+            return "err";
+        }
+
+    }
+
 }
