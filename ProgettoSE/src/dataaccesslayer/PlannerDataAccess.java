@@ -26,7 +26,7 @@ public class PlannerDataAccess extends Database {
 
         String insertQuery = String.format("INSERT INTO "
                 + "maintenanceactivity(materials, typology, estimatedtime, activitydescription, branchoffice, department, week, interruptable, workspacenotes) "
-                + "values ('%s', '%s', '%d', '%s', '%s', '%s', '%d', '%B', '%s')", activity.getMaterials(), activity.getTypology(), activity.getInterventionTime(), activity.getDescription(),
+                + "values ('%s', '%s', '%d', '%s', '%s', '%s', '%d', %b, '%s')", activity.getMaterials(), activity.getTypology(), activity.getInterventionTime(), activity.getDescription(),
                 activity.getSite().getBranchOffice(), activity.getSite().getDepartment(), activity.getWeek(), activity.isInterruptible(), activity.getWorkspaceNotes());
         try {
             statement.executeUpdate(insertQuery);
@@ -42,7 +42,7 @@ public class PlannerDataAccess extends Database {
             return false;
         }
         String updateQuery = String.format("UPDATE maintenanceactivity SET materials = '%s', typology = '%s', estimatedtime = '%d', activitydescription = '%s', branchoffice = '%s', department = '%s', "
-                + "week = '%d', interruptable = '%B', workspacenotes = '%s' WHERE id = '%d'", activity.getMaterials(), activity.getTypology(), activity.getInterventionTime(), activity.getDescription(),
+                + "week = '%d', interruptable = %b, workspacenotes = '%s' WHERE id = '%d'", activity.getMaterials(), activity.getTypology(), activity.getInterventionTime(), activity.getDescription(),
                 activity.getSite().getBranchOffice(), activity.getSite().getDepartment(), activity.getWeek(), activity.isInterruptible(), activity.getWorkspaceNotes(), id);
         try {
             statement.executeUpdate(updateQuery);
@@ -104,6 +104,42 @@ public class PlannerDataAccess extends Database {
                 activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes));
             }
             return activitiesList;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    public ArrayList<String> getAllTypologies() {
+        String type;
+        ArrayList<String> typologiesList = new ArrayList<>();
+        String selectQuery = String.format("SELECT * FROM typology");
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+            while (resultSet.next()) {
+                type = resultSet.getString(1);
+                typologiesList.add(type);
+            }
+            return typologiesList;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    public ArrayList<Site> getAllSites() {
+        String branchOffice;
+        String department;
+        ArrayList<Site> sitesList = new ArrayList<>();
+        String selectQuery = String.format("SELECT * FROM site");
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+            while (resultSet.next()) {
+                branchOffice = resultSet.getString(1);
+                department = resultSet.getString(2);
+                sitesList.add(new Site(branchOffice, department));
+            }
+            return sitesList;
         } catch (SQLException e) {
             System.out.println(e);
             return null;
