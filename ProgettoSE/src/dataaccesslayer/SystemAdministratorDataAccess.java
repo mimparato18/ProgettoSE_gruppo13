@@ -8,6 +8,7 @@ package dataaccesslayer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import businesslayer.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -135,9 +136,13 @@ public class SystemAdministratorDataAccess extends Database {
         }
         String deleteQuery = String.format("DELETE FROM site WHERE (branchoffice = '%s' and department = '%s')", site.getBranchOffice(), site.getDepartment());
         try {
+            statement.execute("SET FOREIGN_KEY_CHECKS = 0");
+            TimeUnit.MILLISECONDS.sleep(200);
             statement.executeUpdate(deleteQuery);
+            TimeUnit.MILLISECONDS.sleep(200);
+            statement.execute("SET FOREIGN_KEY_CHECKS = 1");
             return true;
-        } catch (SQLException e) {
+        } catch (SQLException | InterruptedException e) {
             System.out.println(e);
             return false;
         }
@@ -198,9 +203,13 @@ public class SystemAdministratorDataAccess extends Database {
         }
         String deleteQuery = String.format("DELETE FROM typology WHERE type = '%s'", type);
         try {
+            statement.execute("SET FOREIGN_KEY_CHECKS = 0");
+            TimeUnit.MILLISECONDS.sleep(200);
             statement.executeUpdate(deleteQuery);
+            TimeUnit.MILLISECONDS.sleep(200);
+            statement.execute("SET FOREIGN_KEY_CHECKS = 1");
             return true;
-        } catch (SQLException e) {
+        } catch (SQLException | InterruptedException e) {
             System.out.println(e);
             return false;
         }

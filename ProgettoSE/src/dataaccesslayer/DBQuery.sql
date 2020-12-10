@@ -56,8 +56,8 @@ CREATE TABLE maintenanceactivity(
     workspacenotes VARCHAR(100),
     CONSTRAINT FK_site FOREIGN KEY (branchoffice,department)
     REFERENCES site(branchoffice,department)
-    ON DELETE RESTRICT ON UPDATE RESTRICT,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT FK_typology FOREIGN KEY (typology)
     REFERENCES typology(type)
-    ON DELETE RESTRICT ON UPDATE RESTRICT,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
 );

@@ -66,8 +66,8 @@ public class PlannerDataAccess extends Database {
             return false;
         }
     }
-    
-    public int nextId() throws SQLException, InterruptedException{
+
+    public int nextId() throws SQLException, InterruptedException {
         int id = 0;
         statement.execute("ANALYZE TABLE maintenanceactivity");
         TimeUnit.MILLISECONDS.sleep(200);
@@ -77,7 +77,7 @@ public class PlannerDataAccess extends Database {
         }
         return id;
     }
-    
+
     public ArrayList<MaintenanceActivity> getAllActivities() {
         String materials, typology, activityDescription, branchOffice, department, workspaceNotes;
         int id, interventionTime, week;
@@ -109,7 +109,39 @@ public class PlannerDataAccess extends Database {
             return null;
         }
     }
-    
+
+    public ArrayList<MaintenanceActivity> getAllActivities(int weekNumber) {
+        String materials, typology, activityDescription, branchOffice, department, workspaceNotes;
+        int id, interventionTime, week;
+        boolean interruptible;
+
+        ArrayList<MaintenanceActivity> activitiesList = new ArrayList<>();
+        String selectQuery = String.format("SELECT * FROM maintenanceactivity where week = %d", weekNumber);
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+                materials = resultSet.getString(2);
+                typology = resultSet.getString(3);
+                interventionTime = resultSet.getInt(4);
+                activityDescription = resultSet.getString(5);
+                branchOffice = resultSet.getString(6);
+                department = resultSet.getString(7);
+                week = resultSet.getInt(8);
+                interruptible = resultSet.getBoolean(9);
+                workspaceNotes = resultSet.getString(10);
+
+                Site site = new Site(branchOffice, department);
+
+                activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes));
+            }
+            return activitiesList;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
     public ArrayList<String> getAllTypologies() {
         String type;
         ArrayList<String> typologiesList = new ArrayList<>();
@@ -126,7 +158,7 @@ public class PlannerDataAccess extends Database {
             return null;
         }
     }
-    
+
     public ArrayList<Site> getAllSites() {
         String branchOffice;
         String department;
@@ -145,5 +177,5 @@ public class PlannerDataAccess extends Database {
             return null;
         }
     }
-    
+
 }
