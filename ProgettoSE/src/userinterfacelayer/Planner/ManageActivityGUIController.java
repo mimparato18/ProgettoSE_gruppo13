@@ -61,6 +61,9 @@ public class ManageActivityGUIController implements Initializable {
 
     private MaintenanceActivity findObject() {
         DisplayActivity obj = tableView.getSelectionModel().getSelectedItem();
+        if (obj == null) {
+            return null;
+        }
         for (int i = 0; i < planner.viewActivities().size(); i++) {
             MaintenanceActivity act = null;
             act = planner.viewActivities().get(i);
@@ -119,26 +122,35 @@ public class ManageActivityGUIController implements Initializable {
 
     @FXML
     private void btnModify_OnAction(ActionEvent event) {
-        try {
-            MaintenanceActivity act = findObject();
-            String ui = "/userinterfacelayer/Planner/ModifyActivityGUI.fxml";
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(ui));
-            // Create the new controller and pass the currently selected data item to it
-            ModifyActivityGUIController controller = new ModifyActivityGUIController(this.planner, act);
+        MaintenanceActivity act;
+        act = findObject();
+        if (act == null) {
+            labWarning.setText("Select an Activity");
+            labWarning.setTextFill(Color.RED);
+            labWarning.setVisible(true);
+        } else {
+            try {
+                labWarning.setVisible(false);
+                String ui = "/userinterfacelayer/Planner/ModifyActivityGUI.fxml";
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(ui));
+                // Create the new controller and pass the currently selected data item to it
+                ModifyActivityGUIController controller = new ModifyActivityGUIController(this.planner, act);
 
-            // Set the controller to the loader
-            loader.setController(controller);
+                // Set the controller to the loader
+                loader.setController(controller);
 
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
 
-            stage.initStyle(StageStyle.UTILITY);
-            stage.setResizable(false);
-            stage.setTitle("Modify Activity");
-            stage.setScene(new Scene(loader.load()));
-            stage.showAndWait();
-        } catch (Exception ex) {
-            System.out.println("Can't load the window" + ex);
+                stage.initStyle(StageStyle.UTILITY);
+                stage.setResizable(false);
+                stage.setTitle("Modify Activity");
+                stage.setScene(new Scene(loader.load()));
+                stage.showAndWait();
+            } catch (Exception ex) {
+
+                System.out.println("Can't load the window" + ex);
+            }
         }
     }
 
@@ -146,13 +158,27 @@ public class ManageActivityGUIController implements Initializable {
     private void btnDelete_OnAction(ActionEvent event) {
         labWarning.setText("");
         labWarning.setVisible(false);
-        if (planner.deleteActivity(tableView.getSelectionModel().getSelectedItem().getId())) {
-            tableView.getItems().clear();
-            this.initializeTable();
-        } else {
-            labWarning.setText("Delete failed");
+
+        if (tableView.getSelectionModel().getSelectedItem() == null) {
+
+            labWarning.setText("Select an Activity");
             labWarning.setTextFill(Color.RED);
             labWarning.setVisible(true);
+
+        } else {
+
+            if (planner.deleteActivity(tableView.getSelectionModel().getSelectedItem().getId())) {
+
+                labWarning.setVisible(false);
+                tableView.getItems().clear();
+                this.initializeTable();
+
+            } else {
+
+                labWarning.setText("Delete failed");
+                labWarning.setTextFill(Color.RED);
+                labWarning.setVisible(true);
+            }
         }
     }
 
@@ -174,6 +200,7 @@ public class ManageActivityGUIController implements Initializable {
     @FXML
     private void btnCreateActivity_OnAction(ActionEvent event) {
         try {
+            labWarning.setVisible(false);
             String ui = "/userinterfacelayer/Planner/CreateActivityGUI.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(ui));
             // Create the new controller and pass the currently selected data item to it
@@ -210,7 +237,7 @@ public class ManageActivityGUIController implements Initializable {
 
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.setTitle("Admin Hub");
+            stage.setTitle("Planner Hub");
             stage.setScene(new Scene(loader.load()));
             stage.show();
         } catch (Exception ex) {

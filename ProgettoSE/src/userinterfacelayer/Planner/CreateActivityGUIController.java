@@ -77,6 +77,19 @@ public class CreateActivityGUIController implements Initializable {
         txtID.setText(planner.getNextId());
     }
 
+    private void resetFields() {
+        txtDesc.clear();
+        txtMaterials.clear();
+        txtWorkspace.clear();
+        txtID.setText(planner.getNextId());
+        checkInterrupt.setSelected(false);
+        spinH.setValueFactory(new IntegerSpinnerValueFactory(0, 8));
+        spinM.setValueFactory(new IntegerSpinnerValueFactory(0, 59));
+        comboWeek.getSelectionModel().clearSelection();
+        comboSite.getSelectionModel().clearSelection();
+        comboTypo.getSelectionModel().clearSelection();
+        
+    }
     private void checkInterrupt_OnAction(ActionEvent event) {
 
     }
@@ -93,6 +106,7 @@ public class CreateActivityGUIController implements Initializable {
                 labWarning.setText("Done");
                 labWarning.setTextFill(Color.GREEN);
                 labWarning.setVisible(true);
+                resetFields();
             }
         } else {
             labWarning.setText("  Missing data");
@@ -101,5 +115,6 @@ public class CreateActivityGUIController implements Initializable {
         }
 
     }
+
 
 }

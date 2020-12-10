@@ -34,6 +34,8 @@ public class PlannerHubGUIController implements Initializable {
     private Button btnActivity;
     @FXML
     private Button btnLogout;
+    @FXML
+    private Button btnAssign;
 
     public PlannerHubGUIController(String username,String password) {
         this.username=username;
@@ -93,5 +95,29 @@ public class PlannerHubGUIController implements Initializable {
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
         
+    }
+
+    @FXML
+    private void btnAssign_OnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/Planner/AssignActivityGUI.fxml"));
+
+            // Create the new controller and pass the currently selected data item to it
+            AssignActivityGUIController controller = new AssignActivityGUIController(this.planner);
+
+            // Set the controller to the loader
+            loader.setController(controller);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Assign Activity");
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
+            
+        } catch (Exception e) {
+            System.out.println("Can't load the window: " + e);
+        }
+        Stage stage = (Stage) btnAssign.getScene().getWindow();
+        stage.close();
     }
 }
