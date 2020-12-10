@@ -48,7 +48,7 @@ public class PlannerService {
         return db.getAllActivities();
     }
 
-    public ArrayList<MaintenanceActivity> getActivtiesByWeek(int week) {
+    public ArrayList<MaintenanceActivity> getActivitiesByWeek(int week) {
 
         ArrayList<MaintenanceActivity> activities = db.getAllActivities();
         ArrayList<MaintenanceActivity> activitiesByWeek = new ArrayList<>();
