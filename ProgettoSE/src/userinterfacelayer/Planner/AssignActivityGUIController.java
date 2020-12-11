@@ -62,6 +62,7 @@ public class AssignActivityGUIController implements Initializable {
         this.planner = planner;
     }
 
+
     public class DisplayActivity {
 
         private SimpleIntegerProperty id;
@@ -69,7 +70,7 @@ public class AssignActivityGUIController implements Initializable {
         private SimpleStringProperty typology;
         private SimpleIntegerProperty time;
 
-        public DisplayActivity(int id, Site site, String typology,int time) {
+        public DisplayActivity(int id, Site site, String typology, int time) {
             this.id = new SimpleIntegerProperty(id);
             this.site = new SimpleStringProperty(site.getBranchOffice() + " - " + site.getDepartment());
             this.typology = new SimpleStringProperty(typology);
@@ -83,6 +84,7 @@ public class AssignActivityGUIController implements Initializable {
         public void setId(int id) {
             this.id.set(id);
         }
+
         public int getTime() {
             return time.get();
         }
@@ -108,6 +110,21 @@ public class AssignActivityGUIController implements Initializable {
         }
 
     }
+    private MaintenanceActivity findObject() {
+        DisplayActivity obj = tableView.getSelectionModel().getSelectedItem();
+        if (obj == null) {
+            return null;
+        }
+        for (int i = 0; i < planner.viewActivities().size(); i++) {
+            MaintenanceActivity act = null;
+            act = planner.viewActivities().get(i);
+            if (obj.getId() == act.getId()) {
+                return act;
+            }
+        }
+        return null;
+    }
+
     /**
      * Initializes the controller class.
      */
@@ -121,13 +138,33 @@ public class AssignActivityGUIController implements Initializable {
 
     @FXML
     private void btnAssignSel_OnAction(ActionEvent event) {
-        if(tableView.getSelectionModel().getSelectedItem()==null){
+        if (tableView.getSelectionModel().getSelectedItem() == null) {
             labWarning.setText("Select an activity");
             labWarning.setVisible(true);
-        }else{
+        } else {
             labWarning.setVisible(false);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/userinterfacelayer/Planner/CheckAssignedActivityGUI.fxml"));
+
+                // Create the new controller and pass the currently selected data item to it
+                CheckAssignedActivityGUIController controller = new CheckAssignedActivityGUIController(findObject(),this.planner);
+
+                // Set the controller to the loader
+                loader.setController(controller);
+
+                Stage stage = new Stage();
+                stage.setResizable(false);
+                stage.setTitle("Checking Activity");
+                stage.setScene(new Scene(loader.load()));
+                stage.show();
+
+            } catch (Exception e) {
+                System.out.println("Can't load the window: " + e);
+            }
+            Stage stage = (Stage) btnAssignSel.getScene().getWindow();
+            stage.close();
         }
-        //find the MaintenanceActivity to pass when the displayActivity is selected
+        
     }
 
     @FXML
@@ -139,11 +176,11 @@ public class AssignActivityGUIController implements Initializable {
         week++;
         ObservableList<DisplayActivity> data;
         data = FXCollections.observableArrayList();
-        for(int i=0;i<planner.getActivitiesByWeek(week).size();i++){
-            MaintenanceActivity obj=null;
-            obj=planner.getActivitiesByWeek(week).get(i);
-            data.add(new DisplayActivity(obj.getId(),obj.getSite(),obj.getTypology(),obj.getInterventionTime()));
-            
+        for (int i = 0; i < planner.getActivitiesByWeek(week).size(); i++) {
+            MaintenanceActivity obj = null;
+            obj = planner.getActivitiesByWeek(week).get(i);
+            data.add(new DisplayActivity(obj.getId(), obj.getSite(), obj.getTypology(), obj.getInterventionTime()));
+
         }
         colID.setCellValueFactory(new PropertyValueFactory<DisplayActivity, String>("id"));
         colSite.setCellValueFactory(new PropertyValueFactory<DisplayActivity, String>("site"));
@@ -152,6 +189,7 @@ public class AssignActivityGUIController implements Initializable {
         tableView.setItems(data);
 
     }
+
     @FXML
     private void btnHub_OnAction(ActionEvent event) {
         try {
