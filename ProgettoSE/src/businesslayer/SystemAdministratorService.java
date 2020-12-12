@@ -113,4 +113,21 @@ public class SystemAdministratorService {
     public ArrayList<Procedure> viewProcedures() {
         return db.getAllProcedures();
     }
+
+    //Competence management
+    public boolean addCompetence(String competence) {
+        return db.createCompetence(competence);
+    }
+
+    public boolean updateCompetence(String oldCompetence, String newCompetence) {
+        return db.modifyCompetence(oldCompetence, newCompetence);
+    }
+
+    public boolean deleteCompetence(String competence) {
+        return db.removeCompetence(competence);
+    }
+
+    public ArrayList<String> viewCompetencies() {
+        return db.getAllCompetencies();
+    }
 }
