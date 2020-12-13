@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS site ;
 DROP TABLE IF EXISTS maintainercompetence;
 DROP TABLE IF EXISTS maintenanceprocedure;
 DROP TABLE IF EXISTS maintenanceactivity;
+DROP TABLE IF EXISTS competence;
 
 CREATE TABLE user(
     username VARCHAR (20) PRIMARY KEY,
@@ -60,4 +61,8 @@ CREATE TABLE maintenanceactivity(
     CONSTRAINT FK_typology FOREIGN KEY (typology)
     REFERENCES typology(type)
     ON DELETE RESTRICT ON UPDATE CASCADE,
+);
+
+CREATE TABLE competence(
+    competencename VARCHAR(30) PRIMARY KEY
 );

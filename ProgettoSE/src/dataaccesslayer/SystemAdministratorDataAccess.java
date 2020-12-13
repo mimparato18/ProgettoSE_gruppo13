@@ -292,5 +292,66 @@ public class SystemAdministratorDataAccess extends Database {
             return null;
         }
     }
+    
+    /*------COMPETENCE METHODS------*/
+    public boolean createCompetence(String competence) {
+        if (this.isCompetence(competence)) {
+            return false;
+        }
+
+        String insertQuery = String.format("INSERT INTO competence(competencename) values ('%s')", competence);
+        try {
+            statement.executeUpdate(insertQuery);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean modifyCompetence(String oldCompetence, String newCompetence) {
+        if (!this.isCompetence(oldCompetence)) {
+            return false;
+        }
+        String updateQuery = String.format("UPDATE competence SET competencename = '%s' WHERE competencename = '%s'", newCompetence, oldCompetence);
+        try {
+            statement.executeUpdate(updateQuery);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean removeCompetence(String competence) {
+        if (!this.isCompetence(competence)) {
+            return false;
+        }
+        String deleteQuery = String.format("DELETE FROM competence WHERE competencename = '%s'", competence);
+        try {
+            statement.executeUpdate(deleteQuery);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public ArrayList<String> getAllCompetencies() {
+        String competence;
+        ArrayList<String> competenciesList = new ArrayList<>();
+        String selectQuery = String.format("SELECT * FROM competence");
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+            while (resultSet.next()) {
+                competence = resultSet.getString(1);
+                competenciesList.add(competence);
+            }
+            return competenciesList;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 
 }

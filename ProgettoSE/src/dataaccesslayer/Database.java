@@ -133,4 +133,20 @@ public abstract class Database {
         }
         return false;
     }
+    
+    public boolean isCompetence(String competence) {
+        String selectQuery = String.format("SELECT competencename FROM competence WHERE (competencename = '%s')", competence);
+        String competenceName = null;
+        try {
+            resultSet = statement.executeQuery(selectQuery);
+
+            while (resultSet.next()) {
+                competenceName = resultSet.getString(1);
+            }
+            return (competenceName != null);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
 }
