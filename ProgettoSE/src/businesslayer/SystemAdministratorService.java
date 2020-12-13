@@ -33,16 +33,8 @@ public class SystemAdministratorService {
     }
 
     //Create Maintainer
-    public boolean addUser(String username, String password, String role, String competencies) {
-        ArrayList<String> list = new ArrayList<>();
-        int len = competencies.split("\n").length;
-
-        for (int i = 0; i < len; i++) {
-            list.add(i, competencies.split("\n")[i]);
-        }
-
-        return db.createUser(admin.createMaintainer(username, password, list), role);
-
+    public boolean addUser(String username, String password, String role, ArrayList<String> competencies) {
+        return db.createUser(admin.createMaintainer(username, password, competencies), role);
     }
 
     public boolean updateUser(String username, String password, String role) {
