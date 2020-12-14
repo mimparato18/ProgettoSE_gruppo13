@@ -6,6 +6,7 @@
 package dataaccesslayer;
 
 import businesslayer.MaintenanceActivity;
+import businesslayer.Procedure;
 import businesslayer.Site;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
 
     private ConnectionPool pool;
+    private MaintenanceProcedureDaoImpl procedureDao = new MaintenanceProcedureDaoImpl();
 
     public MaintenanceActivityDaoImpl() {
         pool = ConnectionPool.getPool();
@@ -93,19 +95,90 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
     }
 
     @Override
-    public MaintenanceActivity getActivityById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MaintenanceActivity getActivityById(int selectedId) {
+        String materials, typology, activityDescription, branchOffice, department, workspaceNotes, procedureName;
+        int id, interventionTime, week;
+        boolean interruptible;
+        ArrayList<String> competencies = null;
+
+        MaintenanceActivity activity = null;
+        String selectQuery = String.format("SELECT * FROM maintenanceactivity WHERE id = %d", selectedId);
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery);) {
+
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+                materials = resultSet.getString(2);
+                typology = resultSet.getString(3);
+                interventionTime = resultSet.getInt(4);
+                activityDescription = resultSet.getString(5);
+                branchOffice = resultSet.getString(6);
+                department = resultSet.getString(7);
+                procedureName = resultSet.getString(8);
+                week = resultSet.getInt(9);
+                interruptible = resultSet.getBoolean(10);
+                workspaceNotes = resultSet.getString(11);
+
+                Site site = new Site(branchOffice, department);
+
+                if (procedureName != null) {
+                    competencies = procedureDao.getCompetenciesByName(procedureName);
+                    activity = new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, competencies), week, workspaceNotes);
+                } else {
+                    activity = new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes);
+                }
+            }
+            return activity;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
     @Override
-    public ArrayList<MaintenanceActivity> getActivitiesByWeek(int week) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<MaintenanceActivity> getActivitiesByWeek(int selectedweek) {
+        String materials, typology, activityDescription, branchOffice, department, workspaceNotes, procedureName;
+        int id, interventionTime, week;
+        boolean interruptible;
+        ArrayList<String> competencies = null;
+
+        ArrayList<MaintenanceActivity> activitiesList = new ArrayList<>();
+        String selectQuery = String.format("SELECT * FROM maintenanceactivity WHERE week = %d", selectedweek);
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery);) {
+
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+                materials = resultSet.getString(2);
+                typology = resultSet.getString(3);
+                interventionTime = resultSet.getInt(4);
+                activityDescription = resultSet.getString(5);
+                branchOffice = resultSet.getString(6);
+                department = resultSet.getString(7);
+                procedureName = resultSet.getString(8);
+                week = resultSet.getInt(9);
+                interruptible = resultSet.getBoolean(10);
+                workspaceNotes = resultSet.getString(11);
+
+                Site site = new Site(branchOffice, department);
+
+                if (procedureName != null) {
+                    competencies = procedureDao.getCompetenciesByName(procedureName);
+                    activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, competencies), week, workspaceNotes));
+                } else {
+                    activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes));
+                }
+            }
+            return activitiesList;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
     public ArrayList<MaintenanceActivity> getAllActivities() {
-        String materials, typology, activityDescription, branchOffice, department, workspaceNotes;
+        String materials, typology, activityDescription, branchOffice, department, workspaceNotes, procedureName;
         int id, interventionTime, week;
         boolean interruptible;
+        ArrayList<String> competencies = null;
 
         ArrayList<MaintenanceActivity> activitiesList = new ArrayList<>();
         String selectQuery = String.format("SELECT * FROM maintenanceactivity");
@@ -119,13 +192,19 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
                 activityDescription = resultSet.getString(5);
                 branchOffice = resultSet.getString(6);
                 department = resultSet.getString(7);
-                week = resultSet.getInt(8);
-                interruptible = resultSet.getBoolean(9);
-                workspaceNotes = resultSet.getString(10);
+                procedureName = resultSet.getString(8);
+                week = resultSet.getInt(9);
+                interruptible = resultSet.getBoolean(10);
+                workspaceNotes = resultSet.getString(11);
 
                 Site site = new Site(branchOffice, department);
 
-                activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes));
+                if (procedureName != null) {
+                    competencies = procedureDao.getCompetenciesByName(procedureName);
+                    activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, competencies), week, workspaceNotes));
+                } else {
+                    activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes));
+                }
             }
             return activitiesList;
         } catch (SQLException e) {

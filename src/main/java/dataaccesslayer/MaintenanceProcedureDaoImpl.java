@@ -111,7 +111,7 @@ public class MaintenanceProcedureDaoImpl implements MaintenanceProcedureDao {
         }
     }
 
-    private ArrayList<String> getCompetenciesByName(String name) {
+    public ArrayList<String> getCompetenciesByName(String name) {
 
         ArrayList<String> competencies = new ArrayList<>();
         String selectQuery = String.format("SELECT competencename FROM maintenanceprocedure WHERE name = '%s'", name);

@@ -20,6 +20,7 @@ public class MaintenanceActivity {
     private String materials;
     private int week;
     private String workspaceNotes;
+    private Procedure procedure;
     
     public MaintenanceActivity(Site site, String typology, String description, int interventionTime,
             boolean interruptible, String materials, int week, String workspaceNotes) {
@@ -35,6 +36,22 @@ public class MaintenanceActivity {
     }
     //constructor used by the data access layer
     public MaintenanceActivity(int id, Site site, String typology, String description, int interventionTime,
+            boolean interruptible, String materials,Procedure procedure, int week, String workspaceNotes) {
+
+        this.id = id;
+        this.site = site;
+        this.typology = typology;
+        this.description = description;
+        this.interventionTime = interventionTime;
+        this.interruptible = interruptible;
+        this.materials = materials;
+        this.procedure = procedure; 
+        this.week = week;
+        this.workspaceNotes = workspaceNotes;
+    }
+    
+    //constructor used by the data access layer
+    public MaintenanceActivity(int id, Site site, String typology, String description, int interventionTime,
             boolean interruptible, String materials, int week, String workspaceNotes) {
 
         this.id = id;
@@ -47,7 +64,7 @@ public class MaintenanceActivity {
         this.week = week;
         this.workspaceNotes = workspaceNotes;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -86,6 +103,14 @@ public class MaintenanceActivity {
 
     public void setWorkspaceNotes(String workspaceNotes) {
         this.workspaceNotes = workspaceNotes;
+    }
+
+    public Procedure getProcedure() {
+        return procedure;
+    }
+
+    public void setProcedure(Procedure procedure) {
+        this.procedure = procedure;
     }
 
 }
