@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -58,7 +59,7 @@ public class MaintainerCompetenceDaoImpl implements MaintainerCompetenceDao {
         if (this.isMaintainerCompetence(username, oldCompetence)) {
             return false;
         }
-        String updateQuery = String.format("UPDATE maintainercompetence SET name = '%s' WHERE name = '%s' AND competence='%s'", newCompetence, username, oldCompetence);
+        String updateQuery = String.format("UPDATE maintainercompetence SET username = '%s' WHERE username = '%s' AND competence='%s'", newCompetence, username, oldCompetence);
         try (Connection connection = pool.getConnection();Statement statement = connection.createStatement()){
             statement.executeUpdate(updateQuery);
             return true;
@@ -73,7 +74,7 @@ public class MaintainerCompetenceDaoImpl implements MaintainerCompetenceDao {
         if (this.isMaintainerCompetence(username, competence)) {
             return false;
         }
-        String deleteQuery = String.format("DELETE FROM maintainercompetence WHERE name = '%s' AND competence='%s'", username, competence);
+        String deleteQuery = String.format("DELETE FROM maintainercompetence WHERE username = '%s' AND competence='%s'", username, competence);
         try (Connection connection = pool.getConnection();Statement statement = connection.createStatement()){
             statement.executeUpdate(deleteQuery);
             return true;
@@ -81,6 +82,24 @@ public class MaintainerCompetenceDaoImpl implements MaintainerCompetenceDao {
             System.out.println(e);
             return false;
         }
+    }
+
+    @Override
+    public ArrayList<String> getMaintainerCompetence(String username) {
+        
+        ArrayList<String> competencies = new ArrayList<>();
+        String selectQuery = String.format("SELECT competence FROM maintainercompetence WHERE username = '%s'", username);
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery)) {
+
+            while (resultSet.next()) {
+                competencies.add(resultSet.getString(1));
+            }
+            return competencies;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+
     }
 
 }

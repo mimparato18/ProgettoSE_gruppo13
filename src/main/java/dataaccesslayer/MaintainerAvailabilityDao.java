@@ -6,6 +6,7 @@
 package dataaccesslayer;
 
 import businesslayer.MaintainerAvailability;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ public interface MaintainerAvailabilityDao {
     public boolean insertMaintainerAvailability(MaintainerAvailability ava);
     public boolean updateMaintainerAvailability(MaintainerAvailability ava);
     public boolean deleteMaintainerAvailability(MaintainerAvailability ava);
-    public ArrayList<MaintainerAvailability> getMaintainerAvailabilitiesByWeek(int week);
-    public ArrayList<MaintainerAvailability> getMaintainerAvailabilitiesByWeekAndDay(int week, int day);
+    public ArrayList<MaintainerAvailability> getMaintainerAvailabilitiesByWeek(int week, String username)throws SQLException;
+    public ArrayList<MaintainerAvailability> getMaintainerAvailabilitiesByWeekAndDay(int week,String username, int day);
 
 }

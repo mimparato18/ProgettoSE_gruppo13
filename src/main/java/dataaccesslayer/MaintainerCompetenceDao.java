@@ -5,6 +5,9 @@
  */
 package dataaccesslayer;
 
+import businesslayer.User;
+import java.util.ArrayList;
+
 /**
  *
  * @author Marco Calabrese
@@ -14,5 +17,5 @@ public interface MaintainerCompetenceDao {
     public boolean insertMaintainerCompetence(String username,String competence);
     public boolean updateMaintainerCompetence(String username,String oldCompetence,String newCompetence);
     public boolean deleteMaintainerCompetence(String username,String competence);
-    //public ArrayList<User> getMaintainerCompetence();
+    public ArrayList<String> getMaintainerCompetence(String username);
 }
