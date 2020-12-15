@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS site ;
 DROP TABLE IF EXISTS maintainercompetence;
 DROP TABLE IF EXISTS maintenanceprocedure;
 DROP TABLE IF EXISTS maintenanceactivity;
+DROP TABLE IF EXISTS maintaineravailability;
 
 CREATE TABLE user(
     username VARCHAR (20) PRIMARY KEY,
@@ -60,4 +61,21 @@ CREATE TABLE maintenanceactivity(
     CONSTRAINT FK_typology FOREIGN KEY (typology)
     REFERENCES typology(type)
     ON DELETE RESTRICT ON UPDATE RESTRICT,
+);
+
+CREATE TABLE maintaineravailability(
+	username VARCHAR(20),
+    week INT CHECK (week > 0 AND week < 53),
+    day INT CHECK (day > 0 AND day < 8),
+    hour1 INT DEFAULT 60 CHECK (hour1 >= 0 AND hour1 <= 60),
+    hour2 INT DEFAULT 60 CHECK (hour2 >= 0 AND hour2 <= 60),
+    hour3 INT DEFAULT 60 CHECK (hour3 >= 0 AND hour3 <= 60),
+    hour4 INT DEFAULT 60 CHECK (hour4 >= 0 AND hour4 <= 60),
+    hour5 INT DEFAULT 60 CHECK (hour5 >= 0 AND hour5 <= 60),
+    hour6 INT DEFAULT 60 CHECK (hour6 >= 0 AND hour6 <= 60),
+    hour7 INT DEFAULT 60 CHECK (hour7 >= 0 AND hour7 <= 60),
+    PRIMARY KEY(username,week,day),
+    CONSTRAINT fk_maintainer FOREIGN KEY(username) 
+    REFERENCES user(username)
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
