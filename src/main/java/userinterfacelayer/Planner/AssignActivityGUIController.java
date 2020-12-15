@@ -158,7 +158,7 @@ public class AssignActivityGUIController implements Initializable {
 
                 Stage stage = new Stage();
                 stage.setResizable(false);
-                stage.setTitle("Checking Activity");
+                stage.setTitle("Check Activity");
                 stage.setScene(new Scene(loader.load()));
                 stage.show();
 

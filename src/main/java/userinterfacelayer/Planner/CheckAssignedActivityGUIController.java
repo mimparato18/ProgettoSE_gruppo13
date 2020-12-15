@@ -8,6 +8,7 @@ package userinterfacelayer.Planner;
 import businesslayer.MaintenanceActivity;
 import businesslayer.PlannerService;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,10 +40,9 @@ public class CheckAssignedActivityGUIController implements Initializable {
     private TextArea txtWorkspace;
     @FXML
     private TextArea txtDescription;
+
     @FXML
-    private TextField txtFile;
-    @FXML
-    private Button btnFileChooser;
+    private Button btnFileGet;
     @FXML
     private TextArea txtSkills;
     @FXML
@@ -66,10 +66,23 @@ public class CheckAssignedActivityGUIController implements Initializable {
         txtActivity.setText(act.getId() + " - " + act.getSite().getBranchOffice() + "  " + act.getSite().getDepartment() + " - " + act.getTypology() + " - " + act.getInterventionTime() + "'");
         txtWorkspace.setText(act.getWorkspaceNotes());
         txtDescription.setText(act.getDescription());
+        try {
+            ArrayList<String> list = act.getProcedure().getCompetencies();
+            StringBuilder comp = new StringBuilder();
+            for (int i = 0; i < list.size(); i++) {
+                comp.append(list.get(i) + "\n");
+            }
+
+            txtSkills.setText(comp.toString());
+
+        } catch (Exception ex) {
+            txtSkills.setText("No skills loaded");
+        }
+
     }
 
     @FXML
-    private void btnFileChooser_OnAction(ActionEvent event) {
+    private void btnFileGet_OnAction(ActionEvent event) {
     }
 
     @FXML
@@ -81,14 +94,14 @@ public class CheckAssignedActivityGUIController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MaintainerActivityGUI.fxml"));
 
                 // Create the new controller and pass the currently selected data item to it
-                MaintainerActivityGUIController controller = new MaintainerActivityGUIController();
+                MaintainerActivityGUIController controller = new MaintainerActivityGUIController(this.act, this.planner);
 
                 // Set the controller to the loader
                 loader.setController(controller);
 
                 Stage stage = new Stage();
                 stage.setResizable(false);
-                stage.setTitle("Checking Activity");
+                stage.setTitle("Maintainer Availability");
                 stage.setScene(new Scene(loader.load()));
                 stage.show();
 
@@ -115,7 +128,7 @@ public class CheckAssignedActivityGUIController implements Initializable {
 
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.setTitle("Planner Hub");
+            stage.setTitle("Assign Activity");
             stage.setScene(new Scene(loader.load()));
             stage.show();
         } catch (Exception ex) {

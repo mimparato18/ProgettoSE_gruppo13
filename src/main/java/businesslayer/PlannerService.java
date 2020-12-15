@@ -105,50 +105,55 @@ public class PlannerService {
         ArrayList<MaintainerAvailability> availMaint;
 
         String matchedSkills;
-        try{
-        for (var user : maintainers) {
-            String mon = "100%", tue = "100%", wed = "100%", thu = "100%", fri = "100%", sat = "100%", sun = "100%";
-            availMaint = availDao.getMaintainerAvailabilitiesByWeek(week, user.getUsername());
-            matchedSkills = checkCompetencies(procedureDao.getCompetenciesByName(activityDao.getActivityById(activityId).getProcedure().getName()), maintainerDao.getMaintainerCompetence(user.getUsername()));
-            
-            if (availMaint != null) {
-                //Skills of the maintainers that match the required skills 
-                
-                for (var item : availMaint) {
-                    switch (item.getDay()) {
-                        case (1):
-                            mon = getAvailabilityPercentage(item.getHours());
-                            break;
-                        case (2):
-                            tue = getAvailabilityPercentage(item.getHours());
-                            break;
-                        case (3):
-                            wed = getAvailabilityPercentage(item.getHours());
-                            break;
-                        case (4):
-                            thu = getAvailabilityPercentage(item.getHours());
-                            break;
-                        case (5):
-                            fri = getAvailabilityPercentage(item.getHours());
-                            break;
-                        case (6):
-                            sat = getAvailabilityPercentage(item.getHours());
-                            break;
-                        case (7):
-                            sun = getAvailabilityPercentage(item.getHours());
-                            break;
-                        default:
-                            break;
-                    }
-
+        try {
+            for (var user : maintainers) {
+                String mon = "100%", tue = "100%", wed = "100%", thu = "100%", fri = "100%", sat = "100%", sun = "100%";
+                availMaint = availDao.getMaintainerAvailabilitiesByWeek(week, user.getUsername());
+                Procedure procedure = (activityDao.getActivityById(activityId).getProcedure());
+                if (activityDao.getActivityById(activityId).getProcedure() != null) {
+                    matchedSkills = checkCompetencies(procedureDao.getCompetenciesByName(procedure.getName()), maintainerDao.getMaintainerCompetence(user.getUsername()));
+                } else {
+                    matchedSkills = "N/A";
                 }
+                if (availMaint != null) {
+                    //Skills of the maintainers that match the required skills 
+
+                    for (var item : availMaint) {
+                        switch (item.getDay()) {
+                            case (1):
+                                mon = getAvailabilityPercentage(item.getHours());
+                                break;
+                            case (2):
+                                tue = getAvailabilityPercentage(item.getHours());
+                                break;
+                            case (3):
+                                wed = getAvailabilityPercentage(item.getHours());
+                                break;
+                            case (4):
+                                thu = getAvailabilityPercentage(item.getHours());
+                                break;
+                            case (5):
+                                fri = getAvailabilityPercentage(item.getHours());
+                                break;
+                            case (6):
+                                sat = getAvailabilityPercentage(item.getHours());
+                                break;
+                            case (7):
+                                sun = getAvailabilityPercentage(item.getHours());
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+                }
+
+                availabilities.add(new MaintainerAvailabilityDto(user.getUsername(), matchedSkills, mon, tue, wed, thu, fri, sat, sun));
             }
-            availabilities.add(new MaintainerAvailabilityDto(user.getUsername(), matchedSkills, mon, tue, wed, thu, fri, sat, sun));
-        }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             return null;
         }
-        return null;
+        return availabilities;
     }
 
     private String checkCompetencies(ArrayList<String> compAct, ArrayList<String> compMaint) {
@@ -159,7 +164,7 @@ public class PlannerService {
         if (compAct.retainAll(compMaint)) {
             matchSkills = compAct.size();
         } else {
-            matchSkills = 5;
+            matchSkills = totalSkills;
         }
 
         return (matchSkills + "/" + totalSkills);

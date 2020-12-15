@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="437.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MaintainerAvailDayGUIController">
+   <children>
+      <TextField fx:id="txtWeek" editable="false" focusTraversable="false" layoutX="113.0" layoutY="50.0" prefHeight="25.0" prefWidth="49.0" />
+      <Text layoutX="43.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Week N°:" />
+      <TextField fx:id="txtAct" editable="false" focusTraversable="false" layoutX="746.0" layoutY="50.0" prefHeight="25.0" prefWidth="231.0" />
+      <Text layoutX="638.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity to assign:" />
+      <TextArea fx:id="txtWorkspace" editable="false" focusTraversable="false" layoutX="42.0" layoutY="184.0" prefHeight="174.0" prefWidth="213.0" />
+      <Text layoutX="42.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workspace Notes:" />
+      <TableView fx:id="tableDay" layoutX="306.0" layoutY="184.0" prefHeight="174.0" prefWidth="670.0">
+        <columns>
+          <TableColumn fx:id="colMant" prefWidth="66.5" text="Maintainer" />
+          <TableColumn fx:id="colSkill" prefWidth="64.0" text="Skills" />
+            <TableColumn fx:id="colAvail" prefWidth="533.0" text="Availability">
+               <columns>
+                  <TableColumn fx:id="colFirst" prefWidth="71.0" text="8:00 - 9:00" />
+                  <TableColumn fx:id="colSecond" prefWidth="71.5" text="9:00 - 10:00" />
+                  <TableColumn fx:id="colThird" prefWidth="82.0" text="10:00 - 11:00" />
+                  <TableColumn fx:id="colFourth" prefWidth="78.0" text="11:00 - 12:00" />
+                  <TableColumn fx:id="colFifth" prefWidth="79.0" text="14:00 - 15:00" />
+                  <TableColumn fx:id="colSixth" prefWidth="78.5" text="15:00 - 16:00" />
+                  <TableColumn fx:id="colSeventh" prefWidth="78.0" text="16:00 - 17:00" />
+               </columns>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <Button fx:id="btnSend" layoutX="591.0" layoutY="385.0" mnemonicParsing="false" onAction="#btnSend_OnAction" prefHeight="25.0" prefWidth="111.0" text="Send" />
+      <TextField fx:id="txtDayNum" editable="false" focusTraversable="false" layoutX="113.0" layoutY="97.0" prefHeight="25.0" prefWidth="49.0" />
+      <Label fx:id="labDay" layoutX="42.0" layoutY="101.0" text="Day (to set):" />
+      <TextField fx:id="txtDayAvail" editable="false" focusTraversable="false" layoutX="417.0" layoutY="146.0" prefHeight="25.0" prefWidth="60.0" />
+      <Label fx:id="labMaint" layoutX="375.0" layoutY="148.0" text="User:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text layoutX="308.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Availability " />
+      <Button fx:id="btnBack" layoutX="42.0" layoutY="385.0" mnemonicParsing="false" onAction="#btnBack_OnAction" text="Go back" />
+   </children>
+</AnchorPane>

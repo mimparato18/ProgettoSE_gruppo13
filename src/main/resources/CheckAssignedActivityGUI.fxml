@@ -27,8 +27,7 @@
             <Text layoutX="32.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workspace notes:" />
             <TextArea fx:id="txtDescription" editable="false" focusTraversable="false" layoutX="308.0" layoutY="137.0" prefHeight="65.0" prefWidth="200.0" />
             <Text layoutX="309.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Intervention Description:" />
-            <TextField fx:id="txtFile" editable="false" focusTraversable="false" layoutX="399.0" layoutY="231.0" prefHeight="25.0" prefWidth="109.0" />
-            <Button fx:id="btnFileChooser" focusTraversable="false" layoutX="310.0" layoutY="231.0" mnemonicParsing="false" onAction="#btnFileChooser_OnAction" prefHeight="25.0" prefWidth="77.0" text="Choose File" />
+            <Button fx:id="btnFileGet" focusTraversable="false" layoutX="370.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnFileGet_OnAction" prefHeight="25.0" prefWidth="77.0" text="Get SMP" />
             <TextArea fx:id="txtSkills" editable="false" focusTraversable="false" layoutX="570.0" layoutY="131.0" prefHeight="142.0" prefWidth="231.0" />
             <Text layoutX="570.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skills needed:" />
             <TextField fx:id="txtActivity" editable="false" focusTraversable="false" layoutX="570.0" layoutY="25.0" prefHeight="25.0" prefWidth="231.0" />
