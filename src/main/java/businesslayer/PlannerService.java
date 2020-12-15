@@ -109,7 +109,8 @@ public class PlannerService {
         for (var user : maintainers) {
             String mon = "100%", tue = "100%", wed = "100%", thu = "100%", fri = "100%", sat = "100%", sun = "100%";
             availMaint = availDao.getMaintainerAvailabilitiesByWeek(week, user.getUsername());
-            matchedSkills = checkCompetencies(activityDao.getActivityById(activityId).getProcedure().getCompetencies(), maintainerDao.getMaintainerCompetence(user.getUsername()));
+            matchedSkills = checkCompetencies(procedureDao.getCompetenciesByName(activityDao.getActivityById(activityId).getProcedure().getName()), maintainerDao.getMaintainerCompetence(user.getUsername()));
+            
             if (availMaint != null) {
                 //Skills of the maintainers that match the required skills 
                 
