@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
 
     private ConnectionPool pool;
-    private MaintenanceProcedureDaoImpl procedureDao = new MaintenanceProcedureDaoImpl();
 
     public MaintenanceActivityDaoImpl() {
         pool = ConnectionPool.getPool();
@@ -121,8 +120,7 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
                 Site site = new Site(branchOffice, department);
 
                 if (procedureName != null) {
-                    competencies = procedureDao.getCompetenciesByName(procedureName);
-                    activity = new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, competencies), week, workspaceNotes);
+                    activity = new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, null), week, workspaceNotes);
                 } else {
                     activity = new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes);
                 }
@@ -161,8 +159,7 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
                 Site site = new Site(branchOffice, department);
 
                 if (procedureName != null) {
-                    competencies = procedureDao.getCompetenciesByName(procedureName);
-                    activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, competencies), week, workspaceNotes));
+                    activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, null), week, workspaceNotes));
                 } else {
                     activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes));
                 }
@@ -200,8 +197,7 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
                 Site site = new Site(branchOffice, department);
 
                 if (procedureName != null) {
-                    competencies = procedureDao.getCompetenciesByName(procedureName);
-                    activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, competencies), week, workspaceNotes));
+                    activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, new Procedure(procedureName, null), week, workspaceNotes));
                 } else {
                     activitiesList.add(new MaintenanceActivity(id, site, typology, activityDescription, interventionTime, interruptible, materials, week, workspaceNotes));
                 }

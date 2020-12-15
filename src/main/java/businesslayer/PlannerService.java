@@ -19,6 +19,7 @@ public class PlannerService {
     private MaintenanceActivityDaoImpl activityDao = new MaintenanceActivityDaoImpl();
     private TypologyDaoImpl typologyDao = new TypologyDaoImpl();
     private SiteDaoImpl siteDao = new SiteDaoImpl();
+    private MaintenanceProcedureDaoImpl procedureDao = new MaintenanceProcedureDaoImpl();
 
     public PlannerService(Planner planner) {
         this.planner = planner;
@@ -44,24 +45,22 @@ public class PlannerService {
     }
 
     public ArrayList<MaintenanceActivity> viewActivities() {
-
-        return activityDao.getAllActivities();
+        ArrayList<MaintenanceActivity> list = activityDao.getAllActivities();
+        for(var item:list){
+            if(item.getProcedure()!=null)
+                item.getProcedure().setCompetencies(procedureDao.getCompetenciesByName(item.getProcedure().getName()));
+        }
+        return list;
     }
 
     public ArrayList<MaintenanceActivity> getActivitiesByWeek(int week) {
 
-        ArrayList<MaintenanceActivity> activities = activityDao.getAllActivities();
-        ArrayList<MaintenanceActivity> activitiesByWeek = new ArrayList<>();
-
-        if (activities != null) {
-            for (MaintenanceActivity a : activities) {
-                if (a.getWeek() == week) {
-                    activitiesByWeek.add(a);
-                }
-            }
+        ArrayList<MaintenanceActivity> list = activityDao.getActivitiesByWeek(week);
+        for(var item:list){
+            if(item.getProcedure()!=null)
+                item.getProcedure().setCompetencies(procedureDao.getCompetenciesByName(item.getProcedure().getName()));
         }
-
-        return activitiesByWeek;
+        return list;
     }
 
     public String getNextId() {
