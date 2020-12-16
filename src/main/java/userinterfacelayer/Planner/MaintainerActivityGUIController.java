@@ -27,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -74,6 +75,29 @@ public class MaintainerActivityGUIController implements Initializable {
         this.act = act;
         this.planner = planner;
 
+    }
+
+    private void openDayAvail(DisplayAvail data, String availDay, String day) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MaintainerAvailDayGUI.fxml"));
+
+            // Create the new controller and pass the currently selected data item to it
+            MaintainerAvailDayGUIController controller = new MaintainerAvailDayGUIController(this.act, this.planner, availDay, data, day);
+
+            // Set the controller to the loader
+            loader.setController(controller);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Maintainer Availability");
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Can't load the window: " + e);
+        }
+        Stage stage = (Stage) tableWeek.getScene().getWindow();
+        stage.close();
     }
 
     public class DisplayAvail {
@@ -195,19 +219,36 @@ public class MaintainerActivityGUIController implements Initializable {
         txtWeek.setText("" + act.getWeek());
         txtAct.setText(act.getId() + " - " + act.getSite().getBranchOffice() + "  " + act.getSite().getDepartment() + " - " + act.getTypology() + " - " + act.getInterventionTime() + "'");
 
-        //initialization of callback on tableview cell reacvting to mouse clicking
+        //initialization of callback on tableview cell reacting to mouse clicking
         colMonday.setCellFactory(tc -> {
             TableCell<DisplayAvail, String> cell = new TableCell<DisplayAvail, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty ? null : item);
+                    if (!empty) {
+                        setText(item);
+
+                        int value = Integer.parseInt(item.replace("%", ""));
+                        if (value == 100) {
+                            setTextFill(Color.DARKGREEN);
+                        } else if (value < 100 && value >= 60) {
+                            setTextFill(Color.GREEN);
+                        } else if (value < 60 && value >= 30) {
+                            setTextFill(Color.YELLOW);
+                        } else if (value < 30 && value >= 1) {
+                            setTextFill(Color.ORANGE);
+                        } else if (value == 0) {
+                            setTextFill(Color.RED);
+                        }
+                    }
                 }
             };
             cell.setOnMouseClicked(e -> {
                 if (!cell.isEmpty()) {
                     String availMon = cell.getItem();
-                    // do something with id...
+                    int i = tableWeek.getSelectionModel().getSelectedIndex();
+                    DisplayAvail obj = tableWeek.getItems().get(i);
+                    this.openDayAvail(obj, availMon, "Monday");
                 }
 
             });
@@ -218,13 +259,30 @@ public class MaintainerActivityGUIController implements Initializable {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty ? null : item);
+                    if (!empty) {
+                        setText(item);
+
+                        int value = Integer.parseInt(item.replace("%", ""));
+                        if (value == 100) {
+                            setTextFill(Color.DARKGREEN);
+                        } else if (value < 100 && value >= 60) {
+                            setTextFill(Color.GREEN);
+                        } else if (value < 60 && value >= 30) {
+                            setTextFill(Color.YELLOW);
+                        } else if (value < 30 && value >= 1) {
+                            setTextFill(Color.ORANGE);
+                        } else if (value == 0) {
+                            setTextFill(Color.RED);
+                        }
+                    }
                 }
             };
             cell.setOnMouseClicked(e -> {
                 if (!cell.isEmpty()) {
                     String availTue = cell.getItem();
-                    // do something with id...
+                    int i = tableWeek.getSelectionModel().getSelectedIndex();
+                    DisplayAvail obj = tableWeek.getItems().get(i);
+                    this.openDayAvail(obj, availTue, "Tuesday");
                 }
 
             });
@@ -235,13 +293,30 @@ public class MaintainerActivityGUIController implements Initializable {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty ? null : item);
+                    if (!empty) {
+                        setText(item);
+
+                        int value = Integer.parseInt(item.replace("%", ""));
+                        if (value == 100) {
+                            setTextFill(Color.DARKGREEN);
+                        } else if (value < 100 && value >= 60) {
+                            setTextFill(Color.GREEN);
+                        } else if (value < 60 && value >= 30) {
+                            setTextFill(Color.YELLOW);
+                        } else if (value < 30 && value >= 1) {
+                            setTextFill(Color.ORANGE);
+                        } else if (value == 0) {
+                            setTextFill(Color.RED);
+                        }
+                    }
                 }
             };
             cell.setOnMouseClicked(e -> {
                 if (!cell.isEmpty()) {
                     String availWed = cell.getItem();
-                    // do something with id...
+                    int i = tableWeek.getSelectionModel().getSelectedIndex();
+                    DisplayAvail obj = tableWeek.getItems().get(i);
+                    this.openDayAvail(obj, availWed, "Wednesday");
                 }
 
             });
@@ -252,13 +327,30 @@ public class MaintainerActivityGUIController implements Initializable {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty ? null : item);
+                    if (!empty) {
+                        setText(item);
+
+                        int value = Integer.parseInt(item.replace("%", ""));
+                        if (value == 100) {
+                            setTextFill(Color.DARKGREEN);
+                        } else if (value < 100 && value >= 60) {
+                            setTextFill(Color.GREEN);
+                        } else if (value < 60 && value >= 30) {
+                            setTextFill(Color.YELLOW);
+                        } else if (value < 30 && value >= 1) {
+                            setTextFill(Color.ORANGE);
+                        } else if (value == 0) {
+                            setTextFill(Color.RED);
+                        }
+                    }
                 }
             };
             cell.setOnMouseClicked(e -> {
                 if (!cell.isEmpty()) {
                     String availThu = cell.getItem();
-                    System.out.println(availThu);
+                    int i = tableWeek.getSelectionModel().getSelectedIndex();
+                    DisplayAvail obj = tableWeek.getItems().get(i);
+                    this.openDayAvail(obj, availThu, "Thursday");
                 }
 
             });
@@ -269,13 +361,31 @@ public class MaintainerActivityGUIController implements Initializable {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty ? null : item);
+                    if (!empty) {
+                        setText(item);
+
+                        int value = Integer.parseInt(item.replace("%", ""));
+                        if (value == 100) {
+                            setTextFill(Color.DARKGREEN);
+                        } else if (value < 100 && value >= 60) {
+                            setTextFill(Color.GREEN);
+                        } else if (value < 60 && value >= 30) {
+                            setTextFill(Color.YELLOW);
+                        } else if (value < 30 && value >= 1) {
+                            setTextFill(Color.ORANGE);
+                        } else if (value == 0) {
+                            setTextFill(Color.RED);
+                        }
+                    }
+
                 }
             };
             cell.setOnMouseClicked(e -> {
                 if (!cell.isEmpty()) {
                     String availFri = cell.getItem();
-                    // do something with id...
+                    int i = tableWeek.getSelectionModel().getSelectedIndex();
+                    DisplayAvail obj = tableWeek.getItems().get(i);
+                    this.openDayAvail(obj, availFri, "Friday");
                 }
 
             });
@@ -287,13 +397,30 @@ public class MaintainerActivityGUIController implements Initializable {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty ? null : item);
+                    if (!empty) {
+                        setText(item);
+
+                        int value = Integer.parseInt(item.replace("%", ""));
+                        if (value == 100) {
+                            setTextFill(Color.DARKGREEN);
+                        } else if (value < 100 && value >= 60) {
+                            setTextFill(Color.GREEN);
+                        } else if (value < 60 && value >= 30) {
+                            setTextFill(Color.YELLOW);
+                        } else if (value < 30 && value >= 1) {
+                            setTextFill(Color.ORANGE);
+                        } else if (value == 0) {
+                            setTextFill(Color.RED);
+                        }
+                    }
                 }
             };
             cell.setOnMouseClicked(e -> {
                 if (!cell.isEmpty()) {
                     String availSat = cell.getItem();
-                    // do something with id...
+                    int i = tableWeek.getSelectionModel().getSelectedIndex();
+                    DisplayAvail obj = tableWeek.getItems().get(i);
+                    this.openDayAvail(obj, availSat, "Saturday");
                 }
 
             });
@@ -305,13 +432,30 @@ public class MaintainerActivityGUIController implements Initializable {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty ? null : item);
+                    if (!empty) {
+                        setText(item);
+
+                        int value = Integer.parseInt(item.replace("%", ""));
+                        if (value == 100) {
+                            setTextFill(Color.DARKGREEN);
+                        } else if (value < 100 && value >= 60) {
+                            setTextFill(Color.GREEN);
+                        } else if (value < 60 && value >= 30) {
+                            setTextFill(Color.YELLOW);
+                        } else if (value < 30 && value >= 1) {
+                            setTextFill(Color.ORANGE);
+                        } else if (value == 0) {
+                            setTextFill(Color.RED);
+                        }
+                    }
                 }
             };
             cell.setOnMouseClicked(e -> {
                 if (!cell.isEmpty()) {
                     String availSun = cell.getItem();
-                    // do something with id...
+                    int i = tableWeek.getSelectionModel().getSelectedIndex();
+                    DisplayAvail obj = tableWeek.getItems().get(i);
+                    this.openDayAvail(obj, availSun, "Sunday");
                 }
 
             });
@@ -323,13 +467,13 @@ public class MaintainerActivityGUIController implements Initializable {
     private void initializeTable() {
         ObservableList<DisplayAvail> data;
         data = FXCollections.observableArrayList();
-        ArrayList<MaintainerAvailabilityDto> list=planner.getAvailabilityByWeek(act.getId(), act.getWeek());
-        for(int i=0;i<list.size();i++){
-            MaintainerAvailabilityDto obj=null;
-            obj=list.get(i);
-            data.add(new DisplayAvail(obj.getMaintainer(),obj.getSkills(),obj.getAvailMon(),obj.getAvailTue(),obj.getAvailWed(),obj.getAvailThu(),obj.getAvailFri(),obj.getAvailSat(),obj.getAvailSun()));
+        ArrayList<MaintainerAvailabilityDto> list = planner.getAvailabilityByWeek(act.getId(), act.getWeek());
+        for (int i = 0; i < list.size(); i++) {
+            MaintainerAvailabilityDto obj = null;
+            obj = list.get(i);
+            data.add(new DisplayAvail(obj.getMaintainer(), obj.getSkills(), obj.getAvailMon(), obj.getAvailTue(), obj.getAvailWed(), obj.getAvailThu(), obj.getAvailFri(), obj.getAvailSat(), obj.getAvailSun()));
         }
-         
+
         colMant.setCellValueFactory(new PropertyValueFactory<DisplayAvail, String>("name"));
         colSkill.setCellValueFactory(new PropertyValueFactory<DisplayAvail, String>("skill"));
         colMonday.setCellValueFactory(new PropertyValueFactory<DisplayAvail, String>("mon"));

@@ -89,6 +89,7 @@ public class CheckAssignedActivityGUIController implements Initializable {
     private void btnForward_OnAction(ActionEvent event) {
         labWarning.setVisible(false);
         boolean checkUpdate = planner.updateActivity(act.getId(), act.getSite(), act.getTypology(), act.getDescription(), act.getInterventionTime(), act.isInterruptible(), act.getMaterials(), act.getWeek(), txtWorkspace.getText());
+        act.setWorkspaceNotes(txtWorkspace.getText());
         if (checkUpdate) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MaintainerActivityGUI.fxml"));

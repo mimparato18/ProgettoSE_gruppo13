@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="437.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MaintainerAvailDayGUIController">
+<AnchorPane id="AnchorPane" prefHeight="437.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="txtWeek" editable="false" focusTraversable="false" layoutX="113.0" layoutY="50.0" prefHeight="25.0" prefWidth="49.0" />
       <Text layoutX="43.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Week N°:" />
@@ -38,13 +38,15 @@
       <Button fx:id="btnSend" layoutX="591.0" layoutY="385.0" mnemonicParsing="false" onAction="#btnSend_OnAction" prefHeight="25.0" prefWidth="111.0" text="Send" />
       <TextField fx:id="txtDayNum" editable="false" focusTraversable="false" layoutX="113.0" layoutY="97.0" prefHeight="25.0" prefWidth="49.0" />
       <Label fx:id="labDay" layoutX="42.0" layoutY="101.0" text="Day (to set):" />
-      <TextField fx:id="txtDayAvail" editable="false" focusTraversable="false" layoutX="417.0" layoutY="146.0" prefHeight="25.0" prefWidth="60.0" />
-      <Label fx:id="labMaint" layoutX="375.0" layoutY="148.0" text="User:">
+      <TextField fx:id="txtDayAvail" editable="false" focusTraversable="false" layoutX="510.0" layoutY="146.0" prefHeight="25.0" prefWidth="60.0">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></TextField>
+      <Label fx:id="labMaint" layoutX="307.0" layoutY="149.0" prefHeight="20.0" prefWidth="188.0" text="User:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Text layoutX="308.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Availability " />
       <Button fx:id="btnBack" layoutX="42.0" layoutY="385.0" mnemonicParsing="false" onAction="#btnBack_OnAction" text="Go back" />
    </children>
 </AnchorPane>
