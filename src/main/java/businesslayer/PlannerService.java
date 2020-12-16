@@ -7,6 +7,10 @@ package businesslayer;
 
 import dataaccesslayer.*;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Year;
 import java.util.ArrayList;
 
 /**
@@ -176,5 +180,58 @@ public class PlannerService {
             sum += hour;
         }
         return String.valueOf(sum * 100 / 420) + "%";
+    }
+    
+    public ArrayList<String> getAvailabilityByWeekAndDay(int week, String username, String dayname){
+        ArrayList<String> availabilities = new ArrayList<>(); 
+        MaintainerAvailability ava = availDao.getMaintainerAvailabilitiesByWeekAndDay(week, username, getNumberOfDay(dayname));
+        if(ava == null){
+            for(int i = 0; i<7;i++)
+                availabilities.add("60 min");
+            return availabilities;
+        }else{
+                for(int i = 0; i<7;i++)
+                availabilities.add(ava.getHours()[i]+" min");
+            return availabilities;
+                }
+            
+        
+    }
+    
+    private int getNumberOfDay(String dayname){
+        int day = 0;
+        switch(dayname){
+            case("Monday"):
+                day = 1;
+                break;
+            case("Tuesday"):
+                day = 2;
+                break;
+            case("Wednesday"):
+                day = 3;
+                break;
+            case("Thursday"):
+                day = 4;
+                break;
+            case("Friday"):
+                day = 5;
+                break;
+            case("Saturday"):
+                day = 6;
+                break;
+            case("Sunday"):
+                day = 7;
+                break;
+            default:
+                break;
+        }
+        return day;
+    }
+    
+    public int getDayOfMonth(String dayname, int week){
+        int day = getNumberOfDay(dayname);
+        int totalDays = day + (week-1)*7;
+        LocalDateTime start = LocalDateTime.of(LocalDate.of(Year.now().getValue(), 1, 1), LocalTime.of(8, 00));
+        return start.plusDays(totalDays).getDayOfMonth();
     }
 }

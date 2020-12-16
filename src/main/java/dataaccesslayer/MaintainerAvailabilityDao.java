@@ -19,6 +19,6 @@ public interface MaintainerAvailabilityDao {
     public boolean updateMaintainerAvailability(MaintainerAvailability ava);
     public boolean deleteMaintainerAvailability(MaintainerAvailability ava);
     public ArrayList<MaintainerAvailability> getMaintainerAvailabilitiesByWeek(int week, String username)throws SQLException;
-    public ArrayList<MaintainerAvailability> getMaintainerAvailabilitiesByWeekAndDay(int week,String username, int day);
+    public MaintainerAvailability getMaintainerAvailabilitiesByWeekAndDay(int week, String username, int day);
 
 }

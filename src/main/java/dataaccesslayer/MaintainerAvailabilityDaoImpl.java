@@ -110,14 +110,14 @@ public class MaintainerAvailabilityDaoImpl implements MaintainerAvailabilityDao{
     }
 
     @Override
-    public ArrayList<MaintainerAvailability> getMaintainerAvailabilitiesByWeekAndDay(int week, String username, int day) {
+    public MaintainerAvailability getMaintainerAvailabilitiesByWeekAndDay(int week, String username, int day) {
        if (!this.isAvailableByDay(username,week,day)) {
             return null;
         }
         int i, k;
         int[] hours = new int[7];
         
-        ArrayList<MaintainerAvailability> avaList = new ArrayList<>();
+        MaintainerAvailability ava = null;
         
         String selectQuery = String.format("SELECT * FROM maintaineravailability where username = '%s' and week = %d and day = %d", username, week, day);
         try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery)) {
@@ -129,10 +129,10 @@ public class MaintainerAvailabilityDaoImpl implements MaintainerAvailabilityDao{
                 for (i=0,k=4;i<7;i++,k++){
                     hours[i] = resultSet.getInt(k);
                 }
-                MaintainerAvailability ava = new MaintainerAvailability(username,week,day,hours);
-                avaList.add(ava);
+                ava = new MaintainerAvailability(username,week,day,hours);
+                
             }
-            return avaList;
+            return ava;
         } catch (SQLException e) {
             System.out.println(e);
             return null;
