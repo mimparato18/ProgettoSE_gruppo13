@@ -358,18 +358,38 @@ So that I can prepare for the interventions
 
 
 ## Item 27
-#### Type: Technical Debt
-Design a login interface to access the system with credentials
+As a User
+I want to login in the application
+So that I do my tasks 
+#### Dependencies
+1
+#### Story Points
+3
+#### Acceptance Criteria/Notes
+
 
 
 ## Item 28
-#### Type: Feature
-Adding the possibility of checking and changing the competencies assigned to a Maintainer
+As a System Administrator
+I want to select my operations in a Hub
+So that I can do my tasks 
+#### Dependencies
 
-Reference User Story ID: 2
+#### Story Points
+3
+#### Acceptance Criteria/Notes
+
 
 
 ## Item 29
-#### Type: Feature
-Design an Hub for the System Administrator to perform its task
+#### Type 
+Technical Debt
+#### Description 
+Tha Administrator needs to manage competencies, which will then be used in all the application. 
+
+## Item 30
+#### Type 
+Technical Debt
+#### Description
+Refactory of data access layer, using Data Object Pattern.
 
