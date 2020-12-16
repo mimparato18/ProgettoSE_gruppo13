@@ -17,7 +17,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -130,7 +129,7 @@ public class CompetencesManagementController implements Initializable {
      public void btnModify_OnAction(ActionEvent ev) {
         list=admin.viewCompetencies();
         
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) { //recognize in which row the button is to select that Item
             if (ev.getSource() == btnMod[i]) {
                 tableView.getSelectionModel().clearAndSelect(i);
             }

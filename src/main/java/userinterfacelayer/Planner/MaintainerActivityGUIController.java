@@ -215,11 +215,13 @@ public class MaintainerActivityGUIController implements Initializable {
         } catch (Exception ex) {
             txtSkills.setText("No skills loaded");
         }
+        
+        
         //week and activity textfield initialization
         txtWeek.setText("" + act.getWeek());
         txtAct.setText(act.getId() + " - " + act.getSite().getBranchOffice() + "  " + act.getSite().getDepartment() + " - " + act.getTypology() + " - " + act.getInterventionTime() + "'");
 
-        //initialization of callback on tableview cell reacting to mouse clicking
+        //initialization of callback on tableview cell reacting to mouse clicking and text is painted according to the percentage shown
         colMonday.setCellFactory(tc -> {
             TableCell<DisplayAvail, String> cell = new TableCell<DisplayAvail, String>() {
                 @Override

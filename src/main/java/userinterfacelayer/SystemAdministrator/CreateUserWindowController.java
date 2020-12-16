@@ -59,7 +59,7 @@ public class CreateUserWindowController implements Initializable {
         this.admin = admin;
     }
 
-    public class DisplayComp {
+    public class DisplayComp { //used in the table that lists the competencies with checkboxes to select them
 
         private CheckBox chk;
         private SimpleStringProperty comp;

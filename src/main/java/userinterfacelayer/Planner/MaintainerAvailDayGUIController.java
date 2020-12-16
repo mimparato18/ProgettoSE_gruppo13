@@ -204,6 +204,8 @@ public class MaintainerAvailDayGUIController implements Initializable {
         txtDayNum.setText("" + planner.getDayOfMonth(day, act.getWeek()));
         this.initializeTable();
         
+        
+        //cell callback used to color the text according to how many minutes are left
         colFirst.setCellFactory(tc -> {
             TableCell<DisplayAvailHours, String> cell = new TableCell<DisplayAvailHours, String>() {
                 @Override

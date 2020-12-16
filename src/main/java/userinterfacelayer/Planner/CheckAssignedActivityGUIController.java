@@ -90,7 +90,7 @@ public class CheckAssignedActivityGUIController implements Initializable {
         labWarning.setVisible(false);
         boolean checkUpdate = planner.updateActivity(act.getId(), act.getSite(), act.getTypology(), act.getDescription(), act.getInterventionTime(), act.isInterruptible(), act.getMaterials(), act.getWeek(), txtWorkspace.getText());
         act.setWorkspaceNotes(txtWorkspace.getText());
-        if (checkUpdate) {
+        if (checkUpdate) { //the new window is loaded only if the update doesn't throw an error, otherwise a warning is shown 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MaintainerActivityGUI.fxml"));
 

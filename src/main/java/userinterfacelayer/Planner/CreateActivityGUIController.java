@@ -98,7 +98,7 @@ public class CreateActivityGUIController implements Initializable {
 
     private void btnCreate_OnAction(ActionEvent event) {
         if (!txtDesc.getText().isBlank() && comboWeek.getSelectionModel().getSelectedItem()!=null && (spinH.getValue() != 0 || spinM.getValue() != 0) && comboTypo.getSelectionModel().getSelectedItem()!=null && comboSite.getSelectionModel().getSelectedItem()!=null) {
-            
+            //the creation is permitted only if all the needed fields are filled
             boolean checkAdd = planner.addActivity(comboSite.getValue(), comboTypo.getValue(), txtDesc.getText(),spinH.getValue(),spinM.getValue(), checkInterrupt.isSelected(), txtMaterials.getText(), comboWeek.getValue(), txtWorkspace.getText());
             if(!checkAdd){
                 labWarning.setText(" Creation Failed");

@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * Hub of the planner used to choose an activity to do
  *
  * @author camil
  */

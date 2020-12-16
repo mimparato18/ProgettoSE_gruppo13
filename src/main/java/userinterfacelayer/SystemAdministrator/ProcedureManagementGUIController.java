@@ -134,7 +134,7 @@ public class ProcedureManagementGUIController implements Initializable {
 
     public void btnModify_OnAction(ActionEvent ev) {
         list=admin.viewProcedures();
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) { //recognize which button is selected and select its row
             if (ev.getSource() == btnMod[i]) {
                 tableView.getSelectionModel().clearAndSelect(i);
             }

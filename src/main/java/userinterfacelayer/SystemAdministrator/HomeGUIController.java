@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package userinterfacelayer.SystemAdministrator;
 
 import businesslayer.*;
@@ -19,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * Administrator Hub to manage every activity that belongs to him
  *
  * @author camil
  */

@@ -60,8 +60,9 @@ public class ManageActivityGUIController implements Initializable {
     public ManageActivityGUIController(PlannerService planner) {
         this.planner = planner;
     }
-
-    private MaintenanceActivity findObject() {
+    
+    //is used to find the object used in the business layer that is represented by the DiplayActivity object selected in the table
+    private MaintenanceActivity findObject() { 
         DisplayActivity obj = tableView.getSelectionModel().getSelectedItem();
         if (obj == null) {
             return null;

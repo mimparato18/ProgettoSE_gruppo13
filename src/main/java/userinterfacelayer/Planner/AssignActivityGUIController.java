@@ -172,11 +172,11 @@ public class AssignActivityGUIController implements Initializable {
     }
 
     @FXML
-    private void comboWeek_OnAction(ActionEvent event) {
+    private void comboWeek_OnAction(ActionEvent event) { 
         this.initializeTable(comboWeek.getSelectionModel().getSelectedIndex());
     }
 
-    private void initializeTable(int week) {
+    private void initializeTable(int week) { //get the activity with the same week and build the new object used to load the table
         week++;
         ObservableList<DisplayActivity> data;
         data = FXCollections.observableArrayList();
@@ -196,7 +196,7 @@ public class AssignActivityGUIController implements Initializable {
     }
 
     @FXML
-    private void btnHub_OnAction(ActionEvent event) {
+    private void btnHub_OnAction(ActionEvent event) { 
         try {
             String ui = "PlannerHubGUI.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(ui));
