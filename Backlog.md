@@ -312,7 +312,6 @@ The Planner must add:
 Competencies field is selectable from a list of pre-existing competencies.
 
 
-
 ## Item 21
 As a Planner
 I want to interrupt a Maintainer's activity (if not uninterruptible)
@@ -420,7 +419,6 @@ DONE
 #### Acceptance Criteria/Notes
 
 
-
 ## Item 28
 As a System Administrator
 I want to select my operations in a Hub
@@ -434,7 +432,6 @@ DONE
 #### Acceptance Criteria/Notes
 
 
-
 ## Item 29
 #### Type 
 Technical Debt
@@ -442,6 +439,7 @@ Technical Debt
 Tha Administrator needs to manage competencies, which will then be used in all the application.
 #### Status
 DONE
+
 
 ## Item 30
 #### Type 
