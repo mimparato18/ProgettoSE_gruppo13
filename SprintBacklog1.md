@@ -4,6 +4,8 @@
 As a System Administrator
 I want to create, view, modify and delete system users
 So that I can manage them
+#### Status
+DONE
 #### Dependencies
 #### Story Points
 5
@@ -17,6 +19,8 @@ There are two roles: Planner and Maintainer
 As a System Administrator
 I want to assign specific competencies to Maintainers
 So that I can differentiate the Maintainters
+#### Status
+DONE
 #### Dependencies
 1
 #### Story Points
@@ -30,6 +34,8 @@ Maintainers are characterized by a set of competencies
 As a System Administrator
 I want to create, view, modify and delete sites
 So that I can localize the maintainace activities inside the factory
+#### Status
+DONE
 #### Dependencies
 
 #### Story Points
@@ -45,10 +51,12 @@ Sites are composed of:
 As a System Administrator
 I want to create, view, modify and delete lists of Maintenance procedures
 So that I can guide the Maintainers
+#### Status
+DONE
 #### Dependencies
 
 #### Story Points
-8
+5
 #### Acceptance Criteria/Notes
 
 
@@ -57,9 +65,22 @@ So that I can guide the Maintainers
 As a System Administrator
 I want to create, view, modify and delete maintenance typologies
 So that I can define Maintainance activities
+#### Status
+Done
 #### Dependencies
-15
+
 #### Story Points
 5
 #### Acceptance Criteria/Notes
-The typologies are electrical, electronic, hydraulic and mechanical
+Example of typologies are electrical, electronic, hydraulic, mechanical etc.
+
+
+## Item 28
+Design an Hub for the System Administrator to perform its tasks
+#### Status
+DONE
+#### Dependencies
+#### Story Points
+3
+#### Acceptance Criteria/Notes
+
