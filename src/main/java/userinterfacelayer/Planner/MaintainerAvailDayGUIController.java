@@ -213,18 +213,24 @@ public class MaintainerAvailDayGUIController implements Initializable {
                     super.updateItem(item, empty);
                     if (!empty) {
                         setText(item);
+                        
 
                         int value = Integer.parseInt(item.replace(" min", ""));
                         if (value == 60) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 60 && value >=50 ) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 50 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -247,15 +253,20 @@ public class MaintainerAvailDayGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace(" min", ""));
                         if (value == 60) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 60 && value >=50 ) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 50 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -278,15 +289,20 @@ public class MaintainerAvailDayGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace(" min", ""));
                         if (value == 60) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 60 && value >=50 ) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 50 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -309,15 +325,20 @@ public class MaintainerAvailDayGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace(" min", ""));
                         if (value == 60) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 60 && value >=50 ) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 50 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -340,15 +361,20 @@ public class MaintainerAvailDayGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace(" min", ""));
                         if (value == 60) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 60 && value >=50 ) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 50 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
 
@@ -373,15 +399,20 @@ public class MaintainerAvailDayGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace(" min", ""));
                         if (value == 60) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 60 && value >=50 ) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 50 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -405,15 +436,20 @@ public class MaintainerAvailDayGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace(" min", ""));
                         if (value == 60) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 60 && value >=50 ) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 50 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }

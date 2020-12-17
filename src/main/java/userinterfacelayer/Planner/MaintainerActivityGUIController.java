@@ -232,15 +232,20 @@ public class MaintainerActivityGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace("%", ""));
                         if (value == 100) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 100 && value >= 60) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -266,15 +271,20 @@ public class MaintainerActivityGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace("%", ""));
                         if (value == 100) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 100 && value >= 60) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -300,15 +310,20 @@ public class MaintainerActivityGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace("%", ""));
                         if (value == 100) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 100 && value >= 60) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -334,15 +349,20 @@ public class MaintainerActivityGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace("%", ""));
                         if (value == 100) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 100 && value >= 60) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -368,15 +388,20 @@ public class MaintainerActivityGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace("%", ""));
                         if (value == 100) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 100 && value >= 60) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
 
@@ -404,15 +429,20 @@ public class MaintainerActivityGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace("%", ""));
                         if (value == 100) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 100 && value >= 60) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
@@ -439,15 +469,20 @@ public class MaintainerActivityGUIController implements Initializable {
 
                         int value = Integer.parseInt(item.replace("%", ""));
                         if (value == 100) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: darkgreen");
                         } else if (value < 100 && value >= 60) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
-                            setTextFill(Color.YELLOW);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: yellow");
                         } else if (value < 30 && value >= 1) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: orange");
                         } else if (value == 0) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.WHITE);
+                            setStyle("-fx-background-color: red");
                         }
                     }
                 }
