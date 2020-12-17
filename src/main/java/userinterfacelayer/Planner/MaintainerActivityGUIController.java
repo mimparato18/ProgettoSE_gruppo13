@@ -239,7 +239,7 @@ public class MaintainerActivityGUIController implements Initializable {
                             setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
                             setTextFill(Color.WHITE);
-                            setStyle("-fx-background-color: yellow");
+                            setStyle("-fx-background-color: gold");
                         } else if (value < 30 && value >= 1) {
                             setTextFill(Color.WHITE);
                             setStyle("-fx-background-color: orange");
@@ -278,7 +278,7 @@ public class MaintainerActivityGUIController implements Initializable {
                             setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
                             setTextFill(Color.WHITE);
-                            setStyle("-fx-background-color: yellow");
+                            setStyle("-fx-background-color: gold");
                         } else if (value < 30 && value >= 1) {
                             setTextFill(Color.WHITE);
                             setStyle("-fx-background-color: orange");
@@ -317,7 +317,7 @@ public class MaintainerActivityGUIController implements Initializable {
                             setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
                             setTextFill(Color.WHITE);
-                            setStyle("-fx-background-color: yellow");
+                            setStyle("-fx-background-color: gold");
                         } else if (value < 30 && value >= 1) {
                             setTextFill(Color.WHITE);
                             setStyle("-fx-background-color: orange");
@@ -356,7 +356,7 @@ public class MaintainerActivityGUIController implements Initializable {
                             setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
                             setTextFill(Color.WHITE);
-                            setStyle("-fx-background-color: yellow");
+                            setStyle("-fx-background-color: gold");
                         } else if (value < 30 && value >= 1) {
                             setTextFill(Color.WHITE);
                             setStyle("-fx-background-color: orange");
@@ -395,7 +395,7 @@ public class MaintainerActivityGUIController implements Initializable {
                             setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
                             setTextFill(Color.WHITE);
-                            setStyle("-fx-background-color: yellow");
+                            setStyle("-fx-background-color: gold");
                         } else if (value < 30 && value >= 1) {
                             setTextFill(Color.WHITE);
                             setStyle("-fx-background-color: orange");
@@ -436,7 +436,7 @@ public class MaintainerActivityGUIController implements Initializable {
                             setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
                             setTextFill(Color.WHITE);
-                            setStyle("-fx-background-color: yellow");
+                            setStyle("-fx-background-color: gold");
                         } else if (value < 30 && value >= 1) {
                             setTextFill(Color.WHITE);
                             setStyle("-fx-background-color: orange");
@@ -476,7 +476,7 @@ public class MaintainerActivityGUIController implements Initializable {
                             setStyle("-fx-background-color: green");
                         } else if (value < 60 && value >= 30) {
                             setTextFill(Color.WHITE);
-                            setStyle("-fx-background-color: yellow");
+                            setStyle("-fx-background-color: gold");
                         } else if (value < 30 && value >= 1) {
                             setTextFill(Color.WHITE);
                             setStyle("-fx-background-color: orange");
