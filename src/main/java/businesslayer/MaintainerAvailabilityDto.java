@@ -6,10 +6,12 @@
 package businesslayer;
 
 /**
- * Class used to pass information between business layer and data access layer 
+ * Class used to pass information between business layer and data access layer
+ *
  * @author marku
  */
 public class MaintainerAvailabilityDto {
+
     private String maintainer;
     private String skills;
     private String availMon;
@@ -103,7 +105,5 @@ public class MaintainerAvailabilityDto {
     public void setAvailSun(String availSun) {
         this.availSun = availSun;
     }
-    
-    
-  
+
 }

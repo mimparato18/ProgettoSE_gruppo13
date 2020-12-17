@@ -16,7 +16,7 @@ public class Procedure {
     private String name;
     private ArrayList<String> competencies;
 
-    public Procedure(String name, ArrayList<String> competencies ) {
+    public Procedure(String name, ArrayList<String> competencies) {
         this.name = name;
         this.competencies = competencies;
     }
@@ -37,5 +37,4 @@ public class Procedure {
         this.competencies = competencies;
     }
 
-    
 }

@@ -19,7 +19,7 @@ public class SmartMaintenanceApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String ui="LoginWindow.fxml";
+        String ui = "LoginWindow.fxml";
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(ui));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Login");
@@ -31,6 +31,5 @@ public class SmartMaintenanceApp extends Application {
     public static void main(String[] args) {
         launch();
     }
-   
 
 }

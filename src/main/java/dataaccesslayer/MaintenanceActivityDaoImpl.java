@@ -26,13 +26,14 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
     public MaintenanceActivityDaoImpl() {
         pool = ConnectionPool.getPool();
     }
+
     /**
-    * Check if the activity exists in the database
-    *
-    * @param   id   id of the activity to check
-    * @return  true if the activity exists, false otherwise
-    * 
-    */
+     * Check if the activity exists in the database
+     *
+     * @param id id of the activity to check
+     * @return true if the activity exists, false otherwise
+     *
+     */
     private boolean isActivity(int id) {
         String selectQuery = String.format("SELECT id FROM maintenanceactivity WHERE (id = '%d')", id);
         int checkID = 0;

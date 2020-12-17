@@ -21,6 +21,7 @@ public class MaintenanceActivity {
     private int week;
     private String workspaceNotes;
     private Procedure procedure;
+
     //constructor used by the business layer, without the id (the id is incremented automatically in the database)
     public MaintenanceActivity(Site site, String typology, String description, int interventionTime,
             boolean interruptible, String materials, int week, String workspaceNotes) {
@@ -34,9 +35,10 @@ public class MaintenanceActivity {
         this.week = week;
         this.workspaceNotes = workspaceNotes;
     }
+
     //constructor used by the data access layer, for activity with procedure associated
     public MaintenanceActivity(int id, Site site, String typology, String description, int interventionTime,
-            boolean interruptible, String materials,Procedure procedure, int week, String workspaceNotes) {
+            boolean interruptible, String materials, Procedure procedure, int week, String workspaceNotes) {
 
         this.id = id;
         this.site = site;
@@ -45,11 +47,11 @@ public class MaintenanceActivity {
         this.interventionTime = interventionTime;
         this.interruptible = interruptible;
         this.materials = materials;
-        this.procedure = procedure; 
+        this.procedure = procedure;
         this.week = week;
         this.workspaceNotes = workspaceNotes;
     }
-    
+
     //constructor used by the data access layer, for activity without procedure associated
     public MaintenanceActivity(int id, Site site, String typology, String description, int interventionTime,
             boolean interruptible, String materials, int week, String workspaceNotes) {
@@ -64,7 +66,7 @@ public class MaintenanceActivity {
         this.week = week;
         this.workspaceNotes = workspaceNotes;
     }
-    
+
     public int getId() {
         return id;
     }

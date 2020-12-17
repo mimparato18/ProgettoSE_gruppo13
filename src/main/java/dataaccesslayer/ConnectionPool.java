@@ -12,7 +12,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 /**
  *
  * @author marku
- * 
+ *
  * Singleton to have a single connection pool in all the application.
  */
 public class ConnectionPool {
@@ -43,9 +43,10 @@ public class ConnectionPool {
         }
         return pool;
     }
+
     /**
      * Get a connection from the connection pool
-     * 
+     *
      * @return java.sql.Connection
      */
     public Connection getConnection() {

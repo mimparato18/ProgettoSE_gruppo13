@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 package businesslayer;
+
 /**
  *
  * @author marku
  */
 public class Starter {
+
     public static void main(String[] args) {
 
         SmartMaintenanceApp.main(args);
-    
+
     }
 }

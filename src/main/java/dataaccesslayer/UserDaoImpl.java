@@ -25,18 +25,19 @@ public class UserDaoImpl implements UserDao {
     public UserDaoImpl() {
         pool = ConnectionPool.getPool();
     }
+
     /**
-    * Check if a user associated to the given username exists
-    *
-    * @param username username of user to find
-    * @return  true if the user is found, false otherwise
-    */
+     * Check if a user associated to the given username exists
+     *
+     * @param username username of user to find
+     * @return true if the user is found, false otherwise
+     */
     public boolean isUser(String username) {
         String selectQuery;
         String name = null;
 
         selectQuery = String.format("SELECT username FROM user WHERE (username = '%s')", username);
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(selectQuery)) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery)) {
 
             while (resultSet.next()) {
                 name = resultSet.getString(1);
@@ -47,7 +48,7 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
-    
+
     @Override
     public boolean insertUser(User user, String role) {
         int i;
@@ -57,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 
         String insertQuery = String.format("INSERT INTO user(username, password, role) values ('%s','%s','%s')", user.getUsername(), user.getPassword(), role);
 
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement()) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement()) {
             statement.executeUpdate(insertQuery);
             if ("Maintainer".equals(role)) {
                 Maintainer maintainer = (Maintainer) user;
@@ -82,7 +83,7 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
         String updateQuery = String.format("UPDATE user SET password = '%s' WHERE (username = '%s')", user.getPassword(), user.getUsername());
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement()) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement()) {
             statement.executeUpdate(updateQuery);
             return true;
         } catch (SQLException e) {
@@ -97,7 +98,7 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
         String deleteQuery = String.format("DELETE FROM user WHERE (username = '%s')", username);
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement()) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement()) {
             statement.executeUpdate(deleteQuery);
             return true;
         } catch (SQLException e) {
@@ -113,7 +114,7 @@ public class UserDaoImpl implements UserDao {
         String role;
         ArrayList<User> usersList = new ArrayList<>();
         String selectQuery = String.format("SELECT * FROM user");
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(selectQuery)) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery)) {
 
             while (resultSet.next()) {
                 username = resultSet.getString(1);
@@ -138,12 +139,12 @@ public class UserDaoImpl implements UserDao {
         String password;
         ArrayList<User> usersList = new ArrayList<>();
         String selectQuery = String.format("SELECT * FROM user WHERE role = 'Maintainer'");
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(selectQuery)) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery)) {
 
             while (resultSet.next()) {
                 username = resultSet.getString(1);
                 password = resultSet.getString(2);
-                
+
                 usersList.add(new Maintainer(username, password));
             }
             return usersList;
@@ -152,12 +153,13 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
     }
+
     /**
-    * Get User by its username
-    *
-    * @param username username of user to find
-    * @return  User
-    */
+     * Get User by its username
+     *
+     * @param username username of user to find
+     * @return User
+     */
     public User getUser(String username) {
         if (!this.isUser(username)) {
             return null;
@@ -166,7 +168,7 @@ public class UserDaoImpl implements UserDao {
         String role = null;
 
         String selectQuery = String.format("SELECT * FROM user WHERE (username = '%s')", username);
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(selectQuery);) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery);) {
 
             while (resultSet.next()) {
                 username = resultSet.getString(1);
@@ -187,19 +189,20 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
     /**
-    * Get the role associated to a username
-    *
-    * @param username username of user to find
-    * @return  role associated to a username, null if the user doesn't exist
-    */
+     * Get the role associated to a username
+     *
+     * @param username username of user to find
+     * @return role associated to a username, null if the user doesn't exist
+     */
     public String getRole(String username) {
         if (!this.isUser(username)) {
             return null;
         }
         String role = null;
         String selectQuery = String.format("SELECT role FROM user WHERE (username = '%s')", username);
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(selectQuery)) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery)) {
 
             while (resultSet.next()) {
                 role = resultSet.getString(1);
@@ -210,19 +213,20 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
     }
+
     /**
-    * Get the password associated to a username
-    *
-    * @param username username of user to find
-    * @return  password associated to a username, null if the user doesn't exist
-    */
+     * Get the password associated to a username
+     *
+     * @param username username of user to find
+     * @return password associated to a username, null if the user doesn't exist
+     */
     public String getPassword(String username) {
         if (!this.isUser(username)) {
             return null;
         }
         String password = null;
         String selectQuery = String.format("SELECT password FROM user WHERE (username = '%s')", username);
-        try (Connection connection = pool.getConnection(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(selectQuery)) {
+        try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery)) {
 
             while (resultSet.next()) {
                 password = resultSet.getString(1);

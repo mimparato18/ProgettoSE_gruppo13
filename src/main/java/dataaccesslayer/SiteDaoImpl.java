@@ -23,12 +23,13 @@ public class SiteDaoImpl implements SiteDao {
     public SiteDaoImpl() {
         pool = ConnectionPool.getPool();
     }
+
     /**
-    * Check if the site is inside the database
-    *
-    * @param  site  the site to check
-    * @return       true if the site exists, false otherwise
-    */
+     * Check if the site is inside the database
+     *
+     * @param site the site to check
+     * @return true if the site exists, false otherwise
+     */
     private boolean isSite(Site site) {
         String selectQuery = String.format("SELECT branchoffice, department FROM site WHERE (branchoffice = '%s' and department = '%s')", site.getBranchOffice(), site.getDepartment());
         String branchOffice = null;

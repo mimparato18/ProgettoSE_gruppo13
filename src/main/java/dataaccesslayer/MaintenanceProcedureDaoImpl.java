@@ -23,12 +23,13 @@ public class MaintenanceProcedureDaoImpl implements MaintenanceProcedureDao {
     public MaintenanceProcedureDaoImpl() {
         pool = ConnectionPool.getPool();
     }
+
     /**
-    * Check if the procedure exists inside the database
-    *
-    * @param  name  the procedure to check
-    * @return       true if the procedure exists, false otherwise
-    */
+     * Check if the procedure exists inside the database
+     *
+     * @param name the procedure to check
+     * @return true if the procedure exists, false otherwise
+     */
     private boolean isProcedure(String name) {
         String selectQuery = String.format("SELECT name FROM maintenanceprocedure WHERE (name = '%s')", name);
         String typology = null;
@@ -115,12 +116,13 @@ public class MaintenanceProcedureDaoImpl implements MaintenanceProcedureDao {
             return null;
         }
     }
+
     /**
-    * Get all the competencies associated to a procedure
-    *
-    * @param  name  the name of the procedure
-    * @return       ArrayList of String
-    */
+     * Get all the competencies associated to a procedure
+     *
+     * @param name the name of the procedure
+     * @return ArrayList of String
+     */
     public ArrayList<String> getCompetenciesByName(String name) {
 
         ArrayList<String> competencies = new ArrayList<>();
