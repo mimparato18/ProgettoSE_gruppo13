@@ -26,8 +26,14 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
     public MaintenanceActivityDaoImpl() {
         pool = ConnectionPool.getPool();
     }
-
-    public boolean isActivity(int id) {
+    /**
+    * Check if the activity exists in the database
+    *
+    * @param   id   id of the activity to check
+    * @return  true if the activity exists, false otherwise
+    * 
+    */
+    private boolean isActivity(int id) {
         String selectQuery = String.format("SELECT id FROM maintenanceactivity WHERE (id = '%d')", id);
         int checkID = 0;
         try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery);) {
@@ -98,7 +104,6 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
         String materials, typology, activityDescription, branchOffice, department, workspaceNotes, procedureName;
         int id, interventionTime, week;
         boolean interruptible;
-        ArrayList<String> competencies = null;
 
         MaintenanceActivity activity = null;
         String selectQuery = String.format("SELECT * FROM maintenanceactivity WHERE id = %d", selectedId);
@@ -133,14 +138,13 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
     }
 
     @Override
-    public ArrayList<MaintenanceActivity> getActivitiesByWeek(int selectedweek) {
+    public ArrayList<MaintenanceActivity> getActivitiesByWeek(int selectedWeek) {
         String materials, typology, activityDescription, branchOffice, department, workspaceNotes, procedureName;
         int id, interventionTime, week;
         boolean interruptible;
-        ArrayList<String> competencies = null;
 
         ArrayList<MaintenanceActivity> activitiesList = new ArrayList<>();
-        String selectQuery = String.format("SELECT * FROM maintenanceactivity WHERE week = %d", selectedweek);
+        String selectQuery = String.format("SELECT * FROM maintenanceactivity WHERE week = %d", selectedWeek);
         try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(selectQuery);) {
 
             while (resultSet.next()) {
@@ -171,11 +175,11 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
         }
     }
 
+    @Override
     public ArrayList<MaintenanceActivity> getAllActivities() {
         String materials, typology, activityDescription, branchOffice, department, workspaceNotes, procedureName;
         int id, interventionTime, week;
         boolean interruptible;
-        ArrayList<String> competencies = null;
 
         ArrayList<MaintenanceActivity> activitiesList = new ArrayList<>();
         String selectQuery = String.format("SELECT * FROM maintenanceactivity");
@@ -209,6 +213,7 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
         }
     }
 
+    @Override
     public int nextId() throws SQLException, InterruptedException {
         int id = 0;
         try ( Connection connection = pool.getConnection();  Statement statement = connection.createStatement()) {

@@ -25,7 +25,12 @@ public class UserDaoImpl implements UserDao {
     public UserDaoImpl() {
         pool = ConnectionPool.getPool();
     }
-
+    /**
+    * Check if a user associated to the given username exists
+    *
+    * @param username username of user to find
+    * @return  true if the user is found, false otherwise
+    */
     public boolean isUser(String username) {
         String selectQuery;
         String name = null;
@@ -42,7 +47,7 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
-
+    
     @Override
     public boolean insertUser(User user, String role) {
         int i;
@@ -147,7 +152,12 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
     }
-
+    /**
+    * Get User by its username
+    *
+    * @param username username of user to find
+    * @return  User
+    */
     public User getUser(String username) {
         if (!this.isUser(username)) {
             return null;
@@ -177,7 +187,12 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
-
+    /**
+    * Get the role associated to a username
+    *
+    * @param username username of user to find
+    * @return  role associated to a username, null if the user doesn't exist
+    */
     public String getRole(String username) {
         if (!this.isUser(username)) {
             return null;
@@ -195,7 +210,12 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
     }
-
+    /**
+    * Get the password associated to a username
+    *
+    * @param username username of user to find
+    * @return  password associated to a username, null if the user doesn't exist
+    */
     public String getPassword(String username) {
         if (!this.isUser(username)) {
             return null;

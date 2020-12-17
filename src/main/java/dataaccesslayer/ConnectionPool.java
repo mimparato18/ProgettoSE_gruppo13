@@ -12,6 +12,8 @@ import org.apache.commons.dbcp2.BasicDataSource;
 /**
  *
  * @author marku
+ * 
+ * Singleton to have a single connection pool in all the application.
  */
 public class ConnectionPool {
 
@@ -20,10 +22,11 @@ public class ConnectionPool {
 
     static {
         dataSource = new BasicDataSource();
+        //credentials to access the database
         dataSource.setUrl("jdbc:mysql://40.115.39.127:3306/progettosedb");
         dataSource.setUsername("progettose");
         dataSource.setPassword("progettose");
-
+        //parameters of connection pool
         dataSource.setMinIdle(5);
         dataSource.setMaxIdle(10);
         dataSource.setMaxTotal(25);
@@ -40,7 +43,11 @@ public class ConnectionPool {
         }
         return pool;
     }
-
+    /**
+     * Get a connection from the connection pool
+     * 
+     * @return java.sql.Connection
+     */
     public Connection getConnection() {
         try {
             return dataSource.getConnection();

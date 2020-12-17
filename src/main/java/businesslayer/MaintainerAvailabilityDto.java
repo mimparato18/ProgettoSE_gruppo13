@@ -6,7 +6,7 @@
 package businesslayer;
 
 /**
- *
+ * Class used to pass information between business layer and data access layer 
  * @author marku
  */
 public class MaintainerAvailabilityDto {

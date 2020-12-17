@@ -23,7 +23,13 @@ public class MaintainerAvailabilityDaoImpl implements MaintainerAvailabilityDao{
     public MaintainerAvailabilityDaoImpl() {
         pool = ConnectionPool.getPool();
     }
-    
+    /**
+    * Check if the selected maintainer is available during the selected week. 
+    *
+    * @param  username  username of the maintainer
+    * @param  week  week in which the activity needs to be assigned
+    * @return   true if availabilities exist, false otherwise
+    */
     private boolean isAvailableByWeek(String username, int week) {
         String selectQuery = String.format("SELECT username FROM maintaineravailability WHERE (username = '%s' and week = %d)", username, week);
         String user = null;
@@ -38,7 +44,14 @@ public class MaintainerAvailabilityDaoImpl implements MaintainerAvailabilityDao{
         }
         return false;
     }
-    
+    /**
+    * Check if the selected maintainer is available during the selected week and day.
+    * 
+    * @param  username  username of the maintainer
+    * @param  week  week in which the activity needs to be assigned
+    * @param  day  day in which the activity needs to be assigned
+    * @return   true if availabilities exist, false otherwise
+    */
     private boolean isAvailableByDay(String username, int week, int day) {
         String selectQuery = String.format("SELECT username FROM maintaineravailability WHERE (username = '%s' and week = %d and day = %d )", username, week, day);
         String user = null;

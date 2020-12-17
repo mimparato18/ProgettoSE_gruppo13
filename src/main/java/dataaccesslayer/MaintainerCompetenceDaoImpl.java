@@ -23,8 +23,14 @@ public class MaintainerCompetenceDaoImpl implements MaintainerCompetenceDao {
         pool = ConnectionPool.getPool();
     }
 
-    
-    public boolean isMaintainerCompetence(String username, String competence) {
+    /**
+    * Check if the MaintainerCompetence exists in the database
+    *
+    * @param  username  the username of the maintainer
+    * @param  competence  the competence associated to a maintainer
+    * @return      return true if the MaintainerCompetence exists, false otherwise
+    */
+    private boolean isMaintainerCompetence(String username, String competence) {
         String selectQuery = String.format("SELECT username FROM maintainercompetence WHERE (username = '%s', competence = '%s')", username, competence);
         String usernameFetched = null;
         try (Connection connection = pool.getConnection(); Statement statement= connection.createStatement(); ResultSet resultSet = statement.executeQuery(selectQuery)){
@@ -37,7 +43,7 @@ public class MaintainerCompetenceDaoImpl implements MaintainerCompetenceDao {
         }
         return false;
     }
-
+    
     @Override
     public boolean insertMaintainerCompetence(String username, String competence) {
         if (this.isMaintainerCompetence(username, competence)) {
@@ -56,10 +62,10 @@ public class MaintainerCompetenceDaoImpl implements MaintainerCompetenceDao {
 
     @Override
     public boolean updateMaintainerCompetence(String username, String oldCompetence, String newCompetence) {
-        if (this.isMaintainerCompetence(username, oldCompetence)) {
+        if (!this.isMaintainerCompetence(username, oldCompetence)) {
             return false;
         }
-        String updateQuery = String.format("UPDATE maintainercompetence SET username = '%s' WHERE username = '%s' AND competence='%s'", newCompetence, username, oldCompetence);
+        String updateQuery = String.format("UPDATE maintainercompetence SET competence = '%s' WHERE username = '%s' AND competence='%s'", newCompetence, username, oldCompetence);
         try (Connection connection = pool.getConnection();Statement statement = connection.createStatement()){
             statement.executeUpdate(updateQuery);
             return true;
@@ -71,7 +77,7 @@ public class MaintainerCompetenceDaoImpl implements MaintainerCompetenceDao {
 
     @Override
     public boolean deleteMaintainerCompetence(String username, String competence) {
-        if (this.isMaintainerCompetence(username, competence)) {
+        if (!this.isMaintainerCompetence(username, competence)) {
             return false;
         }
         String deleteQuery = String.format("DELETE FROM maintainercompetence WHERE username = '%s' AND competence='%s'", username, competence);

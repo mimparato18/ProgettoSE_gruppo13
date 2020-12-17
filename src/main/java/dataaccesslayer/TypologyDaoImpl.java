@@ -23,7 +23,12 @@ public class TypologyDaoImpl implements TypologyDao {
     public TypologyDaoImpl() {
         pool = ConnectionPool.getPool();
     }
-
+    /**
+    * Check if the typology exists
+    *
+    * @param  type  the typology to find inside the database
+    * @return       true if typology exists, false otherwise
+    */
     private boolean isTypology(String type) {
         String selectQuery = String.format("SELECT type FROM typology WHERE (type = '%s')", type);
         String typology = null;

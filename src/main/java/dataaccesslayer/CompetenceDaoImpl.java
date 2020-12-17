@@ -22,7 +22,12 @@ public class CompetenceDaoImpl implements CompetenceDao {
     public CompetenceDaoImpl() {
         pool = ConnectionPool.getPool();
     }
-
+    /**
+    * Check if the competence exist in the database
+    *
+    * @param  competence  the competence to check
+    * @return       true if the competence exists, false otherwise
+    */
     private boolean isCompetence(String competence) {
         String selectQuery = String.format("SELECT competencename FROM competence WHERE (competencename = '%s')", competence);
         String competenceName = null;
