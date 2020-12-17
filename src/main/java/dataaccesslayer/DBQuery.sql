@@ -32,6 +32,10 @@ CREATE TABLE site(
     PRIMARY KEY(branchoffice,department)
 );
 
+CREATE TABLE competence(
+  competencename VARCHAR(30) PRIMARY KEY
+);
+
 CREATE TABLE maintainercompetence(
   username VARCHAR(20),
   competence VARCHAR(50),
@@ -42,7 +46,12 @@ CREATE TABLE maintainercompetence(
 );
 
 CREATE TABLE maintenanceprocedure(
-    name VARCHAR(20) PRIMARY KEY
+    name VARCHAR(40),
+    competencename VARCHAR(30),
+    PRIMARY KEY(name,competencename),
+    CONSTRAINT FK_competence FOREIGN KEY (competencename)
+    REFERENCES competence(competencename)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE maintenanceactivity(
