@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  *
  * @author camil
  */
-public class HomeGUIController implements Initializable {
+public class SystemAdministratorHubGUIController implements Initializable {
 
     @FXML
     private Button btnUser;
@@ -36,11 +36,11 @@ public class HomeGUIController implements Initializable {
 
     private SystemAdministratorService admin;
 
-    public HomeGUIController(String username, String password) {
+    public SystemAdministratorHubGUIController(String username, String password) {
         this.admin = new SystemAdministratorService(new SystemAdministrator(username, password));
     }
 
-    public HomeGUIController(SystemAdministratorService admin) {
+    public SystemAdministratorHubGUIController(SystemAdministratorService admin) {
         this.admin = admin;
     }
 
@@ -78,7 +78,7 @@ public class HomeGUIController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("SystemAdministratorGUI.fxml"));
 
             // Create the new controller and pass the currently selected data item to it
-            SystemAdministratorGUIController controller = new SystemAdministratorGUIController(this.admin);
+            UserManagementGUIController controller = new UserManagementGUIController(this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);

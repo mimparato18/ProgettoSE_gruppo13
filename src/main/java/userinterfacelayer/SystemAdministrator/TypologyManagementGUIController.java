@@ -217,7 +217,7 @@ public class TypologyManagementGUIController implements Initializable {
             String ui = "HomeGUI.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(ui));
             // Create the new controller and pass the currently selected data item to it
-            HomeGUIController controller = new HomeGUIController(this.admin);
+            SystemAdministratorHubGUIController controller = new SystemAdministratorHubGUIController(this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);

@@ -32,7 +32,7 @@ import javafx.stage.Modality;
  *
  * @author camil
  */
-public class SystemAdministratorGUIController implements Initializable {
+public class UserManagementGUIController implements Initializable {
 
     private ArrayList<User> list = null;
     @FXML
@@ -61,7 +61,7 @@ public class SystemAdministratorGUIController implements Initializable {
 
     private SystemAdministratorService admin;
 
-    public SystemAdministratorGUIController(SystemAdministratorService admin) {
+    public UserManagementGUIController(SystemAdministratorService admin) {
         this.admin = admin;
     }
 
@@ -264,7 +264,7 @@ public class SystemAdministratorGUIController implements Initializable {
             String ui = "HomeGUI.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(ui));
             // Create the new controller and pass the currently selected data item to it
-            HomeGUIController controller = new HomeGUIController(this.admin);
+            SystemAdministratorHubGUIController controller = new SystemAdministratorHubGUIController(this.admin);
 
             // Set the controller to the loader
             loader.setController(controller);

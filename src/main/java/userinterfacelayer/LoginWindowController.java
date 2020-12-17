@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import userinterfacelayer.Maintainer.MaintainerHubGUIController;
 import userinterfacelayer.Planner.PlannerHubGUIController;
-import userinterfacelayer.SystemAdministrator.HomeGUIController;
+import userinterfacelayer.SystemAdministrator.SystemAdministratorHubGUIController;
 
 /**
  * FXML Controller class
@@ -92,7 +92,7 @@ public class LoginWindowController implements Initializable {
             String ui = "HomeGUI.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(ui));
             // Create the new controller and pass the currently selected data item to it
-            HomeGUIController controller = new HomeGUIController(username, password);
+            SystemAdministratorHubGUIController controller = new SystemAdministratorHubGUIController(username, password);
 
             // Set the controller to the loader
             loader.setController(controller);
