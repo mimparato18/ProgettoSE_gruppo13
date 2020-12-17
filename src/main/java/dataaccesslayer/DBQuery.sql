@@ -38,6 +38,7 @@ CREATE TABLE maintainercompetence(
   PRIMARY KEY(username,competence),
   constraint FK_maintainercompetence FOREIGN KEY (username) 
   REFERENCES user(username)
+  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE maintenanceprocedure(
