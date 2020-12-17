@@ -4,6 +4,8 @@
 As a System Administrator
 I want to create, view, modify and delete system users
 So that I can manage them
+#### Status
+DONE
 #### Dependencies
 
 #### Story Points
@@ -17,6 +19,8 @@ There are two roles: Planner and Maintainer
 As a System Administrator
 I want to assign specific competencies to Maintainers
 So that I can differentiate the Maintainters
+#### Status
+DONE
 #### Dependencies
 1
 #### Story Points
@@ -29,6 +33,8 @@ Maintainers are characterized by a set of competencies
 As a System Administrator
 I want to assign a specific procedure to Maintainers
 So that I can prepare for the intervention
+#### Status
+NOT STARTED
 #### Dependencies
 1, 10
 #### Story Points
@@ -40,10 +46,12 @@ So that I can prepare for the intervention
 As a System Administrator
 I want to Associate a SMP to each Maintenance Procedure
 So that I can Provide documentation to maintainers
+#### Status
+NOT STARTED
 #### Dependencies
 10
 #### Story Points
-2
+3
 #### Acceptance Criteria/Notes
 SMP is a file in PDF format
 
@@ -52,7 +60,8 @@ SMP is a file in PDF format
 As a System Administrator
 I want to create, view, modify and delete lists of competencies related to a specific task
 So that I can describe the task's requirements
-
+#### Status
+NOT READY
 #### Dependencies
 15
 #### Story Points
@@ -65,6 +74,8 @@ Task are characterized by a set of competencies
 As a System Administrator
 I want to create, view, modify and delete sites
 So that I can localize the maintainace activities inside the factory
+#### Status
+DONE
 ##### Dependencies
 
 ##### Story Points
@@ -79,10 +90,12 @@ Sites are composed of:
 As a System Administrator
 I want to create, view, modify and delete Workspace notes
 So that I can associate notes to a specific entity or a set of entity
+#### Status
+NOT READY
 #### Dependencies
 
 #### Story Points
-3
+2
 #### Acceptance Criteria/Notes
 Workspace notes are associated to one or more sites
 
@@ -91,7 +104,8 @@ Workspace notes are associated to one or more sites
 As a System Administrator
 I want to record all access to the application
 So that I can keep track of users'activities
-
+#### Status
+NOT STARTED
 #### Dependencies
 1
 #### Story Points
@@ -103,10 +117,12 @@ So that I can keep track of users'activities
 As a System Administrator
 I want to create, view, modify and delete lists of materials
 So that I can guide the Maintainers and keep track of the inventory
+#### Status
+NOT STARTED
 #### Dependencies
 
 #### Story Points
-2
+5
 #### Acceptance Criteria/Notes
 A maintenance activity can be characterised by the needed materials 
 
@@ -115,6 +131,8 @@ A maintenance activity can be characterised by the needed materials
 As a System Administrator
 I want to create, view, modify and delete lists of Maintenance procedures
 So that I can guide the Maintainers
+#### Status
+DONE
 #### Dependencies
 
 #### Story Points
@@ -126,6 +144,8 @@ So that I can guide the Maintainers
 As a System Administrator
 I want to assign specific competencies to Maintenance Procedures
 So that I can describe the maintenance activities
+#### Status
+DONE
 #### Dependencies
 10
 #### Story Points
@@ -138,6 +158,8 @@ A maintenance procedure can be characterised by the needed competencies
 As a System Administrator
 I want to create, view, modify and delete maintenance typologies
 So that I can define Maintainance activities
+#### Status
+DONE
 #### Dependencies
 
 #### Story Points
@@ -150,6 +172,8 @@ Example of typologies are electrical, electronic, hydraulic, mechanical etc. .
 As a Planner
 I want to assign a specific EWO to a specific Maintainer, according to his availability
 So that I can handle the Emergency
+#### Status
+NOT READY
 #### Dependencies
 20,21
 #### Story Points
@@ -166,6 +190,8 @@ The information that need to be displayed are:
 As a Planner
 I want to send an email to the Production Manager, after assigning a Maintenance activity
 So that I can notify him of the updated Maintenance schedule
+#### Status
+NOT READY
 #### Dependencies
 13,15,18
 #### Story Points
@@ -177,10 +203,12 @@ So that I can notify him of the updated Maintenance schedule
 As a Planner
 I want to create, view, modify and delete maintenance activities
 So that I can manage them
+#### Status
+DONE
 #### Dependencies
 1,12
 #### Story Points
-13
+8
 #### Acceptance Criteria/Notes
 For each activity the following data must be recorded: 
 - activity ID
@@ -199,6 +227,8 @@ Only “workspace notes” field must be editable
 As a Planner
 I want to see the list of Maintenance activities scheduled in the week
 So that I can select one activity
+#### Status
+DONE
 #### Dependencies
 15
 #### Story Points
@@ -217,6 +247,8 @@ Each activity must be selectable.
 As a Planner
 I want to verify the Maintenance activities and edit the Workspace notes
 So that I can check its correctness
+#### Status
+DONE
 #### Dependencies
 16
 #### Story Points
@@ -230,10 +262,12 @@ Just the “workspace notes” field must be editable.
 As a Planner
 I want to assign a specific activity to a specific Maintainer, according to his availability
 So that I can plan the Maintenance's execution
+#### Status
+IN PROGRESS
 #### Dependencies
 17
 #### Story Points
-8
+13
 #### Acceptance Criteria/Notes
 The following information must be displayed: 
 - week number
@@ -250,10 +284,12 @@ The list contains:
 As a Planner
 I want to send a notification to the Maintainer, after assigning a Maintenance activity
 So that I can appoint him the Maintenance activity
+#### Status
+NOT READY
 #### Dependencies
 13,18
 #### Story Points
-1
+3
 #### Acceptance Criteria/Notes
 
 
@@ -261,10 +297,12 @@ So that I can appoint him the Maintenance activity
 As a Planner
 I want to verify the EWO and add missing information
 So that I can fill the EWO
+#### Status
+NOT READY
 #### Dependencies
 1,5,9
 #### Story Points
-3
+5
 #### Acceptance Criteria/Notes
 The Planner must add:
 - intervention description 
@@ -279,6 +317,8 @@ Competencies field is selectable from a list of pre-existing competencies.
 As a Planner
 I want to interrupt a Maintainer's activity (if not uninterruptible)
 So that I can assign him an EWO
+#### Status
+NOT READY
 #### Dependencies
 1
 #### Story Points
@@ -290,6 +330,8 @@ So that I can assign him an EWO
 As a Planner
 I want to create, view, modify and delete list of materials
 So that I can update the Maintenance Activity's requested materials
+#### Status
+NOT READY
 #### Dependencies
 1
 #### Story Points
@@ -301,10 +343,12 @@ So that I can update the Maintenance Activity's requested materials
 As a Planner
 I want to see the list of assigned tickets (EWO)
 So that I can check their state
+#### Status
+NOT READY
 #### Dependencies
 1,13
 #### Story Points
-2
+8
 #### Acceptance Criteria/Notes
 The following information should be displayed: 
 - week number
@@ -326,10 +370,12 @@ These fields must not be editable
 As a Maintainer
 I want to be notified when a task is assigned to me
 So that I can prepare for the intervention
+#### Status
+NOT READY
 #### Dependencies
 1,3,18
 #### Story Points
-1
+3
 #### Acceptance Criteria/Notes
 
 
@@ -337,10 +383,12 @@ So that I can prepare for the intervention
 As a Maintainer
 I want to provide information about the EWO to which I was assigned
 So that I can notify the production manager about the emergency
+#### Status
+NOT READY
 #### Dependencies
 1,13
 #### Story Points
-3
+8
 #### Acceptance Criteria/Notes
 The maintainer provides information about what
 happened, why the breakdown occurred, what was done about it, and what can be done to prevent it.
@@ -350,10 +398,12 @@ happened, why the breakdown occurred, what was done about it, and what can be do
 As a Maintainer
 I want to see the list of tasks assigned to me
 So that I can prepare for the interventions
+#### Status
+NOT READY
 #### Dependencies
 1,13,18
 #### Story Points
-1
+3
 #### Acceptance Criteria/Notes
 
 
@@ -361,6 +411,8 @@ So that I can prepare for the interventions
 As a User
 I want to login in the application
 So that I do my tasks 
+#### Status
+DONE
 #### Dependencies
 1
 #### Story Points
@@ -373,6 +425,8 @@ So that I do my tasks
 As a System Administrator
 I want to select my operations in a Hub
 So that I can do my tasks 
+#### Status
+DONE
 #### Dependencies
 
 #### Story Points
@@ -385,11 +439,15 @@ So that I can do my tasks
 #### Type 
 Technical Debt
 #### Description 
-Tha Administrator needs to manage competencies, which will then be used in all the application. 
+Tha Administrator needs to manage competencies, which will then be used in all the application.
+#### Status
+DONE
 
 ## Item 30
 #### Type 
 Technical Debt
 #### Description
 Refactory of data access layer, using Data Object Pattern.
+#### Status
+DONE
 
