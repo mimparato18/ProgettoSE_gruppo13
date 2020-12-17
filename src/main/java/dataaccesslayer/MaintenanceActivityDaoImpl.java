@@ -50,9 +50,6 @@ public class MaintenanceActivityDaoImpl implements MaintenanceActivityDao {
 
     @Override
     public boolean insertActivity(MaintenanceActivity activity) {
-        if (this.isActivity(activity.getId())) {
-            return false;
-        }
 
         String insertQuery = String.format("INSERT INTO "
                 + "maintenanceactivity(materials, typology, estimatedtime, activitydescription, branchoffice, department, week, interruptible, workspacenotes) "
