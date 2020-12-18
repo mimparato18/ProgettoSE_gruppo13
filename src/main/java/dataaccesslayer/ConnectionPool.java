@@ -23,7 +23,7 @@ public class ConnectionPool {
     static {
         dataSource = new BasicDataSource();
         //credentials to access the database
-        dataSource.setUrl("jdbc:mysql://40.115.39.127:3306/progettosedb");
+        dataSource.setUrl("jdbc:mysql://progettose.ddns.net:3306/progettosedb");
         dataSource.setUsername("progettose");
         dataSource.setPassword("progettose");
         //parameters of connection pool
