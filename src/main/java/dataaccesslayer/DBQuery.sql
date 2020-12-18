@@ -62,19 +62,23 @@ CREATE TABLE maintenanceactivity(
     activitydescription VARCHAR(100),
     branchoffice VARCHAR(20),
     department VARCHAR(20),
+    procedurename varchar(40),
     week INT,
     interruptable BOOLEAN,
     workspacenotes VARCHAR(100),
     CONSTRAINT FK_site FOREIGN KEY (branchoffice,department)
     REFERENCES site(branchoffice,department)
-    ON DELETE RESTRICT ON UPDATE RESTRICT,
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_procedure FOREIGN KEY (procedurename)
+    REFERENCES maintenanceprocedure(name)
+    ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FK_typology FOREIGN KEY (typology)
     REFERENCES typology(type)
-    ON DELETE RESTRICT ON UPDATE RESTRICT,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
 );
 
 CREATE TABLE maintaineravailability(
-	username VARCHAR(20),
+    username VARCHAR(20),
     week INT CHECK (week > 0 AND week < 53),
     day INT CHECK (day > 0 AND day < 8),
     hour1 INT DEFAULT 60 CHECK (hour1 >= 0 AND hour1 <= 60),
